@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.data.network.IGDBApiService
 import com.vsanto.gameapp.data.network.response.GameResponse
@@ -11,7 +12,6 @@ import com.vsanto.gameapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchByName(query: String) {
+        binding.progressBar.isVisible = true
         CoroutineScope(Dispatchers.IO).launch {
             val requestBody: RequestBody =
                 getSearchBody(query).toRequestBody("text/plain".toMediaTypeOrNull())
@@ -71,13 +72,12 @@ class MainActivity : AppCompatActivity() {
                 retrofit.create(IGDBApiService::class.java).getGames(requestBody)
 
             if (response.isSuccessful) {
+                Log.i("rest", "Peticion correcta")
                 val games: List<GameResponse>? = response.body()
                 if (games != null) {
                     runOnUiThread {
-                        games.forEach {
-                            Log.i("test", "Game $it")
-                        }
                         adapter.updateList(games.map { gameResponse -> gameResponse.toDomain() })
+                        binding.progressBar.isVisible = false
                     }
                 }
             }
