@@ -4,6 +4,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_app"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
     tools:context=".ui.GameActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvLogo"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/logo_description"
+            android:scaleType="fitXY"
+            tools:src="@drawable/game_logo_example" />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/tvSummary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cvLogo"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Metal Gear Solid V: The Phantom Pain" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp"
+            tools:text="1997" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSummary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/secondary_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvLogo"
+        tools:text="Este es el resumen del juego" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSummary">
+
+        <TextView
+            style="@style/TitleCategory"
+            android:text="@string/details" />
+
+        <TextView
+            style="@style/SubtitleCategory"
+            android:text="@string/genres" />
+
+        <TextView
+            android:id="@+id/tvGenres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            tools:text="Adventure" />
+
+        <TextView
+            style="@style/SubtitleCategory"
+            android:text="@string/themes" />
+
+        <TextView
+            android:id="@+id/tvThemes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            tools:text="Action, Fantasy" />
+
+        <TextView
+            style="@style/SubtitleCategory"
+            android:text="@string/game_modes" />
+
+        <TextView
+            android:id="@+id/tvGameModes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            tools:text="Single player" />
+
+        <TextView
+            style="@style/SubtitleCategory"
+            android:text="@string/player_perspectives" />
+
+        <TextView
+            android:id="@+id/tvPlayerPerspectives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            tools:text="Third person" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.vsanto.gameapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.data.network.IGDBApiService
 import com.vsanto.gameapp.data.network.response.GameResponse
 import com.vsanto.gameapp.databinding.ActivityMainBinding
+import com.vsanto.gameapp.domain.model.Game
+import com.vsanto.gameapp.ui.GameActivity.Companion.EXTRA_GAME
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        adapter = GameAdapter()
+        adapter = GameAdapter { navigateToDetail(it) }
         binding.rvGames.setHasFixedSize(true)
         binding.rvGames.layoutManager = LinearLayoutManager(this)
         binding.rvGames.adapter = adapter
@@ -84,11 +87,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateToDetail(game: Game) {
+        val intent = Intent(this, GameActivity::class.java)
+        intent.putExtra(EXTRA_GAME, game)
+        startActivity(intent)
+    }
+
     private fun getSearchBody(name: String): String {
         val queryBuilder = StringBuilder()
         queryBuilder.append("search \"$name\";")
-        queryBuilder.append("fields id, name, first_release_date, cover.*;")
-        queryBuilder.append("limit 10;")
+        queryBuilder.append(
+            "fields " +
+                    "id, " +
+                    "name, " +
+                    "first_release_date, " +
+                    "summary, " +
+                    "cover.url, " +
+                    "artworks.url, " +
+                    "screenshots.url, " +
+                    "themes.name, " +
+                    "genres.name, " +
+                    "game_modes.name, " +
+                    "player_perspectives.name;"
+        )
+        queryBuilder.append("limit 100;")
         return queryBuilder.toString()
     }
 

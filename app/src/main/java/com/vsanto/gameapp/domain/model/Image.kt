@@ -1,3 +1,5 @@
 package com.vsanto.gameapp.domain.model
 
-data class Image(val id: Int, val url: String)
+import java.io.Serializable
+
+data class Image(val url: String) : Serializable

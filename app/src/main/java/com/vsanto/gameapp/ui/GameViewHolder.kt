@@ -10,13 +10,15 @@ class GameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemGameBinding.bind(view)
 
-    fun bind(game: Game) {
+    fun bind(game: Game, onItemSelected: (Game) -> Unit) {
         binding.tvName.text = game.name
         binding.tvReleaseDate.text = game.releaseDate
         if (game.cover != null) {
             Picasso.get().isLoggingEnabled = true
             Picasso.get().load("https:" + game.cover.url).into(binding.ivLogo)
         }
+
+        binding.root.setOnClickListener { onItemSelected(game) }
     }
 
 }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="@color/background_app">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLogo"
@@ -20,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/logo_description"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            tools:src="@drawable/game_logo_example" />
 
     </androidx.cardview.widget.CardView>
 
@@ -38,18 +40,19 @@
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/primary_text"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="Batman: Arkham Knight - 2008 Movie Batman Skin" />
+            tools:text="Metal Gear Solid V: The Phantom Pain" />
 
         <TextView
             android:id="@+id/tvReleaseDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
             android:textSize="12sp"
             tools:text="1997" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
