@@ -21,10 +21,7 @@ class GameActivity : AppCompatActivity() {
 
         val game: Game = intent.getSerializableExtra(EXTRA_GAME) as Game
 
-        if (game.cover != null) {
-            Picasso.get().isLoggingEnabled = true
-            Picasso.get().load("https:" + game.cover.url).into(binding.ivLogo)
-        }
+        loadLogo(game)
 
         binding.tvName.text = game.name
         binding.tvReleaseDate.text = game.releaseDate
@@ -34,6 +31,18 @@ class GameActivity : AppCompatActivity() {
         binding.tvThemes.text = toString(game.themes)
         binding.tvGameModes.text = toString(game.modes)
         binding.tvPlayerPerspectives.text = toString(game.playerPerspectives)
+    }
+
+    private fun loadLogo(game: Game) {
+        if (game.cover != null) {
+            Picasso.get().isLoggingEnabled = true
+            var url: String = "https:" + game.cover.url
+            if(url.contains("t_thumb")){
+                // Get big logo
+                url = url.replace("t_thumb", "t_cover_big")
+            }
+            Picasso.get().load(url).into(binding.ivLogo)
+        }
     }
 
     private fun toString(list: List<String>?): String {
