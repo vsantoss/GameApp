@@ -20,20 +20,28 @@
         <item name="android:tint">@color/primary_text</item>
     </style>
 
-    <style name="TitleCategory">
+    <style name="Title">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/primary_text</item>
     </style>
 
-    <style name="SubtitleCategory">
+    <style name="Subtitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">3dp</item>
         <item name="android:textColor">@color/primary_text</item>
     </style>
+
+    <style name="Value">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
 </resources>

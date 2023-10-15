@@ -2,9 +2,11 @@ package com.vsanto.gameapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.databinding.ActivityGameBinding
 import com.vsanto.gameapp.domain.model.Game
+import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 
 class GameActivity : AppCompatActivity() {
@@ -14,6 +16,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityGameBinding
+    private lateinit var screenshotAdapter: ScreenshotAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,16 @@ class GameActivity : AppCompatActivity() {
         binding.tvThemes.text = toString(game.themes)
         binding.tvGameModes.text = toString(game.modes)
         binding.tvPlayerPerspectives.text = toString(game.playerPerspectives)
+
+        initScreenshots(game.screenshots)
+    }
+
+    private fun initScreenshots(screenshots: List<Image>?) {
+        screenshotAdapter = ScreenshotAdapter(screenshots.orEmpty())
+        binding.rvScreenshots.setHasFixedSize(true)
+        binding.rvScreenshots.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvScreenshots.adapter = screenshotAdapter
     }
 
     private fun getDeveloperCompany(game: Game): InvolvedCompany? {

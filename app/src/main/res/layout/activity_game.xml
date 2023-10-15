@@ -38,44 +38,35 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primary_text"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            style="@style/Title"
             android:layout_marginBottom="5dp"
             tools:text="Metal Gear Solid V: The Phantom Pain" />
 
         <TextView
             android:id="@+id/tvDeveloper"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text"
-            android:textSize="12sp"
+            style="@style/Value"
             tools:text="Kojima Productions" />
 
         <TextView
             android:id="@+id/tvReleaseDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text"
-            android:textSize="12sp"
+            style="@style/Value"
             tools:text="01 September 2015" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvSummary"
+        style="@style/Value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textColor="@color/secondary_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvLogo"
         tools:text="Este es el resumen del juego" />
 
     <LinearLayout
+        android:id="@+id/llScreenshots"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
@@ -85,51 +76,64 @@
         app:layout_constraintTop_toBottomOf="@id/tvSummary">
 
         <TextView
-            style="@style/TitleCategory"
+            style="@style/Title"
+            android:text="@string/screenshots" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvScreenshots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llScreenshots">
+
+        <TextView
+            style="@style/Title"
             android:text="@string/details" />
 
         <TextView
-            style="@style/SubtitleCategory"
+            style="@style/Subtitle"
             android:text="@string/genres" />
 
         <TextView
             android:id="@+id/tvGenres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text"
+            style="@style/Value"
             tools:text="Adventure" />
 
         <TextView
-            style="@style/SubtitleCategory"
+            style="@style/Subtitle"
             android:text="@string/themes" />
 
         <TextView
             android:id="@+id/tvThemes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text"
+            style="@style/Value"
             tools:text="Action, Fantasy" />
 
         <TextView
-            style="@style/SubtitleCategory"
+            style="@style/Subtitle"
             android:text="@string/game_modes" />
 
         <TextView
             android:id="@+id/tvGameModes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text"
+            style="@style/Value"
             tools:text="Single player" />
 
         <TextView
-            style="@style/SubtitleCategory"
+            style="@style/Subtitle"
             android:text="@string/player_perspectives" />
 
         <TextView
             android:id="@+id/tvPlayerPerspectives"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondary_text"
+            style="@style/Value"
             tools:text="Third person" />
 
     </LinearLayout>
