@@ -7,6 +7,7 @@ data class Game(
     val name: String,
     val releaseDate: String,
     val summary: String?,
+    val involvedCompanies: List<InvolvedCompany>?,
     val cover: Image?,
     val screenshots: List<Image>?,
     val artworks: List<Image>?,

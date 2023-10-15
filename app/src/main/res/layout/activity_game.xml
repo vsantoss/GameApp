@@ -32,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/tvSummary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cvLogo"
         app:layout_constraintTop_toTopOf="parent">
@@ -44,7 +43,16 @@
             android:textColor="@color/primary_text"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginBottom="5dp"
             tools:text="Metal Gear Solid V: The Phantom Pain" />
+
+        <TextView
+            android:id="@+id/tvDeveloper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondary_text"
+            android:textSize="12sp"
+            tools:text="Kojima Productions" />
 
         <TextView
             android:id="@+id/tvReleaseDate"
@@ -52,7 +60,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/secondary_text"
             android:textSize="12sp"
-            tools:text="1997" />
+            tools:text="01 September 2015" />
 
     </LinearLayout>
 

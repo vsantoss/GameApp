@@ -102,6 +102,8 @@ class MainActivity : AppCompatActivity() {
                     "name, " +
                     "first_release_date, " +
                     "summary, " +
+                    "involved_companies.*, " +
+                    "involved_companies.company.*, " +
                     "cover.url, " +
                     "artworks.url, " +
                     "screenshots.url, " +
