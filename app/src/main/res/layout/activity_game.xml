@@ -136,6 +136,15 @@
             style="@style/Value"
             tools:text="Third person" />
 
+        <TextView
+            style="@style/Subtitle"
+            android:text="@string/platforms" />
+
+        <TextView
+            android:id="@+id/tvPlatforms"
+            style="@style/Value"
+            tools:text="PC, PS3, PS4, X360, XONE" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

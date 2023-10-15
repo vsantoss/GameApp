@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
-
         })
     }
 
@@ -110,7 +109,8 @@ class MainActivity : AppCompatActivity() {
                     "themes.name, " +
                     "genres.name, " +
                     "game_modes.name, " +
-                    "player_perspectives.name;"
+                    "player_perspectives.name, " +
+                    "platforms.abbreviation;"
         )
         queryBuilder.append("limit 100;")
         return queryBuilder.toString()

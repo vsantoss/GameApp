@@ -38,6 +38,7 @@ class GameActivity : AppCompatActivity() {
         binding.tvThemes.text = toString(game.themes)
         binding.tvGameModes.text = toString(game.modes)
         binding.tvPlayerPerspectives.text = toString(game.playerPerspectives)
+        binding.tvPlatforms.text = toString(game.platforms)
 
         initScreenshots(game.screenshots)
     }

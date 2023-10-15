@@ -5,10 +5,15 @@
     <string name="logo_description">Logo</string>
 
     <string name="screenshots">Screenshots</string>
+    <string name="screenshot_description">Screenshot</string>
+
     <string name="details">Details</string>
     <string name="genres">Genres</string>
     <string name="themes">Themes</string>
     <string name="game_modes">Modes</string>
+    <string name="player_perspectives">Player Perspectives</string>
+    <string name="platforms">Platforms</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -46,5 +51,4 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-    <string name="player_perspectives">Player Perspectives</string>
 </resources>
