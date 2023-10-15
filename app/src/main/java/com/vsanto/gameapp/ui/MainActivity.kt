@@ -112,6 +112,7 @@ class MainActivity : AppCompatActivity() {
                     "player_perspectives.name, " +
                     "platforms.abbreviation;"
         )
+        queryBuilder.append("where category = 0;")
         queryBuilder.append("limit 100;")
         return queryBuilder.toString()
     }
