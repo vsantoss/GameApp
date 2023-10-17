@@ -8,6 +8,7 @@ import com.vsanto.gameapp.databinding.ActivityGameBinding
 import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
+import com.vsanto.gameapp.domain.model.SimilarGame
 
 class GameActivity : AppCompatActivity() {
 
@@ -17,6 +18,7 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGameBinding
     private lateinit var screenshotAdapter: ScreenshotAdapter
+    private lateinit var similarGameAdapter: SimilarGameAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,7 @@ class GameActivity : AppCompatActivity() {
         binding.tvPlatforms.text = toString(game.platforms)
 
         initScreenshots(game.screenshots)
+        initSimilarGames(game.similarGames)
     }
 
     private fun initScreenshots(screenshots: List<Image>?) {
@@ -49,6 +52,14 @@ class GameActivity : AppCompatActivity() {
         binding.rvScreenshots.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvScreenshots.adapter = screenshotAdapter
+    }
+
+    private fun initSimilarGames(similarGames: List<SimilarGame>?) {
+        similarGameAdapter = SimilarGameAdapter(similarGames.orEmpty())
+        binding.rvSimilarGames.setHasFixedSize(true)
+        binding.rvSimilarGames.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvSimilarGames.adapter = similarGameAdapter
     }
 
     private fun getDeveloperCompany(game: Game): InvolvedCompany? {

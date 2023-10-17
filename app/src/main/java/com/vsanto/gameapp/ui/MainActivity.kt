@@ -110,7 +110,8 @@ class MainActivity : AppCompatActivity() {
                     "genres.name, " +
                     "game_modes.name, " +
                     "player_perspectives.name, " +
-                    "platforms.abbreviation;"
+                    "platforms.abbreviation, " +
+                    "similar_games.name, similar_games.cover.url;"
         )
         queryBuilder.append("where category = 0;")
         queryBuilder.append("limit 100;")
