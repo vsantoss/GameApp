@@ -9,7 +9,9 @@ import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GameActivity : AppCompatActivity() {
 
     companion object {

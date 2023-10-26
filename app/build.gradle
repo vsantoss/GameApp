@@ -1,16 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.vsanto.gameapp'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.vsanto.gameapp"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -33,6 +35,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    kotlin {
+        jvmToolchain(8)
+    }
 }
 
 dependencies {
@@ -51,6 +57,10 @@ dependencies {
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    //DaggerHilt
+    implementation 'com.google.dagger:hilt-android:2.48'
+    kapt 'com.google.dagger:hilt-compiler:2.48'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

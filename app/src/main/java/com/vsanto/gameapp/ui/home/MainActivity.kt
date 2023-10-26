@@ -13,6 +13,7 @@ import com.vsanto.gameapp.databinding.ActivityMainBinding
 import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.ui.detail.GameActivity
 import com.vsanto.gameapp.ui.detail.GameActivity.Companion.EXTRA_GAME
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
