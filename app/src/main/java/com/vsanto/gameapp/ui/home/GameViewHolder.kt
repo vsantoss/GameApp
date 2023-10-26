@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui
+package com.vsanto.gameapp.ui.home
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

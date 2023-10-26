@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui
+package com.vsanto.gameapp.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

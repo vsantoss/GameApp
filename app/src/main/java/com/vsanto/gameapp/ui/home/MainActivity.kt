@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui
+package com.vsanto.gameapp.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,8 @@ import com.vsanto.gameapp.data.network.IGDBApiService
 import com.vsanto.gameapp.data.network.response.GameResponse
 import com.vsanto.gameapp.databinding.ActivityMainBinding
 import com.vsanto.gameapp.domain.model.Game
-import com.vsanto.gameapp.ui.GameActivity.Companion.EXTRA_GAME
+import com.vsanto.gameapp.ui.detail.GameActivity
+import com.vsanto.gameapp.ui.detail.GameActivity.Companion.EXTRA_GAME
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
