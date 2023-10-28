@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.vsanto.gameapp.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_gameDetailActivity"
+            app:destination="@id/gameDetailActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/gameDetailActivity"
+        android:name="com.vsanto.gameapp.ui.detail.GameDetailActivity"
+        android:label="GameDetailActivity"
+        tools:layout="@layout/activity_game_detail">
+        <argument
+            android:name="game"
+            app:argType="com.vsanto.gameapp.domain.model.Game" />
+    </activity>
+
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.vsanto.gameapp.ui.collection.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
 
 </navigation>

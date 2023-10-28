@@ -1,11 +1,10 @@
-package com.vsanto.gameapp.ui.home
+package com.vsanto.gameapp.ui.search.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.domain.model.Game
-import com.vsanto.gameapp.ui.home.GameViewHolder
 
 class GameAdapter(
     private var games: List<Game> = emptyList(),

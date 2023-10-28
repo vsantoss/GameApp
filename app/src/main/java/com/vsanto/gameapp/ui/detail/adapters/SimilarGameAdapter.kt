@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.detail
+package com.vsanto.gameapp.ui.detail.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

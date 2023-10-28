@@ -2,32 +2,33 @@ package com.vsanto.gameapp.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
-import com.vsanto.gameapp.databinding.ActivityGameBinding
+import com.vsanto.gameapp.databinding.ActivityGameDetailBinding
 import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
+import com.vsanto.gameapp.ui.detail.adapters.ScreenshotAdapter
+import com.vsanto.gameapp.ui.detail.adapters.SimilarGameAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GameActivity : AppCompatActivity() {
+class GameDetailActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_GAME = "extra_game"
-    }
+    private lateinit var binding: ActivityGameDetailBinding
+    private val args: GameDetailActivityArgs by navArgs()
 
-    private lateinit var binding: ActivityGameBinding
     private lateinit var screenshotAdapter: ScreenshotAdapter
     private lateinit var similarGameAdapter: SimilarGameAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityGameBinding.inflate(layoutInflater)
+        binding = ActivityGameDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val game: Game = intent.getSerializableExtra(EXTRA_GAME) as Game
+        val game: Game = args.game
 
         loadLogo(game)
 

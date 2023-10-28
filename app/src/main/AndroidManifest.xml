@@ -16,7 +16,7 @@
         android:theme="@style/Theme.GameApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.detail.GameActivity"
+            android:name=".ui.detail.GameDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.MainActivity"

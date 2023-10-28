@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="primary">#100F2A</color>
+    <color name="primaryDark">#03030D</color>
+    <color name="secondary">#ee9361</color>
+
     <color name="background_app">#232430</color>
     <color name="primary_text">#FFFFFFFF</color>
     <color name="secondary_text">#99AABB</color>
