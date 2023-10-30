@@ -21,12 +21,23 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "IGDB_BASE_URL", "\"https://api.igdb.com/v4/\"")
+            buildConfigField("String", "IGDB_CLIENT_ID", "\"8kjgodb5ozfyj3q70rmekr9lioe59z\"")
+            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer v3s917uilrqwh5v1b3aj8cgw85y7tl\"")
+        }
+        getByName("debug") {
+            isDebuggable = true
+            buildConfigField("String", "IGDB_BASE_URL", "\"https://api.igdb.com/v4/\"")
+            buildConfigField("String", "IGDB_CLIENT_ID", "\"8kjgodb5ozfyj3q70rmekr9lioe59z\"")
+            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer v3s917uilrqwh5v1b3aj8cgw85y7tl\"")
         }
     }
     compileOptions {
@@ -38,6 +49,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     kotlin {
@@ -60,12 +72,14 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.8")
 
     //DaggerHilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-compiler:2.48")
+    val daggerVersion = "2.48"
+    implementation("com.google.dagger:hilt-android:$daggerVersion")
+    kapt("com.google.dagger:hilt-compiler:$daggerVersion")
 
     //NavComponent
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.1")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.1")
+    val navVersion = "2.7.1"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

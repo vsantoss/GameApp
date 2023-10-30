@@ -1,5 +1,7 @@
 package com.vsanto.gameapp.data.network
 
+import com.vsanto.gameapp.BuildConfig.IGDB_BASE_URL
+
 import com.vsanto.gameapp.data.RepositoryImpl
 import com.vsanto.gameapp.data.core.interceptors.AuthInterceptor
 import com.vsanto.gameapp.domain.Repository
@@ -21,7 +23,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.igdb.com/v4/")
+            .baseUrl(IGDB_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
