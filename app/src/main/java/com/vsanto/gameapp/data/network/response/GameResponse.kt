@@ -9,6 +9,7 @@ data class GameResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("first_release_date") val releaseDate: Long?,
+    @SerializedName("total_rating") val rating: Double?,
     @SerializedName("summary") val summary: String?,
     @SerializedName("involved_companies") val involvedCompanies: List<InvolvedCompanyResponse>?,
     @SerializedName("cover") val cover: ImageResponse?,
@@ -25,6 +26,7 @@ data class GameResponse(
         return Game(id = id,
             name = name,
             releaseDate = getDateString(releaseDate),
+            rating = rating ?: 0.0,
             summary = summary,
             involvedCompanies = involvedCompanies?.map { it.toDomain() },
             cover = cover?.toDomain(),
@@ -46,4 +48,5 @@ data class GameResponse(
             ""
         }
     }
+
 }

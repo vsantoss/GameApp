@@ -6,6 +6,7 @@ data class Game(
     val id: Int,
     val name: String,
     val releaseDate: String,
+    val rating: Double,
     val summary: String?,
     val involvedCompanies: List<InvolvedCompany>?,
     val cover: Image?,

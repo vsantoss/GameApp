@@ -27,6 +27,7 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
                     "id, " +
                     "name, " +
                     "first_release_date, " +
+                    "total_rating, " +
                     "summary, " +
                     "involved_companies.*, " +
                     "involved_companies.company.*, " +
