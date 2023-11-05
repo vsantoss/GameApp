@@ -12,6 +12,7 @@ import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
+import com.vsanto.gameapp.ui.detail.adapters.CompanyAdapter
 import com.vsanto.gameapp.ui.detail.adapters.ScreenshotAdapter
 import com.vsanto.gameapp.ui.detail.adapters.SimilarGameAdapter
 
@@ -24,6 +25,7 @@ class GameDetailActivity : AppCompatActivity() {
     private val args: GameDetailActivityArgs by navArgs()
 
     private lateinit var screenshotAdapter: ScreenshotAdapter
+    private lateinit var companyAdapter: CompanyAdapter
     private lateinit var similarGameAdapter: SimilarGameAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +56,7 @@ class GameDetailActivity : AppCompatActivity() {
         binding.tvPlatforms.text = toString(game.platforms)
 
         initScreenshots(game.screenshots)
+        initInvolvedCompanies(game.involvedCompanies)
         initSimilarGames(game.similarGames)
     }
 
@@ -109,6 +112,14 @@ class GameDetailActivity : AppCompatActivity() {
         binding.rvScreenshots.adapter = screenshotAdapter
     }
 
+    private fun initInvolvedCompanies(involvedCompanies: List<InvolvedCompany>?) {
+        companyAdapter = CompanyAdapter(involvedCompanies.orEmpty())
+        binding.rvInvolvedCompanies.setHasFixedSize(true)
+        binding.rvInvolvedCompanies.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvInvolvedCompanies.adapter = companyAdapter
+    }
+
     private fun initSimilarGames(similarGames: List<SimilarGame>?) {
         similarGameAdapter = SimilarGameAdapter(similarGames.orEmpty())
         binding.rvSimilarGames.setHasFixedSize(true)
@@ -124,12 +135,7 @@ class GameDetailActivity : AppCompatActivity() {
     private fun loadLogo(game: Game) {
         if (game.cover != null) {
             Picasso.get().isLoggingEnabled = true
-            var url: String = "https:" + game.cover.url
-            if (url.contains("t_thumb")) {
-                // Get big logo
-                url = url.replace("t_thumb", "t_cover_big")
-            }
-            Picasso.get().load(url).into(binding.ivLogo)
+            Picasso.get().load(game.cover.url).into(binding.ivLogo)
         }
     }
 

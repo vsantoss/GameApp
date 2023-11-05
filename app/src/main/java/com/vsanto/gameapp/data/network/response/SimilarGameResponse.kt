@@ -12,7 +12,7 @@ data class SimilarGameResponse(
         return SimilarGame(
             id = id,
             name = name,
-            cover = cover?.toDomain()
+            cover = cover?.toDomain(ImageSize.BIG_LOGO)
         )
     }
 }

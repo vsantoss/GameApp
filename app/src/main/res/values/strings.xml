@@ -22,6 +22,13 @@
     <string name="player_perspectives">Player Perspectives</string>
     <string name="platforms">Platforms</string>
 
+    <string name="involved_companies">Involved Companies</string>
+    <string name="company_logo_description">Company logo</string>
+    <string name="developer">Main Developer</string>
+    <string name="supporter">Support Developer</string>
+    <string name="publisher">Publisher</string>
+    <string name="porter">Port Developer</string>
+
     <string name="similar_games">Similar Games</string>
 
     <string name="lorem_ipsum">

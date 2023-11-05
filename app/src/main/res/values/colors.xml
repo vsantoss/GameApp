@@ -12,9 +12,8 @@
     <color name="primaryDark">#03030D</color>
     <color name="secondary">#ee9361</color>
 
-    <color name="background_app">#232430</color>
     <color name="primary_text">#FFFFFFFF</color>
-    <color name="secondary_text">#99AABB</color>
+    <color name="secondary_text">#7A8895</color>
 
     <!-- Ratings -->
     <color name="A_rating">#4ABB8A</color>
@@ -22,6 +21,6 @@
     <color name="C_rating">#EEB53B</color>
     <color name="D_rating">#E87336</color>
     <color name="E_rating">#E23131</color>
-    <color name="N_A_rating">#99AABB</color>
+    <color name="N_A_rating">#7A8895</color>
 
 </resources>

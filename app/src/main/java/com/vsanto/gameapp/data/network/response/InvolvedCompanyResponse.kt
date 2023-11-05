@@ -14,6 +14,7 @@ data class InvolvedCompanyResponse(
     fun toDomain(): InvolvedCompany {
         return InvolvedCompany(
             name = company?.name.orEmpty(),
+            logo = company?.logo?.toDomain(ImageSize.MED_LOGO),
             developer = developer,
             publisher = publisher,
             porting = porting,

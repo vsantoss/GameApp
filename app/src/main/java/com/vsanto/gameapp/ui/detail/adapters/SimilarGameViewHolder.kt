@@ -11,15 +11,9 @@ class SimilarGameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemSimilarGameBinding.bind(view)
 
     fun bind(similarGame: SimilarGame) {
-        Picasso.get().isLoggingEnabled = true
-
         if (similarGame.cover != null) {
-            var url: String = "https:" + similarGame.cover.url
-            if (url.contains("t_thumb")) {
-                // Get 1080p screenshot
-                url = url.replace("t_thumb", "t_1080p")
-            }
-            Picasso.get().load(url).into(binding.ivLogo)
+            Picasso.get().isLoggingEnabled = true
+            Picasso.get().load(similarGame.cover.url).into(binding.ivLogo)
         }
     }
 

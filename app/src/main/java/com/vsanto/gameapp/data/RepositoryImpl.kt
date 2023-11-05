@@ -31,6 +31,7 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
                     "summary, " +
                     "involved_companies.*, " +
                     "involved_companies.company.*, " +
+                    "involved_companies.company.logo.url, " +
                     "cover.url, " +
                     "artworks.url, " +
                     "screenshots.url, " +

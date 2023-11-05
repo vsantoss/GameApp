@@ -12,12 +12,7 @@ class ScreenshotViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(image: Image) {
         Picasso.get().isLoggingEnabled = true
-        var url: String = "https:" + image.url
-        if (url.contains("t_thumb")) {
-            // Get big logo
-            url = url.replace("t_thumb", "t_cover_big")
-        }
-        Picasso.get().load(url).into(binding.ivScreenshot)
+        Picasso.get().load(image.url).into(binding.ivScreenshot)
     }
 
 }

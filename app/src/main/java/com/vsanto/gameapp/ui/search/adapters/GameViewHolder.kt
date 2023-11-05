@@ -21,12 +21,7 @@ class GameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private fun loadLogo(game: Game) {
         if (game.cover != null) {
             Picasso.get().isLoggingEnabled = true
-            var url: String = "https:" + game.cover.url
-            if (url.contains("t_thumb")) {
-                // Get big logo
-                url = url.replace("t_thumb", "t_cover_big")
-            }
-            Picasso.get().load(url).into(binding.ivLogo)
+            Picasso.get().load(game.cover.url).into(binding.ivLogo)
         }
     }
 
