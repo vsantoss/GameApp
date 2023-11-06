@@ -64,68 +64,63 @@ class GameDetailActivity : AppCompatActivity() {
         val parsedRating = String.format("%.1f", rating / 10).toDouble()
         binding.tvRating.text = parsedRating.toString()
 
-        when (parsedRating) {
+        val color = when (parsedRating) {
             in 0.01..2.00 -> {
-                binding.cvRating.setCardBackgroundColor(
-                    ContextCompat.getColor(this, R.color.E_rating)
-                )
+                R.color.E_rating
             }
 
             in 2.01..4.00 -> {
-                binding.cvRating.setCardBackgroundColor(
-                    ContextCompat.getColor(this, R.color.D_rating)
-                )
+                R.color.D_rating
             }
 
             in 4.01..6.00 -> {
-                binding.cvRating.setCardBackgroundColor(
-                    ContextCompat.getColor(this, R.color.C_rating)
-                )
+                R.color.C_rating
             }
 
             in 6.01..8.00 -> {
-                binding.cvRating.setCardBackgroundColor(
-                    ContextCompat.getColor(this, R.color.B_rating)
-                )
+                R.color.B_rating
             }
 
             in 8.01..10.00 -> {
-                binding.cvRating.setCardBackgroundColor(
-                    ContextCompat.getColor(this, R.color.A_rating)
-                )
+                R.color.A_rating
             }
 
             else -> {
                 binding.tvRating.text = "N/A"
-                binding.cvRating.setCardBackgroundColor(
-                    ContextCompat.getColor(this, R.color.N_A_rating)
-                )
+                R.color.N_A_rating
             }
         }
+
+        binding.cvRating.setCardBackgroundColor(
+            ContextCompat.getColor(this, color)
+        )
     }
 
     private fun initScreenshots(screenshots: List<Image>?) {
         screenshotAdapter = ScreenshotAdapter(screenshots.orEmpty())
-        binding.rvScreenshots.setHasFixedSize(true)
-        binding.rvScreenshots.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvScreenshots.adapter = screenshotAdapter
+        binding.rvScreenshots.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = screenshotAdapter
+        }
     }
 
     private fun initInvolvedCompanies(involvedCompanies: List<InvolvedCompany>?) {
         companyAdapter = CompanyAdapter(involvedCompanies.orEmpty())
-        binding.rvInvolvedCompanies.setHasFixedSize(true)
-        binding.rvInvolvedCompanies.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvInvolvedCompanies.adapter = companyAdapter
+        binding.rvInvolvedCompanies.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = companyAdapter
+        }
     }
 
     private fun initSimilarGames(similarGames: List<SimilarGame>?) {
         similarGameAdapter = SimilarGameAdapter(similarGames.orEmpty())
-        binding.rvSimilarGames.setHasFixedSize(true)
-        binding.rvSimilarGames.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvSimilarGames.adapter = similarGameAdapter
+        binding.rvSimilarGames.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = similarGameAdapter
+        }
     }
 
     private fun getDeveloperCompany(game: Game): InvolvedCompany? {
