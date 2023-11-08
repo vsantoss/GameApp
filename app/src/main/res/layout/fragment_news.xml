@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:context=".ui.collection.CollectionFragment">
+    tools:context=".ui.news.NewsFragment">
 
     <TextView
         style="@style/Title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Collection" />
+        android:text="News" />
 
 </FrameLayout>

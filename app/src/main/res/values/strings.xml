@@ -5,7 +5,7 @@
     <!-- Bottom Bar -->
     <string name="search">Search</string>
     <string name="collection">Collection</string>
-
+    <string name="news">News</string>
 
     <!-- Game Detail -->
     <string name="logo_description">Logo</string>
@@ -60,6 +60,5 @@
         ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
         Suspendisse interdum ornare ante.
     </string>
-
 
 </resources>

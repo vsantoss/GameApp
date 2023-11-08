@@ -31,4 +31,10 @@
         android:label="fragment_collection"
         tools:layout="@layout/fragment_collection" />
 
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.vsanto.gameapp.ui.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+
 </navigation>
