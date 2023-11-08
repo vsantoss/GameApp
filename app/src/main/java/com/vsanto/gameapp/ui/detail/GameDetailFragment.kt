@@ -1,42 +1,47 @@
 package com.vsanto.gameapp.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.navigation.navArgs
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.R
-import com.vsanto.gameapp.databinding.ActivityGameDetailBinding
+import com.vsanto.gameapp.databinding.FragmentGameDetailBinding
 import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
 import com.vsanto.gameapp.domain.model.Website
 import com.vsanto.gameapp.ui.detail.adapters.CompanyAdapter
-import com.vsanto.gameapp.ui.detail.adapters.WebsiteAdapter
 import com.vsanto.gameapp.ui.detail.adapters.ScreenshotAdapter
 import com.vsanto.gameapp.ui.detail.adapters.SimilarGameAdapter
+import com.vsanto.gameapp.ui.detail.adapters.WebsiteAdapter
 
-import dagger.hilt.android.AndroidEntryPoint
+class GameDetailFragment : Fragment() {
 
-@AndroidEntryPoint
-class GameDetailActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityGameDetailBinding
-    private val args: GameDetailActivityArgs by navArgs()
+    private var _binding: FragmentGameDetailBinding? = null
+    private val binding get() = _binding!!
+    private val args: GameDetailFragmentArgs by navArgs()
 
     private lateinit var screenshotAdapter: ScreenshotAdapter
     private lateinit var companyAdapter: CompanyAdapter
     private lateinit var similarGameAdapter: SimilarGameAdapter
     private lateinit var websiteAdapter: WebsiteAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityGameDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentGameDetailBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initUI()
     }
 
@@ -97,7 +102,7 @@ class GameDetailActivity : AppCompatActivity() {
         }
 
         binding.cvRating.setCardBackgroundColor(
-            ContextCompat.getColor(this, color)
+            ContextCompat.getColor(requireContext(), color)
         )
     }
 

@@ -69,7 +69,7 @@ class SearchFragment : Fragment() {
 
     private fun navigateToDetail(game: Game) {
         findNavController().navigate(
-            SearchFragmentDirections.actionSearchFragmentToGameDetailActivity(game)
+            SearchFragmentDirections.actionSearchFragmentToGameDetailFragment(game)
         )
     }
 

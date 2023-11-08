@@ -11,19 +11,19 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
         <action
-            android:id="@+id/action_searchFragment_to_gameDetailActivity"
-            app:destination="@id/gameDetailActivity" />
+            android:id="@+id/action_searchFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
     </fragment>
 
-    <activity
-        android:id="@+id/gameDetailActivity"
-        android:name="com.vsanto.gameapp.ui.detail.GameDetailActivity"
-        android:label="GameDetailActivity"
-        tools:layout="@layout/activity_game_detail">
+    <fragment
+        android:id="@+id/gameDetailFragment"
+        android:name="com.vsanto.gameapp.ui.detail.GameDetailFragment"
+        android:label="GameDetailFragment"
+        tools:layout="@layout/fragment_game_detail">
         <argument
             android:name="game"
             app:argType="com.vsanto.gameapp.domain.model.Game" />
-    </activity>
+    </fragment>
 
     <fragment
         android:id="@+id/collectionFragment"
