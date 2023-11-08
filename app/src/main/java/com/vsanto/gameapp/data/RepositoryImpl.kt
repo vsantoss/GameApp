@@ -40,7 +40,8 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
                     "game_modes.name, " +
                     "player_perspectives.name, " +
                     "platforms.abbreviation, " +
-                    "similar_games.name, similar_games.cover.url;"
+                    "similar_games.name, similar_games.cover.url, " +
+                    "websites.*;"
         )
         queryBuilder.append("where category = 0;")
         queryBuilder.append("limit 100;")

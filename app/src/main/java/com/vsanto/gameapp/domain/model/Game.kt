@@ -17,6 +17,7 @@ data class Game(
     val modes: List<String>?,
     val playerPerspectives: List<String>?,
     val platforms: List<String>?,
-    val similarGames: List<SimilarGame>?
+    val similarGames: List<SimilarGame>?,
+    val websites: List<Website>?
 ) :
     Serializable

@@ -21,6 +21,7 @@ data class GameResponse(
     @SerializedName("player_perspectives") val playerPerspectives: List<PlayerPerspectiveResponse>?,
     @SerializedName("platforms") val platforms: List<PlatformResponse>?,
     @SerializedName("similar_games") val similarGames: List<SimilarGameResponse>?,
+    @SerializedName("websites") val websites: List<WebsiteResponse>?,
 ) {
     fun toDomain(): Game {
         return Game(id = id,
@@ -37,7 +38,8 @@ data class GameResponse(
             modes = modes?.map { it.name },
             playerPerspectives = playerPerspectives?.map { it.name },
             platforms = platforms?.sortedBy { it.abbreviation }?.map { it.abbreviation },
-            similarGames = similarGames?.map { it.toDomain() })
+            similarGames = similarGames?.map { it.toDomain() },
+            websites = websites?.sortedBy { it.category }?.map { it.toDomain() })
     }
 
     private fun getDateString(timestamp: Long?): String {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.navigation.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.R
@@ -12,7 +13,9 @@ import com.vsanto.gameapp.domain.model.Game
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
+import com.vsanto.gameapp.domain.model.Website
 import com.vsanto.gameapp.ui.detail.adapters.CompanyAdapter
+import com.vsanto.gameapp.ui.detail.adapters.WebsiteAdapter
 import com.vsanto.gameapp.ui.detail.adapters.ScreenshotAdapter
 import com.vsanto.gameapp.ui.detail.adapters.SimilarGameAdapter
 
@@ -27,6 +30,7 @@ class GameDetailActivity : AppCompatActivity() {
     private lateinit var screenshotAdapter: ScreenshotAdapter
     private lateinit var companyAdapter: CompanyAdapter
     private lateinit var similarGameAdapter: SimilarGameAdapter
+    private lateinit var websiteAdapter: WebsiteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,7 @@ class GameDetailActivity : AppCompatActivity() {
         initScreenshots(game.screenshots)
         initInvolvedCompanies(game.involvedCompanies)
         initSimilarGames(game.similarGames)
+        initWebsites(game.websites)
     }
 
     private fun initRating(rating: Double) {
@@ -120,6 +125,15 @@ class GameDetailActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = similarGameAdapter
+        }
+    }
+
+    private fun initWebsites(websites: List<Website>?) {
+        websiteAdapter = WebsiteAdapter(websites.orEmpty())
+        binding.rvWebsites.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 3)
+            adapter = websiteAdapter
         }
     }
 

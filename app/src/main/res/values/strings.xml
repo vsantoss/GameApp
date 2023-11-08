@@ -31,6 +31,26 @@
 
     <string name="similar_games">Similar Games</string>
 
+    <string name="websites">Websites</string>
+    <string name="website_logo_description">Website logo</string>
+    <string name="official">Official</string>
+    <string name="wikia">Wikia</string>
+    <string name="wikipedia">Wikipedia</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="twitch">Twitch</string>
+    <string name="instagram">Instagram</string>
+    <string name="youtube">YouTube</string>
+    <string name="iphone">iPhone</string>
+    <string name="ipad">iPad</string>
+    <string name="android">Android</string>
+    <string name="steam">Steam</string>
+    <string name="reddit">Reddit</string>
+    <string name="itch">ITCH</string>
+    <string name="epic">Epic</string>
+    <string name="gog">GOG</string>
+    <string name="discord">Discord</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -40,5 +60,6 @@
         ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
         Suspendisse interdum ornare ante.
     </string>
+
 
 </resources>
