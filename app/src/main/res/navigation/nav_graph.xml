@@ -21,8 +21,8 @@
         android:label="GameDetailFragment"
         tools:layout="@layout/fragment_game_detail">
         <argument
-            android:name="game"
-            app:argType="com.vsanto.gameapp.domain.model.Game" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 
     <fragment

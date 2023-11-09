@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vsanto.gameapp.R
-import com.vsanto.gameapp.domain.model.Game
+import com.vsanto.gameapp.domain.model.GameSummary
 
 class GameAdapter(
-    private var games: List<Game> = emptyList(),
-    private val onItemSelected: (Game) -> Unit
+    private var games: List<GameSummary> = emptyList(),
+    private val onItemSelected: (GameSummary) -> Unit
 ) : RecyclerView.Adapter<GameViewHolder>() {
 
-    fun updateList(list: List<Game>) {
+    fun updateList(list: List<GameSummary>) {
         this.games = list
         notifyDataSetChanged()
     }

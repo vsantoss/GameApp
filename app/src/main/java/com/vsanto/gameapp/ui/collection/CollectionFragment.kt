@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vsanto.gameapp.databinding.FragmentCollectionBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CollectionFragment : Fragment() {
 
     private var _binding: FragmentCollectionBinding? = null

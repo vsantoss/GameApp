@@ -2,7 +2,7 @@ package com.vsanto.gameapp.domain.model
 
 import java.io.Serializable
 
-data class Game(
+data class GameDetail(
     val id: Int,
     val name: String,
     val releaseDate: String,

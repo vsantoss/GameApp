@@ -1,11 +1,11 @@
 package com.vsanto.gameapp.data.network.response
 
 import com.google.gson.annotations.SerializedName
-import com.vsanto.gameapp.domain.model.Game
+import com.vsanto.gameapp.domain.model.GameDetail
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-data class GameResponse(
+data class GameDetailResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("first_release_date") val releaseDate: Long?,
@@ -23,8 +23,8 @@ data class GameResponse(
     @SerializedName("similar_games") val similarGames: List<SimilarGameResponse>?,
     @SerializedName("websites") val websites: List<WebsiteResponse>?,
 ) {
-    fun toDomain(): Game {
-        return Game(id = id,
+    fun toDomain(): GameDetail {
+        return GameDetail(id = id,
             name = name,
             releaseDate = getDateString(releaseDate),
             rating = rating ?: 0.0,

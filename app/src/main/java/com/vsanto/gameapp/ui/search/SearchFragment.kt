@@ -14,7 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.databinding.FragmentSearchBinding
-import com.vsanto.gameapp.domain.model.Game
+import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.ui.search.adapters.GameAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -67,9 +67,9 @@ class SearchFragment : Fragment() {
         binding.rvGames.adapter = adapter
     }
 
-    private fun navigateToDetail(game: Game) {
+    private fun navigateToDetail(game: GameSummary) {
         findNavController().navigate(
-            SearchFragmentDirections.actionSearchFragmentToGameDetailFragment(game)
+            SearchFragmentDirections.actionSearchFragmentToGameDetailFragment(game.id)
         )
     }
 

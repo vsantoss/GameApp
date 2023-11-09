@@ -6,13 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentGameDetailBinding
-import com.vsanto.gameapp.domain.model.Game
+import com.vsanto.gameapp.domain.model.GameDetail
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
@@ -21,12 +26,16 @@ import com.vsanto.gameapp.ui.detail.adapters.CompanyAdapter
 import com.vsanto.gameapp.ui.detail.adapters.ScreenshotAdapter
 import com.vsanto.gameapp.ui.detail.adapters.SimilarGameAdapter
 import com.vsanto.gameapp.ui.detail.adapters.WebsiteAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class GameDetailFragment : Fragment() {
 
     private var _binding: FragmentGameDetailBinding? = null
     private val binding get() = _binding!!
     private val args: GameDetailFragmentArgs by navArgs()
+    private val gameDetailViewModel: GameDetailViewModel by viewModels<GameDetailViewModel>()
 
     private lateinit var screenshotAdapter: ScreenshotAdapter
     private lateinit var companyAdapter: CompanyAdapter
@@ -42,11 +51,36 @@ class GameDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUI()
+
+        gameDetailViewModel.getGame(args.id)
+        initUIState()
     }
 
-    private fun initUI() {
-        val game: Game = args.game
+    private fun initUIState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                gameDetailViewModel.state.collect {
+                    when (it) {
+                        is GameDetailState.Error -> errorState()
+                        GameDetailState.Loading -> loadingState()
+                        is GameDetailState.Success -> successState(it)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadingState() {
+        binding.progressBar.isVisible = true
+    }
+
+    private fun errorState() {
+        binding.progressBar.isVisible = false
+    }
+
+    private fun successState(state: GameDetailState.Success) {
+        binding.progressBar.isVisible = false
+        val game = state.game
 
         loadLogo(game)
 
@@ -142,11 +176,11 @@ class GameDetailFragment : Fragment() {
         }
     }
 
-    private fun getDeveloperCompany(game: Game): InvolvedCompany? {
+    private fun getDeveloperCompany(game: GameDetail): InvolvedCompany? {
         return game.involvedCompanies?.firstOrNull { it.developer }
     }
 
-    private fun loadLogo(game: Game) {
+    private fun loadLogo(game: GameDetail) {
         if (game.cover != null) {
             Picasso.get().isLoggingEnabled = true
             Picasso.get().load(game.cover.url).into(binding.ivLogo)
