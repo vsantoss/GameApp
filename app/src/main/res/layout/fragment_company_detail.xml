@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary"
+    tools:context=".ui.company.CompanyDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/secondary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="Compañia" />
+
+            <TextView
+                android:id="@+id/tvCreateDate"
+                style="@style/Value"
+                android:layout_marginTop="5dp"
+                tools:text="01 September 2015" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                style="@style/Value"
+                android:layout_marginTop="10dp"
+                tools:text="Esta es la descripcion de la compañia" />
+
+        </LinearLayout>
+
+        <View style="@style/DetailGameSeparator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDevelopedTitle"
+                style="@style/Title"
+                android:text="@string/developed_games" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDeveloped"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View style="@style/DetailGameSeparator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPublishedTitle"
+                style="@style/Title"
+                android:text="@string/published_games" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPublished"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View style="@style/DetailGameSeparator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Title"
+                android:text="@string/websites" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWebsites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

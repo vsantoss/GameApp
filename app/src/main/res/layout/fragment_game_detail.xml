@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/primary"
+    tools:context=".ui.game.GameDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="16dp"
-        tools:context=".ui.detail.GameDetailActivity">
+        android:paddingVertical="16dp">
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/secondary"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/secondary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,19 +57,19 @@
                     tools:text="Metal Gear Solid V: The Phantom Pain" />
 
                 <TextView
-                    android:id="@+id/tvDeveloper"
+                    android:id="@+id/tvReleaseDate"
                     style="@style/Value"
                     android:layout_marginTop="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvName"
-                    tools:text="Kojima Productions" />
+                    tools:text="01 September 2015" />
 
                 <TextView
-                    android:id="@+id/tvReleaseDate"
+                    android:id="@+id/tvDeveloper"
                     style="@style/Value"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvDeveloper"
-                    tools:text="01 September 2015" />
+                    app:layout_constraintTop_toBottomOf="@id/tvReleaseDate"
+                    tools:text="Kojima Productions" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvRating"

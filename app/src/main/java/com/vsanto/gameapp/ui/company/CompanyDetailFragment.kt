@@ -1,0 +1,125 @@
+package com.vsanto.gameapp.ui.company
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.vsanto.gameapp.R
+import com.vsanto.gameapp.databinding.FragmentCompanyDetailBinding
+import com.vsanto.gameapp.domain.model.GameSummary
+import com.vsanto.gameapp.domain.model.Website
+import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
+import com.vsanto.gameapp.ui.company.adapters.ProducedGameAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+
+@AndroidEntryPoint
+class CompanyDetailFragment : Fragment() {
+
+    private var _binding: FragmentCompanyDetailBinding? = null
+    private val binding get() = _binding!!
+    private val args: CompanyDetailFragmentArgs by navArgs()
+    private val companyDetailViewModel: CompanyDetailViewModel by viewModels()
+
+    private lateinit var developedGameAdapter: ProducedGameAdapter
+    private lateinit var publishedGameAdapter: ProducedGameAdapter
+    private lateinit var websiteAdapter: WebsiteAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentCompanyDetailBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        companyDetailViewModel.getCompany(args.id)
+        initUIState()
+    }
+
+    private fun initUIState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                companyDetailViewModel.state.collect {
+                    when (it) {
+                        is CompanyDetailState.Error -> loadingState()
+                        CompanyDetailState.Loading -> errorState()
+                        is CompanyDetailState.Success -> successState(it)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadingState() {
+        binding.progressBar.isVisible = true
+    }
+
+    private fun errorState() {
+        binding.progressBar.isVisible = false
+    }
+
+    private fun successState(state: CompanyDetailState.Success) {
+        binding.progressBar.isVisible = false
+        val company = state.company
+
+        binding.tvName.text = company.name
+        binding.tvCreateDate.text = company.createDate
+        binding.tvDescription.text = company.description
+
+        val developedGamesSize = company.developedGames?.size ?: 0
+        val publishedGamesSize = company.publishedGames?.size ?: 0
+        binding.tvDevelopedTitle.text = getString(R.string.developed_games, developedGamesSize)
+        binding.tvPublishedTitle.text = getString(R.string.published_games, publishedGamesSize)
+        initDevelopedGames(company.developedGames)
+        initPublishedGames(company.publishedGames)
+
+        initWebsites(company.websites)
+    }
+
+    private fun initDevelopedGames(games: List<GameSummary>?) {
+        developedGameAdapter = ProducedGameAdapter(games.orEmpty()) { navigateToProducedGame(it) }
+        binding.rvDeveloped.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = developedGameAdapter
+        }
+    }
+
+    private fun initPublishedGames(games: List<GameSummary>?) {
+        publishedGameAdapter = ProducedGameAdapter(games.orEmpty()) { navigateToProducedGame(it) }
+        binding.rvPublished.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = publishedGameAdapter
+        }
+    }
+
+    private fun navigateToProducedGame(id: Int) {
+        findNavController().navigate(
+            CompanyDetailFragmentDirections.actionCompanyDetailFragmentToGameDetailFragment(id)
+        )
+    }
+
+    private fun initWebsites(websites: List<Website>?) {
+        websiteAdapter = WebsiteAdapter(websites.orEmpty())
+        binding.rvWebsites.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 3)
+            adapter = websiteAdapter
+        }
+    }
+
+}

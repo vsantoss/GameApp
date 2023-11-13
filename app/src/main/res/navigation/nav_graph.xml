@@ -17,12 +17,18 @@
 
     <fragment
         android:id="@+id/gameDetailFragment"
-        android:name="com.vsanto.gameapp.ui.detail.GameDetailFragment"
+        android:name="com.vsanto.gameapp.ui.game.GameDetailFragment"
         android:label="GameDetailFragment"
         tools:layout="@layout/fragment_game_detail">
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_gameDetailFragment_self"
+            app:destination="@id/gameDetailFragment" />
+        <action
+            android:id="@+id/action_gameDetailFragment_to_companyDetailFragment"
+            app:destination="@id/companyDetailFragment" />
     </fragment>
 
     <fragment
@@ -36,5 +42,17 @@
         android:name="com.vsanto.gameapp.ui.news.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/companyDetailFragment"
+        android:name="com.vsanto.gameapp.ui.company.CompanyDetailFragment"
+        android:label="fragment_company_detail"
+        tools:layout="@layout/fragment_company_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_companyDetailFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment" />
+    </fragment>
 
 </navigation>

@@ -3,6 +3,7 @@ package com.vsanto.gameapp.data
 import android.util.Log
 import com.vsanto.gameapp.data.network.IGDBApiService
 import com.vsanto.gameapp.domain.Repository
+import com.vsanto.gameapp.domain.model.CompanyDetail
 import com.vsanto.gameapp.domain.model.GameDetail
 import com.vsanto.gameapp.domain.model.GameSummary
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -23,6 +24,14 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
     override suspend fun getGameById(id: Int): GameDetail? {
         runCatching { igdbApiService.getGameById(buildGameDetailBody(id)) }
             .onSuccess { return it.map { gameResponse -> gameResponse.toDomain() }.first() }
+            .onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
+
+        return null
+    }
+
+    override suspend fun getCompanyById(id: Int): CompanyDetail? {
+        runCatching { igdbApiService.getCompanyById(buildCompanyDetailBody(id)) }
+            .onSuccess { return it.map { companyResponse -> companyResponse.toDomain() }.first() }
             .onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
 
         return null
@@ -65,6 +74,24 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
                     "player_perspectives.name, " +
                     "platforms.abbreviation, " +
                     "similar_games.name, similar_games.cover.url, " +
+                    "websites.*;"
+        )
+        queryBuilder.append("where id = $id;")
+
+        return queryBuilder.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+    }
+
+    private fun buildCompanyDetailBody(id: Int): RequestBody {
+        val queryBuilder = StringBuilder()
+        queryBuilder.append(
+            "fields " +
+                    "id, " +
+                    "name," +
+                    "created_at, " +
+                    "country, " +
+                    "description," +
+                    "developed.*, developed.cover.*, " +
+                    "published.*, published.cover.*, " +
                     "websites.*;"
         )
         queryBuilder.append("where id = $id;")

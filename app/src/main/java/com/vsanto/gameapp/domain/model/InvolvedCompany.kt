@@ -3,6 +3,7 @@ package com.vsanto.gameapp.domain.model
 import java.io.Serializable
 
 data class InvolvedCompany(
+    val id: Int,
     val name: String,
     val logo: Image?,
     val developer: Boolean,
