@@ -47,7 +47,7 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
                     "first_release_date, " +
                     "cover.url;"
         )
-        queryBuilder.append("where category = 0;")
+        queryBuilder.append("where category = 0 & version_parent = null;")
         queryBuilder.append("limit 100;")
 
         return queryBuilder.toString().toRequestBody("text/plain".toMediaTypeOrNull())
