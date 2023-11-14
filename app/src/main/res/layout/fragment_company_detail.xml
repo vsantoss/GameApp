@@ -55,7 +55,7 @@
             <TextView
                 android:id="@+id/tvDevelopedTitle"
                 style="@style/Title"
-                android:text="@string/developed_games" />
+                tools:text="@string/developed_games" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDeveloped"
@@ -74,7 +74,7 @@
             <TextView
                 android:id="@+id/tvPublishedTitle"
                 style="@style/Title"
-                android:text="@string/published_games" />
+                tools:text="@string/published_games" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPublished"

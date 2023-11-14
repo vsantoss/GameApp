@@ -54,8 +54,8 @@ class CompanyDetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 companyDetailViewModel.state.collect {
                     when (it) {
-                        is CompanyDetailState.Error -> loadingState()
-                        CompanyDetailState.Loading -> errorState()
+                        is CompanyDetailState.Error -> errorState()
+                        CompanyDetailState.Loading -> loadingState()
                         is CompanyDetailState.Success -> successState(it)
                     }
                 }
