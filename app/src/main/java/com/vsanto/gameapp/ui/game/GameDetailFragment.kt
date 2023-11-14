@@ -106,7 +106,7 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun initRating(rating: Double) {
-        val parsedRating = String.format("%.1f", rating / 10).toDouble()
+        val parsedRating = String.format("%.1f", rating / 10).replace(",", ".").toDouble()
         binding.tvRating.text = parsedRating.toString()
 
         val color = when (parsedRating) {
