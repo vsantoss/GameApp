@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_gameDetailFragment"
-            app:destination="@id/gameDetailFragment" />
+            app:destination="@id/gameDetailFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -25,10 +26,12 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_gameDetailFragment_self"
-            app:destination="@id/gameDetailFragment" />
+            app:destination="@id/gameDetailFragment"
+            app:enterAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/action_gameDetailFragment_to_companyDetailFragment"
-            app:destination="@id/companyDetailFragment" />
+            app:destination="@id/companyDetailFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -46,13 +49,14 @@
         android:id="@+id/companyDetailFragment"
         android:name="com.vsanto.gameapp.ui.company.CompanyDetailFragment"
         android:label="fragment_company_detail"
-        tools:layout="@layout/fragment_company_detail" >
+        tools:layout="@layout/fragment_company_detail">
         <argument
             android:name="id"
             app:argType="integer" />
         <action
             android:id="@+id/action_companyDetailFragment_to_gameDetailFragment"
-            app:destination="@id/gameDetailFragment" />
+            app:destination="@id/gameDetailFragment"
+            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
 </navigation>
