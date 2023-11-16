@@ -87,7 +87,8 @@ class RepositoryImpl @Inject constructor(private val igdbApiService: IGDBApiServ
             "fields " +
                     "id, " +
                     "name," +
-                    "created_at, " +
+                    "logo.url, " +
+                    "start_date, " +
                     "country, " +
                     "description," +
                     "developed.*, developed.cover.*, " +

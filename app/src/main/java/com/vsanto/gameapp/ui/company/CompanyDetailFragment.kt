@@ -14,14 +14,17 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentCompanyDetailBinding
+import com.vsanto.gameapp.domain.model.CompanyDetail
 import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.domain.model.Website
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
 import com.vsanto.gameapp.ui.company.adapters.ProducedGameAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class CompanyDetailFragment : Fragment() {
@@ -75,9 +78,21 @@ class CompanyDetailFragment : Fragment() {
         binding.progressBar.isVisible = false
         val company = state.company
 
+        loadLogo(company)
+
         binding.tvName.text = company.name
-        binding.tvCreateDate.text = company.createDate
-        binding.tvDescription.text = company.description
+
+        if (company.createDate != null) {
+            val formatter = SimpleDateFormat("dd MMMM yyyy")
+            binding.tvCreateDate.text = formatter.format(company.createDate)
+        }
+
+        if (company.description.isNotEmpty()) {
+            binding.tvDescription.text = company.description
+        } else {
+            binding.tvDescription.isVisible = false
+        }
+
 
         val developedGamesSize = company.developedGames?.size ?: 0
         val publishedGamesSize = company.publishedGames?.size ?: 0
@@ -87,6 +102,15 @@ class CompanyDetailFragment : Fragment() {
         initPublishedGames(company.publishedGames)
 
         initWebsites(company.websites)
+    }
+
+    private fun loadLogo(company: CompanyDetail) {
+        if (company.logo != null) {
+            Picasso.get().isLoggingEnabled = true
+            Picasso.get().load(company.logo.url).into(binding.ivLogo)
+        } else {
+            binding.rlLogo.isVisible = false
+        }
     }
 
     private fun initDevelopedGames(games: List<GameSummary>?) {

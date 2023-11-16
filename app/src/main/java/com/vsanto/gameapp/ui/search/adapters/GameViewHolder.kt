@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.databinding.ItemGameBinding
 import com.vsanto.gameapp.domain.model.GameSummary
+import java.text.SimpleDateFormat
 
 class GameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -12,7 +13,12 @@ class GameViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(game: GameSummary, onItemSelected: (GameSummary) -> Unit) {
         binding.tvName.text = game.name
-        binding.tvReleaseDate.text = game.releaseDate
+
+        if (game.releaseDate != null) {
+            val formatter = SimpleDateFormat("dd MMMM yyyy")
+            binding.tvReleaseDate.text = formatter.format(game.releaseDate)
+        }
+
         loadLogo(game)
 
         binding.root.setOnClickListener { onItemSelected(game) }

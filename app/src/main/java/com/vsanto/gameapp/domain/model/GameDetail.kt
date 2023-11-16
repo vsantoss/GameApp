@@ -1,11 +1,12 @@
 package com.vsanto.gameapp.domain.model
 
 import java.io.Serializable
+import java.util.Date
 
 data class GameDetail(
     val id: Int,
     val name: String,
-    val releaseDate: String,
+    val releaseDate: Date?,
     val rating: Double,
     val summary: String?,
     val involvedCompanies: List<InvolvedCompany>?,

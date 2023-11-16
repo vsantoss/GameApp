@@ -4,9 +4,8 @@ import com.google.gson.annotations.SerializedName
 import com.vsanto.gameapp.data.network.response.igdb.common.ImageResponse
 import com.vsanto.gameapp.data.network.response.igdb.common.ImageSize
 import com.vsanto.gameapp.data.network.response.igdb.common.WebsiteResponse
+import com.vsanto.gameapp.data.network.response.igdb.common.toDate
 import com.vsanto.gameapp.domain.model.GameDetail
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 data class GameDetailResponse(
     @SerializedName("id") val id: Int,
@@ -29,7 +28,7 @@ data class GameDetailResponse(
     fun toDomain(): GameDetail {
         return GameDetail(id = id,
             name = name,
-            releaseDate = getDateString(releaseDate),
+            releaseDate = toDate(releaseDate),
             rating = rating ?: 0.0,
             summary = summary,
             involvedCompanies = involvedCompanies?.map { it.toDomain() },
@@ -43,15 +42,6 @@ data class GameDetailResponse(
             platforms = platforms?.sortedBy { it.abbreviation }?.map { it.abbreviation },
             similarGames = similarGames?.map { it.toDomain() },
             websites = websites?.sortedBy { it.category }?.map { it.toDomain() })
-    }
-
-    private fun getDateString(timestamp: Long?): String {
-        return if (timestamp != null) {
-            val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
-            simpleDateFormat.format(timestamp * 1000L)
-        } else {
-            ""
-        }
     }
 
 }

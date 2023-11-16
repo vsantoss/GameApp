@@ -14,7 +14,7 @@ data class DevelopedGameResponse(
         return GameSummary(
             id = id,
             name = name,
-            releaseDate = "",
+            releaseDate = null,
             cover = cover?.toDomain(ImageSize.BIG_LOGO)
         )
     }

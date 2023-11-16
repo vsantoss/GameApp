@@ -98,7 +98,7 @@ class SearchFragment : Fragment() {
 
     private fun successState(state: SearchState.Success) {
         binding.progressBar.isVisible = false
-        adapter.updateList(state.games)
+        adapter.updateList(state.games.sortedByDescending { it.releaseDate })
     }
 
     private fun errorState(state: SearchState.Error) {

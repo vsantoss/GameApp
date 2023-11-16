@@ -10,6 +10,7 @@
     <!-- Company Detail -->
     <string name="developed_games">Developed (%d)</string>
     <string name="published_games">Published (%d)</string>
+    <string name="company_logo_description">Company logo</string>
 
     <!-- Game Detail -->
     <string name="logo_description">Logo</string>
@@ -27,7 +28,6 @@
     <string name="platforms">Platforms</string>
 
     <string name="involved_companies">Involved Companies</string>
-    <string name="company_logo_description">Company logo</string>
     <string name="developer">Main Developer</string>
     <string name="supporter">Support Developer</string>
     <string name="publisher">Publisher</string>

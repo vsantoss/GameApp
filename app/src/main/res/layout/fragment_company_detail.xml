@@ -9,8 +9,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rlLogo"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_company_logo_color"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/company_logo_description"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/company_logo_example" />
+
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -22,82 +38,92 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tvName"
-                style="@style/Title"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:text="Compañia" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvCreateDate"
-                style="@style/Value"
-                android:layout_marginTop="5dp"
-                tools:text="01 September 2015" />
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="Kojima Productions" />
 
-            <TextView
-                android:id="@+id/tvDescription"
-                style="@style/Value"
-                android:layout_marginTop="10dp"
-                tools:text="Esta es la descripcion de la compañia" />
+                <TextView
+                    android:id="@+id/tvCreateDate"
+                    style="@style/Value"
+                    android:layout_marginTop="5dp"
+                    tools:text="01 September 2015" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvDescription"
+                    style="@style/Value"
+                    android:layout_marginTop="10dp"
+                    tools:text="Esta es la descripcion de la compañia" />
 
-        <View style="@style/DetailGameSeparator" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            <View style="@style/DetailGameSeparator" />
 
-            <TextView
-                android:id="@+id/tvDevelopedTitle"
-                style="@style/Title"
-                tools:text="@string/developed_games" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvDeveloped"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvDevelopedTitle"
+                    style="@style/Title"
+                    tools:text="@string/developed_games" />
 
-        <View style="@style/DetailGameSeparator" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDeveloped"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvPublishedTitle"
-                style="@style/Title"
-                tools:text="@string/published_games" />
+            <View style="@style/DetailGameSeparator" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPublished"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvPublishedTitle"
+                    style="@style/Title"
+                    tools:text="@string/published_games" />
 
-        <View style="@style/DetailGameSeparator" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPublished"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            </LinearLayout>
 
-            <TextView
-                style="@style/Title"
-                android:text="@string/websites" />
+            <View style="@style/DetailGameSeparator" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvWebsites"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/websites" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWebsites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

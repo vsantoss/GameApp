@@ -16,7 +16,7 @@ class WebsiteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.ivWebsiteLogo.setImageResource(info.img)
         binding.tvWebsiteName.text = binding.tvWebsiteName.context.getString(info.key)
 
-        binding.root.setOnClickListener() {
+        binding.root.setOnClickListener {
             val intent = Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse(website.url)

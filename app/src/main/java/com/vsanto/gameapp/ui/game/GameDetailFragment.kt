@@ -29,6 +29,7 @@ import com.vsanto.gameapp.ui.game.adapters.SimilarGameAdapter
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class GameDetailFragment : Fragment() {
@@ -89,7 +90,12 @@ class GameDetailFragment : Fragment() {
 
         val developer: InvolvedCompany? = getDeveloperCompany(game)
         binding.tvDeveloper.text = developer?.name.orEmpty()
-        binding.tvReleaseDate.text = game.releaseDate
+
+        if (game.releaseDate != null) {
+            val formatter = SimpleDateFormat("dd MMMM yyyy")
+            binding.tvReleaseDate.text = formatter.format(game.releaseDate)
+        }
+
         initRating(game.rating)
 
         binding.tvSummary.text = game.summary
@@ -151,7 +157,14 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun initInvolvedCompanies(involvedCompanies: List<InvolvedCompany>?) {
-        companyAdapter = CompanyAdapter(involvedCompanies.orEmpty()) { navigateToCompany(it) }
+        val sortedCompanies = involvedCompanies.orEmpty().sortedWith(
+            compareBy({ it.developer },
+                { it.publisher },
+                { it.supporting },
+                { it.porting })
+        ).asReversed()
+
+        companyAdapter = CompanyAdapter(sortedCompanies) { navigateToCompany(it) }
         binding.rvInvolvedCompanies.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
