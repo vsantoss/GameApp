@@ -49,7 +49,16 @@ class CompanyDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         companyDetailViewModel.getCompany(args.id)
+        initUI()
+    }
+
+    private fun initUI() {
+        initListeners()
         initUIState()
+    }
+
+    private fun initListeners() {
+        binding.ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun initUIState() {
@@ -85,6 +94,8 @@ class CompanyDetailFragment : Fragment() {
         if (company.createDate != null) {
             val formatter = SimpleDateFormat("dd MMMM yyyy")
             binding.tvCreateDate.text = formatter.format(company.createDate)
+        } else {
+            binding.tvCreateDate.isVisible = false
         }
 
         if (company.description.isNotEmpty()) {
@@ -109,7 +120,7 @@ class CompanyDetailFragment : Fragment() {
             Picasso.get().isLoggingEnabled = true
             Picasso.get().load(company.logo.url).into(binding.ivLogo)
         } else {
-            binding.rlLogo.isVisible = false
+            binding.ivLogo.isVisible = false
         }
     }
 

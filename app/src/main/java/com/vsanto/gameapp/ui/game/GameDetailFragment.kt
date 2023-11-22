@@ -55,7 +55,16 @@ class GameDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         gameDetailViewModel.getGame(args.id)
+        initUI()
+    }
+
+    private fun initUI() {
+        initListeners()
         initUIState()
+    }
+
+    private fun initListeners() {
+        binding.ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun initUIState() {
@@ -84,6 +93,7 @@ class GameDetailFragment : Fragment() {
         binding.progressBar.isVisible = false
         val game = state.game
 
+        loadTopImage(game)
         loadLogo(game)
 
         binding.tvName.text = game.name
@@ -109,6 +119,20 @@ class GameDetailFragment : Fragment() {
         initInvolvedCompanies(game.involvedCompanies)
         initSimilarGames(game.similarGames)
         initWebsites(game.websites)
+    }
+
+    private fun loadTopImage(game: GameDetail) {
+        if (!game.artworks.isNullOrEmpty()) {
+            Picasso.get().isLoggingEnabled = true
+            Picasso.get().load(game.artworks[0].url).into(binding.ivTopImage)
+        }
+    }
+
+    private fun loadLogo(game: GameDetail) {
+        if (game.cover != null) {
+            Picasso.get().isLoggingEnabled = true
+            Picasso.get().load(game.cover.url).into(binding.ivLogo)
+        }
     }
 
     private fun initRating(rating: Double) {
@@ -204,13 +228,6 @@ class GameDetailFragment : Fragment() {
 
     private fun getDeveloperCompany(game: GameDetail): InvolvedCompany? {
         return game.involvedCompanies?.firstOrNull { it.developer }
-    }
-
-    private fun loadLogo(game: GameDetail) {
-        if (game.cover != null) {
-            Picasso.get().isLoggingEnabled = true
-            Picasso.get().load(game.cover.url).into(binding.ivLogo)
-        }
     }
 
     private fun toString(list: List<String>?): String {

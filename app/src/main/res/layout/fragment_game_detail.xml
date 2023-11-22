@@ -10,9 +10,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="16dp">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivTopImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/bg_company_logo_color"
+                android:contentDescription="@string/company_logo_description"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/back_description"
+                android:padding="15dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/secondary" />
+
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -24,236 +45,244 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvLogo"
-                android:layout_width="75dp"
-                android:layout_height="110dp"
-                app:cardCornerRadius="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/ivLogo"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/logo_description"
-                    android:scaleType="fitXY"
-                    tools:src="@drawable/game_logo_example" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp">
-
-                <TextView
-                    android:id="@+id/tvName"
-                    style="@style/Title"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Metal Gear Solid V: The Phantom Pain" />
-
-                <TextView
-                    android:id="@+id/tvReleaseDate"
-                    style="@style/Value"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvName"
-                    tools:text="01 September 2015" />
-
-                <TextView
-                    android:id="@+id/tvDeveloper"
-                    style="@style/Value"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvReleaseDate"
-                    tools:text="Kojima Productions" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvRating"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginVertical="3dp"
-                    app:cardCornerRadius="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:backgroundTint="@color/A_rating">
+                    android:id="@+id/cvLogo"
+                    android:layout_width="75dp"
+                    android:layout_height="110dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
+                    <ImageView
+                        android:id="@+id/ivLogo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvRating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/white"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            tools:text="9.6" />
-
-                    </LinearLayout>
+                        android:contentDescription="@string/logo_description"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/game_logo_example" />
 
                 </androidx.cardview.widget.CardView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp">
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/Title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Metal Gear Solid V: The Phantom Pain" />
 
-        <View style="@style/DetailGameSeparator" />
+                    <TextView
+                        android:id="@+id/tvReleaseDate"
+                        style="@style/Value"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvName"
+                        tools:text="01 September 2015" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvDeveloper"
+                        style="@style/Value"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvReleaseDate"
+                        tools:text="Kojima Productions" />
 
-            <TextView
-                style="@style/Title"
-                android:text="@string/summary" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvRating"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="3dp"
+                        app:cardCornerRadius="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:backgroundTint="@color/A_rating">
 
-            <TextView
-                android:id="@+id/tvSummary"
-                style="@style/Value"
-                android:layout_marginTop="3dp"
-                tools:text="Este es el resumen del juego" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-        </LinearLayout>
+                            <TextView
+                                android:id="@+id/tvRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                tools:text="9.6" />
 
-        <View style="@style/DetailGameSeparator" />
+                        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                    </androidx.cardview.widget.CardView>
 
-            <TextView
-                style="@style/Title"
-                android:text="@string/screenshots" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvScreenshots"
+            </LinearLayout>
+
+            <View style="@style/DetailGameSeparator" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/summary" />
 
-        <View style="@style/DetailGameSeparator" />
+                <TextView
+                    android:id="@+id/tvSummary"
+                    style="@style/Value"
+                    android:layout_marginTop="3dp"
+                    tools:text="Este es el resumen del juego" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            </LinearLayout>
 
-            <TextView
-                style="@style/Title"
-                android:text="@string/details" />
+            <View style="@style/DetailGameSeparator" />
 
-            <TextView
-                style="@style/Subtitle"
-                android:text="@string/genres" />
-
-            <TextView
-                android:id="@+id/tvGenres"
-                style="@style/Value"
-                tools:text="Adventure" />
-
-            <TextView
-                style="@style/Subtitle"
-                android:text="@string/themes" />
-
-            <TextView
-                android:id="@+id/tvThemes"
-                style="@style/Value"
-                tools:text="Action, Fantasy" />
-
-            <TextView
-                style="@style/Subtitle"
-                android:text="@string/game_modes" />
-
-            <TextView
-                android:id="@+id/tvGameModes"
-                style="@style/Value"
-                tools:text="Single player" />
-
-            <TextView
-                style="@style/Subtitle"
-                android:text="@string/player_perspectives" />
-
-            <TextView
-                android:id="@+id/tvPlayerPerspectives"
-                style="@style/Value"
-                tools:text="Third person" />
-
-            <TextView
-                style="@style/Subtitle"
-                android:text="@string/platforms" />
-
-            <TextView
-                android:id="@+id/tvPlatforms"
-                style="@style/Value"
-                tools:text="PC, PS3, PS4, X360, XONE" />
-
-        </LinearLayout>
-
-        <View style="@style/DetailGameSeparator" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/Title"
-                android:text="@string/involved_companies" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvInvolvedCompanies"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/screenshots" />
 
-        <View style="@style/DetailGameSeparator" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvScreenshots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            </LinearLayout>
 
-            <TextView
-                style="@style/Title"
-                android:text="@string/similar_games" />
+            <View style="@style/DetailGameSeparator" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvSimilarGames"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/details" />
 
-        <View style="@style/DetailGameSeparator" />
+                <TextView
+                    style="@style/Subtitle"
+                    android:text="@string/genres" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvGenres"
+                    style="@style/Value"
+                    tools:text="Adventure" />
 
-            <TextView
-                style="@style/Title"
-                android:text="@string/websites" />
+                <TextView
+                    style="@style/Subtitle"
+                    android:text="@string/themes" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvWebsites"
+                <TextView
+                    android:id="@+id/tvThemes"
+                    style="@style/Value"
+                    tools:text="Action, Fantasy" />
+
+                <TextView
+                    style="@style/Subtitle"
+                    android:text="@string/game_modes" />
+
+                <TextView
+                    android:id="@+id/tvGameModes"
+                    style="@style/Value"
+                    tools:text="Single player" />
+
+                <TextView
+                    style="@style/Subtitle"
+                    android:text="@string/player_perspectives" />
+
+                <TextView
+                    android:id="@+id/tvPlayerPerspectives"
+                    style="@style/Value"
+                    tools:text="Third person" />
+
+                <TextView
+                    style="@style/Subtitle"
+                    android:text="@string/platforms" />
+
+                <TextView
+                    android:id="@+id/tvPlatforms"
+                    style="@style/Value"
+                    tools:text="PC, PS3, PS4, X360, XONE" />
+
+            </LinearLayout>
+
+            <View style="@style/DetailGameSeparator" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/involved_companies" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvInvolvedCompanies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <View style="@style/DetailGameSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/similar_games" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSimilarGames"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <View style="@style/DetailGameSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Title"
+                    android:text="@string/websites" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWebsites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
