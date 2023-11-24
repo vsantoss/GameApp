@@ -24,14 +24,23 @@
                 android:contentDescription="@string/company_logo_description"
                 android:scaleType="fitXY" />
 
-            <ImageView
-                android:id="@+id/ivBack"
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/back_description"
-                android:padding="15dp"
-                android:src="@drawable/ic_back"
-                app:tint="@color/secondary" />
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/primary_transparent"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/back_description"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
