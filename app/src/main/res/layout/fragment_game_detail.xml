@@ -89,7 +89,7 @@
                     <TextView
                         android:id="@+id/tvReleaseDate"
                         style="@style/Value"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="2dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvName"
                         tools:text="01 September 2015" />
@@ -138,6 +138,7 @@
             <View style="@style/DetailGameSeparator" />
 
             <LinearLayout
+                android:id="@+id/llSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -150,7 +151,9 @@
                     android:id="@+id/tvSummary"
                     style="@style/Value"
                     android:layout_marginTop="3dp"
-                    tools:text="Este es el resumen del juego" />
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    tools:text="@string/lorem_ipsum" />
 
             </LinearLayout>
 

@@ -68,14 +68,16 @@
                 <TextView
                     android:id="@+id/tvCreateDate"
                     style="@style/Value"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
                     tools:text="01 September 2015" />
 
                 <TextView
                     android:id="@+id/tvDescription"
                     style="@style/Value"
                     android:layout_marginTop="10dp"
-                    tools:text="Esta es la descripcion de la compañia" />
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    tools:text="@string/lorem_ipsum" />
 
             </LinearLayout>
 

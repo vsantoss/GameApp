@@ -65,6 +65,16 @@ class GameDetailFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { findNavController().navigateUp() }
+        binding.llSummary.setOnClickListener {
+            binding.llSummary.isSelected = !binding.llSummary.isSelected
+            if (binding.llSummary.isSelected) {
+                binding.tvSummary.maxLines =
+                    context?.resources?.getInteger(R.integer.summary_max_lines_selected) ?: 100
+            } else {
+                binding.tvSummary.maxLines =
+                    context?.resources?.getInteger(R.integer.summary_max_lines) ?: 4
+            }
+        }
     }
 
     private fun initUIState() {

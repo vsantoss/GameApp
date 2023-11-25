@@ -59,6 +59,16 @@ class CompanyDetailFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { findNavController().navigateUp() }
+        binding.tvDescription.setOnClickListener {
+            binding.tvDescription.isSelected = !binding.tvDescription.isSelected
+            if (binding.tvDescription.isSelected) {
+                binding.tvDescription.maxLines =
+                    context?.resources?.getInteger(R.integer.summary_max_lines_selected) ?: 100
+            } else {
+                binding.tvDescription.maxLines =
+                    context?.resources?.getInteger(R.integer.summary_max_lines) ?: 4
+            }
+        }
     }
 
     private fun initUIState() {
