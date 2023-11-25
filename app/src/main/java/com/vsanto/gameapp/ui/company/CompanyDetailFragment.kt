@@ -144,7 +144,9 @@ class CompanyDetailFragment : Fragment() {
     }
 
     private fun initDevelopedGames(games: List<GameSummary>?) {
-        developedGameAdapter = ProducedGameAdapter(games.orEmpty()) { navigateToProducedGame(it) }
+        val list = games?.sortedByDescending { it.releaseDate }.orEmpty()
+        developedGameAdapter = ProducedGameAdapter(list) { navigateToProducedGame(it) }
+
         binding.rvDeveloped.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -153,7 +155,9 @@ class CompanyDetailFragment : Fragment() {
     }
 
     private fun initPublishedGames(games: List<GameSummary>?) {
-        publishedGameAdapter = ProducedGameAdapter(games.orEmpty()) { navigateToProducedGame(it) }
+        val list = games?.sortedByDescending { it.releaseDate }.orEmpty()
+        publishedGameAdapter = ProducedGameAdapter(list) { navigateToProducedGame(it) }
+
         binding.rvPublished.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
