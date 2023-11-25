@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -54,8 +55,16 @@ class GameDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            navigateUp()
+        }
+
         gameDetailViewModel.getGame(args.id)
         initUI()
+    }
+
+    private fun navigateUp() {
+        findNavController().navigateUp()
     }
 
     private fun initUI() {
@@ -64,7 +73,7 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.fabBack.setOnClickListener { findNavController().navigateUp() }
+        binding.fabBack.setOnClickListener { navigateUp() }
         binding.llSummary.setOnClickListener {
             binding.llSummary.isSelected = !binding.llSummary.isSelected
             if (binding.llSummary.isSelected) {

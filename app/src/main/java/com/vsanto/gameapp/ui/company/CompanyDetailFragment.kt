@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -48,8 +49,16 @@ class CompanyDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            navigateUp()
+        }
+
         companyDetailViewModel.getCompany(args.id)
         initUI()
+    }
+
+    private fun navigateUp() {
+        findNavController().navigateUp()
     }
 
     private fun initUI() {
@@ -58,7 +67,7 @@ class CompanyDetailFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.fabBack.setOnClickListener { findNavController().navigateUp() }
+        binding.fabBack.setOnClickListener { navigateUp() }
         binding.tvDescription.setOnClickListener {
             binding.tvDescription.isSelected = !binding.tvDescription.isSelected
             if (binding.tvDescription.isSelected) {
