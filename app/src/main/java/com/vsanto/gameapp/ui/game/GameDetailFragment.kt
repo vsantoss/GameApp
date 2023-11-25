@@ -64,7 +64,7 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.ivBack.setOnClickListener { findNavController().navigateUp() }
+        binding.fabBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun initUIState() {
