@@ -122,10 +122,21 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun loadTopImage(game: GameDetail) {
-        if (!game.artworks.isNullOrEmpty()) {
+        val topImage = selectTopImage(game)
+        if (topImage != null) {
             Picasso.get().isLoggingEnabled = true
-            Picasso.get().load(game.artworks[0].url).into(binding.ivTopImage)
+            Picasso.get().load(topImage.url).into(binding.ivTopImage)
         }
+    }
+
+    private fun selectTopImage(game: GameDetail): Image? {
+        if (!game.artworks.isNullOrEmpty()) {
+            return game.artworks[0]
+        } else if (!game.screenshots.isNullOrEmpty()) {
+            return game.screenshots.reversed()[0]
+        }
+
+        return null
     }
 
     private fun loadLogo(game: GameDetail) {
