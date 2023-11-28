@@ -40,6 +40,10 @@ class GameDetailFragment : Fragment() {
     private val args: GameDetailFragmentArgs by navArgs()
     private val gameDetailViewModel: GameDetailViewModel by viewModels()
 
+    private var isWantSelected: Boolean = false
+    private var isPlayingSelected: Boolean = false
+    private var isPlayedSelected: Boolean = false
+
     private lateinit var screenshotAdapter: ScreenshotAdapter
     private lateinit var companyAdapter: CompanyAdapter
     private lateinit var similarGameAdapter: SimilarGameAdapter
@@ -74,6 +78,26 @@ class GameDetailFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { navigateUp() }
+
+        binding.llWant.setOnClickListener {
+            isWantSelected = true
+            isPlayingSelected = false
+            isPlayedSelected = false
+            setStatesColor()
+        }
+        binding.llPlaying.setOnClickListener {
+            isWantSelected = false
+            isPlayingSelected = true
+            isPlayedSelected = false
+            setStatesColor()
+        }
+        binding.llPlayed.setOnClickListener {
+            isWantSelected = false
+            isPlayingSelected = false
+            isPlayedSelected = true
+            setStatesColor()
+        }
+
         binding.llSummary.setOnClickListener {
             binding.llSummary.isSelected = !binding.llSummary.isSelected
             if (binding.llSummary.isSelected) {
@@ -98,6 +122,26 @@ class GameDetailFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setStatesColor() {
+        binding.ivWant.setColorFilter(getStateColor(isWantSelected))
+        binding.tvWant.setTextColor(getStateColor(isWantSelected))
+
+        binding.ivPlaying.setColorFilter(getStateColor(isPlayingSelected))
+        binding.tvPlaying.setTextColor(getStateColor(isPlayingSelected))
+
+        binding.ivPlayed.setColorFilter(getStateColor(isPlayedSelected))
+        binding.tvPlayed.setTextColor(getStateColor(isPlayedSelected))
+    }
+
+    private fun getStateColor(isSelected: Boolean): Int {
+        val color = if (isSelected) {
+            R.color.secondary
+        } else {
+            R.color.white
+        }
+        return ContextCompat.getColor(requireContext(), color)
     }
 
     private fun loadingState() {

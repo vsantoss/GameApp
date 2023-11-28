@@ -7,141 +7,154 @@
     android:background="@color/primary"
     tools:context=".ui.company.CompanyDetailFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/ivLogo"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/bg_company_logo_color"
-                android:contentDescription="@string/company_logo_description"
-                android:padding="10dp"
-                android:scaleType="fitCenter"
-                tools:src="@drawable/company_logo_example" />
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabBack"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/bg_company_logo_color"
+                    android:contentDescription="@string/company_logo_description"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    tools:src="@drawable/company_logo_example" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fabBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:contentDescription="@string/back_description"
+                    android:src="@drawable/ic_back"
+                    app:backgroundTint="@color/primary_transparent"
+                    app:elevation="0dp"
+                    app:fabSize="mini"
+                    app:tint="@color/white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:contentDescription="@string/back_description"
-                android:src="@drawable/ic_back"
-                app:backgroundTint="@color/primary_transparent"
-                app:elevation="0dp"
-                app:fabSize="mini"
-                app:tint="@color/white" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="Kojima Productions" />
+
+                    <TextView
+                        android:id="@+id/tvCreateDate"
+                        style="@style/Value"
+                        android:layout_marginTop="2dp"
+                        tools:text="01 September 2015" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        style="@style/Value"
+                        android:layout_marginTop="10dp"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        tools:text="@string/lorem_ipsum" />
+
+                </LinearLayout>
+
+                <View style="@style/DetailGameSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvDevelopedTitle"
+                        style="@style/Title"
+                        tools:text="@string/developed_games" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDeveloped"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp" />
+
+                </LinearLayout>
+
+                <View style="@style/DetailGameSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvPublishedTitle"
+                        style="@style/Title"
+                        tools:text="@string/published_games" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvPublished"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp" />
+
+                </LinearLayout>
+
+                <View style="@style/DetailGameSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Title"
+                        android:text="@string/websites" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvWebsites"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/secondary" />
+            android:layout_marginTop="50dp"
+            android:indeterminateTint="@color/secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvName"
-                    style="@style/Title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:text="Kojima Productions" />
-
-                <TextView
-                    android:id="@+id/tvCreateDate"
-                    style="@style/Value"
-                    android:layout_marginTop="2dp"
-                    tools:text="01 September 2015" />
-
-                <TextView
-                    android:id="@+id/tvDescription"
-                    style="@style/Value"
-                    android:layout_marginTop="10dp"
-                    android:ellipsize="end"
-                    android:maxLines="4"
-                    tools:text="@string/lorem_ipsum" />
-
-            </LinearLayout>
-
-            <View style="@style/DetailGameSeparator" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvDevelopedTitle"
-                    style="@style/Title"
-                    tools:text="@string/developed_games" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvDeveloped"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
-
-            </LinearLayout>
-
-            <View style="@style/DetailGameSeparator" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvPublishedTitle"
-                    style="@style/Title"
-                    tools:text="@string/published_games" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvPublished"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
-
-            </LinearLayout>
-
-            <View style="@style/DetailGameSeparator" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    style="@style/Title"
-                    android:text="@string/websites" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvWebsites"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

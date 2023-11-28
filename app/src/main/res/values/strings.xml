@@ -16,6 +16,10 @@
     <!-- Game Detail -->
     <string name="logo_description">Logo</string>
 
+    <string name="want">Want</string>
+    <string name="playing">Playing</string>
+    <string name="played">Played</string>
+
     <string name="summary">Summary</string>
 
     <string name="screenshots">Screenshots</string>
