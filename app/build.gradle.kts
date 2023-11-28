@@ -31,13 +31,13 @@ android {
 
             buildConfigField("String", "IGDB_BASE_URL", "\"https://api.igdb.com/v4/\"")
             buildConfigField("String", "IGDB_CLIENT_ID", "\"8kjgodb5ozfyj3q70rmekr9lioe59z\"")
-            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer v3s917uilrqwh5v1b3aj8cgw85y7tl\"")
+            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\"")
         }
         getByName("debug") {
             isDebuggable = true
             buildConfigField("String", "IGDB_BASE_URL", "\"https://api.igdb.com/v4/\"")
             buildConfigField("String", "IGDB_CLIENT_ID", "\"8kjgodb5ozfyj3q70rmekr9lioe59z\"")
-            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer v3s917uilrqwh5v1b3aj8cgw85y7tl\"")
+            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\"")
         }
     }
     compileOptions {
