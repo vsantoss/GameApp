@@ -137,7 +137,7 @@ class GameDetailFragment : Fragment() {
 
     private fun getStateColor(isSelected: Boolean): Int {
         val color = if (isSelected) {
-            R.color.secondary
+            R.color.accent
         } else {
             R.color.white
         }
