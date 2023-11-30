@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -79,23 +81,38 @@ class GameDetailFragment : Fragment() {
     private fun initListeners() {
         binding.fabBack.setOnClickListener { navigateUp() }
 
+        val bounceAnimation: Animation =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.bounce)
+
         binding.llWant.setOnClickListener {
-            isWantSelected = true
+            isWantSelected = !isWantSelected
             isPlayingSelected = false
             isPlayedSelected = false
             setStatesColor()
+
+            if (isWantSelected) {
+                binding.ivWant.startAnimation(bounceAnimation)
+            }
         }
         binding.llPlaying.setOnClickListener {
             isWantSelected = false
-            isPlayingSelected = true
+            isPlayingSelected = !isPlayingSelected
             isPlayedSelected = false
             setStatesColor()
+
+            if (isPlayingSelected) {
+                binding.ivPlaying.startAnimation(bounceAnimation)
+            }
         }
         binding.llPlayed.setOnClickListener {
             isWantSelected = false
             isPlayingSelected = false
-            isPlayedSelected = true
+            isPlayedSelected = !isPlayedSelected
             setStatesColor()
+
+            if (isPlayedSelected) {
+                binding.ivPlayed.startAnimation(bounceAnimation)
+            }
         }
 
         binding.llSummary.setOnClickListener {
