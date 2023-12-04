@@ -1,10 +1,9 @@
-package com.vsanto.gameapp.data.network
+package com.vsanto.gameapp.di
 
 import com.vsanto.gameapp.BuildConfig.IGDB_BASE_URL
 
-import com.vsanto.gameapp.data.RepositoryImpl
 import com.vsanto.gameapp.data.core.interceptors.AuthInterceptor
-import com.vsanto.gameapp.domain.Repository
+import com.vsanto.gameapp.data.network.IGDBApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,11 +41,6 @@ object NetworkModule {
     @Provides
     fun provideIGDBApiService(retrofit: Retrofit): IGDBApiService {
         return retrofit.create(IGDBApiService::class.java)
-    }
-
-    @Provides
-    fun provideRepository(iGDBApiService: IGDBApiService): Repository {
-        return RepositoryImpl(iGDBApiService)
     }
 
 }
