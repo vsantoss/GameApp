@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.databinding.FragmentSearchBinding
 import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.ui.search.adapters.GameAdapter
+import com.vsanto.gameapp.ui.search.adapters.SearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,7 +29,8 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: GameAdapter
+    private lateinit var searchAdapter: SearchAdapter
+    private lateinit var gameAdapter: GameAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -46,7 +48,7 @@ class SearchFragment : Fragment() {
     private fun initListeners() {
         binding.svGame.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchViewModel.searchGame(query.orEmpty())
+                searchGame(query)
                 return false
             }
 
@@ -57,11 +59,20 @@ class SearchFragment : Fragment() {
 
         val svCloseBtn: ImageView =
             binding.svGame.findViewById(androidx.appcompat.R.id.search_close_btn)
+
         svCloseBtn.setOnClickListener {
             binding.svGame.setQuery("", false)
             binding.svGame.clearFocus()
-            adapter.updateList(emptyList())
+
+            gameAdapter.updateList(emptyList())
+            binding.llSearches.isVisible = true
+            binding.rvGames.isVisible = false
         }
+    }
+
+    private fun searchGame(query: String?) {
+        searchAdapter.add(query)
+        searchViewModel.searchGame(query.orEmpty())
     }
 
     private fun initUI() {
@@ -70,10 +81,21 @@ class SearchFragment : Fragment() {
     }
 
     private fun initList() {
-        adapter = GameAdapter { navigateToDetail(it) }
+        searchAdapter = SearchAdapter { searchGameByRecentSearch(it) }
+        binding.rvSearches.setHasFixedSize(true)
+        binding.rvSearches.layoutManager = LinearLayoutManager(context)
+        binding.rvSearches.adapter = searchAdapter
+
+        gameAdapter = GameAdapter { navigateToDetail(it) }
         binding.rvGames.setHasFixedSize(true)
         binding.rvGames.layoutManager = LinearLayoutManager(context)
-        binding.rvGames.adapter = adapter
+        binding.rvGames.adapter = gameAdapter
+    }
+
+    private fun searchGameByRecentSearch(query: String) {
+        binding.svGame.setQuery(query, false)
+        binding.svGame.clearFocus()
+        searchGame(query)
     }
 
     private fun navigateToDetail(game: GameSummary) {
@@ -99,18 +121,24 @@ class SearchFragment : Fragment() {
 
     private fun initState() {
         binding.progressBar.isVisible = false
+        binding.llSearches.isVisible = true
+        binding.rvGames.isVisible = false
     }
 
     private fun loadingState() {
+        binding.llSearches.isVisible = false
         binding.progressBar.isVisible = true
     }
 
     private fun successState(state: SearchState.Success) {
+        binding.llSearches.isVisible = false
         binding.progressBar.isVisible = false
-        adapter.updateList(state.games.sortedByDescending { it.releaseDate })
+        gameAdapter.updateList(state.games.sortedByDescending { it.releaseDate })
+        binding.rvGames.isVisible = true
     }
 
     private fun errorState(state: SearchState.Error) {
         binding.progressBar.isVisible = false
     }
+
 }

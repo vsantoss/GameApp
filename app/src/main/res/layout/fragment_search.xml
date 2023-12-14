@@ -18,11 +18,40 @@
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="Search..." />
 
+    <LinearLayout
+        android:id="@+id/llSearches"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svGame">
+
+        <TextView
+            style="@style/Subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/recent_searches" />
+
+        <View
+            style="@style/Separator"
+            android:layout_marginTop="5dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearches"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_recent_search" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGames"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +63,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/accent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

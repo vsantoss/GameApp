@@ -7,6 +7,9 @@
     <string name="collection">Collection</string>
     <string name="news">News</string>
 
+    <!-- Search -->
+    <string name="recent_searches">Recent searches</string>
+
     <!-- Company Detail -->
     <string name="developed_games">Developed (%d)</string>
     <string name="published_games">Published (%d)</string>

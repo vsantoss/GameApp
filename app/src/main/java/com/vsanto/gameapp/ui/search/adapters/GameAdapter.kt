@@ -28,5 +28,4 @@ class GameAdapter(
         holder.bind(games[position], onItemSelected)
     }
 
-
 }
