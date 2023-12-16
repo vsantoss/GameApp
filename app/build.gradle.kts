@@ -31,21 +31,29 @@ android {
 
             buildConfigField("String", "IGDB_BASE_URL", "\"https://api.igdb.com/v4/\"")
             buildConfigField("String", "IGDB_CLIENT_ID", "\"8kjgodb5ozfyj3q70rmekr9lioe59z\"")
-            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\"")
+            buildConfigField(
+                "String",
+                "IGDB_AUTHORIZATION_BEARER",
+                "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\""
+            )
         }
         getByName("debug") {
             isDebuggable = true
             buildConfigField("String", "IGDB_BASE_URL", "\"https://api.igdb.com/v4/\"")
             buildConfigField("String", "IGDB_CLIENT_ID", "\"8kjgodb5ozfyj3q70rmekr9lioe59z\"")
-            buildConfigField("String", "IGDB_AUTHORIZATION_BEARER", "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\"")
+            buildConfigField(
+                "String",
+                "IGDB_AUTHORIZATION_BEARER",
+                "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\""
+            )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -53,7 +61,7 @@ android {
     }
 
     kotlin {
-        jvmToolchain(8)
+        jvmToolchain(17)
     }
 }
 
@@ -64,9 +72,17 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    val retrofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    //Room
+    val roomVersion = "2.5.0"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     //Picasso
     implementation("com.squareup.picasso:picasso:2.8")
