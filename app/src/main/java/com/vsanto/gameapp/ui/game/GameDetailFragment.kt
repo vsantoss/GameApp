@@ -25,6 +25,7 @@ import com.vsanto.gameapp.domain.model.GameDetail
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
+import com.vsanto.gameapp.domain.model.UserGameState
 import com.vsanto.gameapp.domain.model.Website
 import com.vsanto.gameapp.ui.game.adapters.CompanyAdapter
 import com.vsanto.gameapp.ui.game.adapters.ScreenshotAdapter
@@ -41,6 +42,8 @@ class GameDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: GameDetailFragmentArgs by navArgs()
     private val gameDetailViewModel: GameDetailViewModel by viewModels()
+
+    private var gameId: Int = -1
 
     private var isWantSelected: Boolean = false
     private var isPlayingSelected: Boolean = false
@@ -65,7 +68,9 @@ class GameDetailFragment : Fragment() {
             navigateUp()
         }
 
-        gameDetailViewModel.getGame(args.id)
+        gameId = args.id
+
+        gameDetailViewModel.getGame(gameId)
         initUI()
     }
 
@@ -92,6 +97,9 @@ class GameDetailFragment : Fragment() {
 
             if (isWantSelected) {
                 binding.ivWant.startAnimation(bounceAnimation)
+                gameDetailViewModel.addGame(gameId, UserGameState.WANT)
+            } else {
+                gameDetailViewModel.removeUserGame(gameId)
             }
         }
         binding.llPlaying.setOnClickListener {
@@ -102,6 +110,9 @@ class GameDetailFragment : Fragment() {
 
             if (isPlayingSelected) {
                 binding.ivPlaying.startAnimation(bounceAnimation)
+                gameDetailViewModel.addGame(gameId, UserGameState.PLAYING)
+            } else {
+                gameDetailViewModel.removeUserGame(gameId)
             }
         }
         binding.llPlayed.setOnClickListener {
@@ -112,6 +123,9 @@ class GameDetailFragment : Fragment() {
 
             if (isPlayedSelected) {
                 binding.ivPlayed.startAnimation(bounceAnimation)
+                gameDetailViewModel.addGame(gameId, UserGameState.PLAYED)
+            } else {
+                gameDetailViewModel.removeUserGame(gameId)
             }
         }
 
@@ -132,8 +146,8 @@ class GameDetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gameDetailViewModel.state.collect {
                     when (it) {
-                        is GameDetailState.Error -> errorState()
                         GameDetailState.Loading -> loadingState()
+                        is GameDetailState.Error -> errorState()
                         is GameDetailState.Success -> successState(it)
                     }
                 }
@@ -187,6 +201,8 @@ class GameDetailFragment : Fragment() {
         }
 
         initRating(game.rating)
+
+        initGameState(game.userGame?.state)
 
         binding.tvSummary.text = game.summary
         binding.tvGenres.text = toString(game.genres)
@@ -260,6 +276,26 @@ class GameDetailFragment : Fragment() {
         binding.cvRating.setCardBackgroundColor(
             ContextCompat.getColor(requireContext(), color)
         )
+    }
+
+    private fun initGameState(state: UserGameState?) {
+        if (state != null) {
+            when (state) {
+                UserGameState.WANT -> {
+                    isWantSelected = true
+                }
+
+                UserGameState.PLAYING -> {
+                    isPlayingSelected = true
+                }
+
+                UserGameState.PLAYED -> {
+                    isPlayedSelected = true
+                }
+            }
+
+            setStatesColor()
+        }
     }
 
     private fun initScreenshots(screenshots: List<Image>?) {

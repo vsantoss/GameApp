@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.databinding.FragmentSearchBinding
 import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.ui.search.adapters.GameAdapter
-import com.vsanto.gameapp.ui.search.adapters.SearchAdapter
+import com.vsanto.gameapp.ui.search.adapters.RecentSearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,11 +25,12 @@ import kotlinx.coroutines.launch
 class SearchFragment : Fragment() {
 
     private val searchViewModel by viewModels<SearchViewModel>()
+    private val recentSearchViewModel by viewModels<RecentSearchViewModel>()
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var searchAdapter: SearchAdapter
+    private lateinit var recentSearchAdapter: RecentSearchAdapter
     private lateinit var gameAdapter: GameAdapter
 
     override fun onCreateView(
@@ -41,6 +42,9 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        recentSearchViewModel.getRecentSearches()
+
         initListeners()
         initUI()
     }
@@ -71,7 +75,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun searchGame(query: String?) {
-        searchAdapter.add(query)
+        recentSearchViewModel.addRecentSearch(query.orEmpty())
         searchViewModel.searchGame(query.orEmpty())
     }
 
@@ -81,10 +85,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun initList() {
-        searchAdapter = SearchAdapter { searchGameByRecentSearch(it) }
+        recentSearchAdapter = RecentSearchAdapter { searchGameByRecentSearch(it) }
         binding.rvSearches.setHasFixedSize(true)
         binding.rvSearches.layoutManager = LinearLayoutManager(context)
-        binding.rvSearches.adapter = searchAdapter
+        binding.rvSearches.adapter = recentSearchAdapter
 
         gameAdapter = GameAdapter { navigateToDetail(it) }
         binding.rvGames.setHasFixedSize(true)
@@ -110,9 +114,22 @@ class SearchFragment : Fragment() {
                 searchViewModel.state.collect {
                     when (it) {
                         SearchState.Init -> initState()
-                        SearchState.Loading -> loadingState()
-                        is SearchState.Success -> successState(it)
-                        is SearchState.Error -> errorState(it)
+                        SearchState.Loading -> loadingSearchGameState()
+                        is SearchState.Success -> successSearchGameState(it)
+                        is SearchState.Error -> errorState()
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                recentSearchViewModel.state.collect {
+                    when (it) {
+                        RecentSearchState.Init -> initState()
+                        RecentSearchState.Loading -> loadingRecentSearchState()
+                        is RecentSearchState.Success -> successRecentSearchState(it)
+                        is RecentSearchState.Error -> errorState()
                     }
                 }
             }
@@ -125,19 +142,35 @@ class SearchFragment : Fragment() {
         binding.rvGames.isVisible = false
     }
 
-    private fun loadingState() {
-        binding.llSearches.isVisible = false
+    private fun loadingSearchGameState() {
         binding.progressBar.isVisible = true
-    }
-
-    private fun successState(state: SearchState.Success) {
         binding.llSearches.isVisible = false
-        binding.progressBar.isVisible = false
-        gameAdapter.updateList(state.games.sortedByDescending { it.releaseDate })
-        binding.rvGames.isVisible = true
+        binding.rvGames.isVisible = false
     }
 
-    private fun errorState(state: SearchState.Error) {
+    private fun loadingRecentSearchState() {
+        binding.progressBar.isVisible = false
+        binding.llSearches.isVisible = true
+        binding.rvGames.isVisible = false
+    }
+
+    private fun successSearchGameState(state: SearchState.Success) {
+        binding.progressBar.isVisible = false
+        binding.llSearches.isVisible = false
+        binding.rvGames.isVisible = true
+
+        gameAdapter.updateList(state.games.sortedByDescending { it.releaseDate })
+    }
+
+    private fun successRecentSearchState(state: RecentSearchState.Success) {
+        binding.progressBar.isVisible = false
+        binding.llSearches.isVisible = true
+        binding.rvGames.isVisible = false
+
+        recentSearchAdapter.updateList(state.searches)
+    }
+
+    private fun errorState() {
         binding.progressBar.isVisible = false
     }
 

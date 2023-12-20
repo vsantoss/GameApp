@@ -2,7 +2,11 @@ package com.vsanto.gameapp.ui.game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vsanto.gameapp.domain.model.UserGame
+import com.vsanto.gameapp.domain.model.UserGameState
+import com.vsanto.gameapp.domain.usecase.usergame.AddUserGameUseCase
 import com.vsanto.gameapp.domain.usecase.GetGameByIdUseCase
+import com.vsanto.gameapp.domain.usecase.usergame.RemoveUserGameUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,8 +16,11 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class GameDetailViewModel @Inject constructor(private val getGameByIdUseCase: GetGameByIdUseCase) :
-    ViewModel() {
+class GameDetailViewModel @Inject constructor(
+    private val getGameByIdUseCase: GetGameByIdUseCase,
+    private val addUserGameUseCase: AddUserGameUseCase,
+    private val removeUserGameUseCase: RemoveUserGameUseCase
+) : ViewModel() {
 
     private var _state = MutableStateFlow<GameDetailState>(GameDetailState.Loading)
     val state: StateFlow<GameDetailState> = _state
@@ -28,6 +35,18 @@ class GameDetailViewModel @Inject constructor(private val getGameByIdUseCase: Ge
             } else {
                 _state.value = GameDetailState.Error("Ha ocurrido un error")
             }
+        }
+    }
+
+    fun addGame(gameId: Int, userGameState: UserGameState) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { addUserGameUseCase(UserGame(gameId, userGameState)) }
+        }
+    }
+
+    fun removeUserGame(gameId: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { removeUserGameUseCase(gameId) }
         }
     }
 

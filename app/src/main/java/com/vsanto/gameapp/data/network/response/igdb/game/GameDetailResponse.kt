@@ -28,6 +28,7 @@ data class GameDetailResponse(
     fun toDomain(): GameDetail {
         return GameDetail(id = id,
             name = name,
+            userGame = null,
             releaseDate = toDate(releaseDate),
             rating = rating ?: 0.0,
             summary = summary,

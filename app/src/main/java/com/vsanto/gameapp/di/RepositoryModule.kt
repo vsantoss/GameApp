@@ -1,7 +1,9 @@
 package com.vsanto.gameapp.di
 
-import com.vsanto.gameapp.data.RepositoryImpl
-import com.vsanto.gameapp.domain.Repository
+import com.vsanto.gameapp.data.GameRepositoryImpl
+import com.vsanto.gameapp.data.RecentSearchRepositoryImpl
+import com.vsanto.gameapp.domain.GameRepository
+import com.vsanto.gameapp.domain.RecentSearchRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,6 +14,9 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideRepository(repository: RepositoryImpl): Repository
+    abstract fun provideGameRepository(gameRepository: GameRepositoryImpl): GameRepository
+
+    @Binds
+    abstract fun provideRecentSearchRepository(recentSearchRepository: RecentSearchRepositoryImpl): RecentSearchRepository
 
 }

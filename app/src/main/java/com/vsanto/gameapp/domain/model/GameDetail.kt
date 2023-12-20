@@ -6,6 +6,7 @@ import java.util.Date
 data class GameDetail(
     val id: Int,
     val name: String,
+    var userGame: UserGame?,
     val releaseDate: Date?,
     val rating: Double,
     val summary: String?,
@@ -20,5 +21,4 @@ data class GameDetail(
     val platforms: List<String>?,
     val similarGames: List<SimilarGame>?,
     val websites: List<Website>?
-) :
-    Serializable
+) : Serializable
