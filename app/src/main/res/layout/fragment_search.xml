@@ -56,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/svGame"
-        tools:listitem="@layout/item_game" />
+        tools:listitem="@layout/item_result_game" />
 
     <ProgressBar
         android:id="@+id/progressBar"

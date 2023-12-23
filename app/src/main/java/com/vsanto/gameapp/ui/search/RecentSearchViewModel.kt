@@ -39,7 +39,7 @@ class RecentSearchViewModel @Inject constructor(
 
     fun addRecentSearch(query: String) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) { addRecentSearchUseCase(RecentSearch(-1, query)) }
+            withContext(Dispatchers.IO) { addRecentSearchUseCase(RecentSearch(0, query)) }
         }
     }
 

@@ -41,13 +41,20 @@
         android:id="@+id/collectionFragment"
         android:name="com.vsanto.gameapp.ui.collection.CollectionFragment"
         android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
+        tools:layout="@layout/fragment_collection">
+        <action
+            android:id="@+id/action_collectionFragment_to_gameListFragment"
+            app:destination="@id/gameListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.vsanto.gameapp.ui.news.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
+
     <fragment
         android:id="@+id/companyDetailFragment"
         android:name="com.vsanto.gameapp.ui.company.CompanyDetailFragment"
@@ -61,6 +68,21 @@
             app:destination="@id/gameDetailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_companyDetailFragment_to_gameListFragment"
+            app:destination="@id/gameListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gameListFragment"
+        android:name="com.vsanto.gameapp.ui.common.GameListFragment"
+        android:label="fragment_game_list"
+        tools:layout="@layout/fragment_game_list" >
+        <argument
+            android:name="gameIds"
+            app:argType="integer[]" />
     </fragment>
 
 </navigation>

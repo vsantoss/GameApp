@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.databinding.FragmentSearchBinding
 import com.vsanto.gameapp.domain.model.GameSummary
-import com.vsanto.gameapp.ui.search.adapters.GameAdapter
+import com.vsanto.gameapp.ui.search.adapters.GameResultAdapter
 import com.vsanto.gameapp.ui.search.adapters.RecentSearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var recentSearchAdapter: RecentSearchAdapter
-    private lateinit var gameAdapter: GameAdapter
+    private lateinit var gameResultAdapter: GameResultAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -68,7 +68,7 @@ class SearchFragment : Fragment() {
             binding.svGame.setQuery("", false)
             binding.svGame.clearFocus()
 
-            gameAdapter.updateList(emptyList())
+            gameResultAdapter.updateList(emptyList())
             binding.llSearches.isVisible = true
             binding.rvGames.isVisible = false
         }
@@ -90,10 +90,10 @@ class SearchFragment : Fragment() {
         binding.rvSearches.layoutManager = LinearLayoutManager(context)
         binding.rvSearches.adapter = recentSearchAdapter
 
-        gameAdapter = GameAdapter { navigateToDetail(it) }
+        gameResultAdapter = GameResultAdapter { navigateToDetail(it) }
         binding.rvGames.setHasFixedSize(true)
         binding.rvGames.layoutManager = LinearLayoutManager(context)
-        binding.rvGames.adapter = gameAdapter
+        binding.rvGames.adapter = gameResultAdapter
     }
 
     private fun searchGameByRecentSearch(query: String) {
@@ -159,7 +159,7 @@ class SearchFragment : Fragment() {
         binding.llSearches.isVisible = false
         binding.rvGames.isVisible = true
 
-        gameAdapter.updateList(state.games.sortedByDescending { it.releaseDate })
+        gameResultAdapter.updateList(state.games.sortedByDescending { it.releaseDate })
     }
 
     private fun successRecentSearchState(state: RecentSearchState.Success) {
