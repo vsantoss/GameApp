@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.vsanto.gameapp.databinding.FragmentCollectionBinding
+import com.vsanto.gameapp.domain.model.UserGame
 import com.vsanto.gameapp.domain.model.UserGameState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -67,20 +69,32 @@ class CollectionFragment : Fragment() {
         binding.progressBar.isVisible = false
         val games = state.library.games
 
-        binding.tvPlayingValue.text = games
-            .filter { g -> g.state == UserGameState.PLAYING }
-            .size
-            .toString()
+        val playingGames = games.filter { g -> g.state == UserGameState.PLAYING }
+        val playedGames = games.filter { g -> g.state == UserGameState.PLAYED }
+        val wantGames = games.filter { g -> g.state == UserGameState.WANT }
 
-        binding.tvPlayedValue.text = games
-            .filter { g -> g.state == UserGameState.PLAYED }
-            .size
-            .toString()
+        binding.clPlaying.setOnClickListener {
+            navigateToGameList(playingGames, "Playing Games")
+        }
+        binding.tvPlayingValue.text = playingGames.size.toString()
 
-        binding.tvWantValue.text = games
-            .filter { g -> g.state == UserGameState.WANT }
-            .size
-            .toString()
+        binding.clPlayed.setOnClickListener {
+            navigateToGameList(playedGames, "Played Games")
+        }
+        binding.tvPlayedValue.text = playedGames.size.toString()
+
+        binding.clWant.setOnClickListener {
+            navigateToGameList(wantGames, "Want Games")
+        }
+        binding.tvWantValue.text = wantGames.size.toString()
+    }
+
+    private fun navigateToGameList(games: List<UserGame>, title: String) {
+        findNavController().navigate(
+            CollectionFragmentDirections.actionCollectionFragmentToGameListFragment(games
+                .map { it.gameId }
+                .toIntArray(), title)
+        )
     }
 
 }

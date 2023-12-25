@@ -8,6 +8,8 @@ import com.vsanto.gameapp.domain.model.UserGame
 interface GameRepository {
     suspend fun searchGames(name: String): List<GameSummary>?
 
+    suspend fun getGamesByIds(ids: IntArray): List<GameSummary>?
+
     suspend fun getGameById(id: Int): GameDetail?
 
     suspend fun getCompanyById(id: Int): CompanyDetail?

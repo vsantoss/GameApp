@@ -27,6 +27,14 @@ class GameRepositoryImpl @Inject constructor(
         return null
     }
 
+    override suspend fun getGamesByIds(ids: IntArray): List<GameSummary>? {
+        runCatching { igdbApiService.searchGames(buildGamesBody(ids)) }
+            .onSuccess { return it.map { gameSummaryResponse -> gameSummaryResponse.toDomain() } }
+            .onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
+
+        return null
+    }
+
     override suspend fun getGameById(id: Int): GameDetail? {
         runCatching { igdbApiService.getGameById(buildGameDetailBody(id)) }
             .onSuccess {
@@ -84,6 +92,20 @@ class GameRepositoryImpl @Inject constructor(
         queryBuilder.append("where category = 0 & version_parent = null;")
         queryBuilder.append("limit 100;")
 
+        return queryBuilder.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+    }
+
+    private fun buildGamesBody(ids: IntArray): RequestBody {
+        val idsString = ids.joinToString(", ")
+        val queryBuilder = StringBuilder()
+        queryBuilder.append(
+            "fields "
+                    + "id, "
+                    + "name, "
+                    + "first_release_date, "
+                    + "cover.url;"
+        )
+        queryBuilder.append("where id = ($idsString);")
         return queryBuilder.toString().toRequestBody("text/plain".toMediaTypeOrNull())
     }
 

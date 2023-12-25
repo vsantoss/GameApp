@@ -80,11 +80,11 @@ class SearchFragment : Fragment() {
     }
 
     private fun initUI() {
-        initList()
+        initAdapters()
         initUIState()
     }
 
-    private fun initList() {
+    private fun initAdapters() {
         recentSearchAdapter = RecentSearchAdapter { searchGameByRecentSearch(it) }
         binding.rvSearches.setHasFixedSize(true)
         binding.rvSearches.layoutManager = LinearLayoutManager(context)

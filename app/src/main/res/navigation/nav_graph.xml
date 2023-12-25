@@ -83,6 +83,14 @@
         <argument
             android:name="gameIds"
             app:argType="integer[]" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gameListFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
 </navigation>

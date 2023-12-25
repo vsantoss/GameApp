@@ -35,6 +35,8 @@ class CompanyDetailFragment : Fragment() {
     private val args: CompanyDetailFragmentArgs by navArgs()
     private val companyDetailViewModel: CompanyDetailViewModel by viewModels()
 
+    private var companyId: Int = -1
+
     private lateinit var developedGameAdapter: ProducedGameAdapter
     private lateinit var publishedGameAdapter: ProducedGameAdapter
     private lateinit var websiteAdapter: WebsiteAdapter
@@ -53,7 +55,9 @@ class CompanyDetailFragment : Fragment() {
             navigateUp()
         }
 
-        companyDetailViewModel.getCompany(args.id)
+        companyId = args.id
+
+        companyDetailViewModel.getCompany(companyId)
         initUI()
     }
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ivLogo"
+    android:layout_width="90dp"
+    android:layout_height="130dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="2dp"
+    android:background="@color/secondary_text"
+    android:contentDescription="@string/logo_description"
+    android:padding="1dp"
+    android:scaleType="fitXY"
+    tools:src="@drawable/game_logo_example" />

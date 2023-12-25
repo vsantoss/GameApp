@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_dark"
         android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,21 +20,40 @@
             android:layout_margin="5dp"
             android:contentDescription="@string/back_description"
             android:src="@drawable/ic_back"
-            app:backgroundTint="@color/primary_dark"
+            app:backgroundTint="@color/primary"
             app:borderWidth="0dp"
             app:fabSize="mini"
             app:tint="@color/white" />
 
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            tools:text="Playing games" />
+
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/accent" />
+
     <TextView
+        android:id="@+id/tvSize"
         style="@style/Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginVertical="3dp"
-        android:text="10 games" />
+        android:layout_marginStart="10dp"
+        tools:text="10 games" />
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGameList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
