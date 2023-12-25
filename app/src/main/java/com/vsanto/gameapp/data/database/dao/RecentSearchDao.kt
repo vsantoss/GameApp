@@ -9,7 +9,7 @@ import com.vsanto.gameapp.data.database.entity.RecentSearchEntity
 @Dao
 interface RecentSearchDao {
 
-    @Query("SELECT * FROM recent_search_table")
+    @Query("SELECT * FROM recent_search_table ORDER BY id DESC")
     suspend fun getAllRecentSearches(): List<RecentSearchEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
