@@ -8,7 +8,7 @@ import com.vsanto.gameapp.domain.model.RecentSearch
 
 class RecentSearchAdapter(
     private var searches: List<RecentSearch> = emptyList(),
-    private val onItemSelected: (String) -> Unit
+    private val onItemSelected: (RecentSearch) -> Unit
 ) : RecyclerView.Adapter<RecentSearchViewHolder>() {
 
     fun updateList(list: List<RecentSearch>) {

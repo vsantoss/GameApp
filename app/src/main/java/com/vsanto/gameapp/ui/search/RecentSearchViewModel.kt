@@ -43,4 +43,10 @@ class RecentSearchViewModel @Inject constructor(
         }
     }
 
+    fun removeRecentSearch(id: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { removeRemoveRecentSearchUseCase(id) }
+        }
+    }
+
 }

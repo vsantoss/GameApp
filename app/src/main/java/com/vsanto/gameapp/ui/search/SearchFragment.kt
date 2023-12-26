@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.databinding.FragmentSearchBinding
 import com.vsanto.gameapp.domain.model.GameSummary
+import com.vsanto.gameapp.domain.model.RecentSearch
 import com.vsanto.gameapp.ui.search.adapters.GameResultAdapter
 import com.vsanto.gameapp.ui.search.adapters.RecentSearchAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,8 +46,13 @@ class SearchFragment : Fragment() {
 
         recentSearchViewModel.getRecentSearches()
 
-        initListeners()
         initUI()
+    }
+
+    private fun initUI() {
+        initListeners()
+        initAdapters()
+        initUIState()
     }
 
     private fun initListeners() {
@@ -65,12 +71,7 @@ class SearchFragment : Fragment() {
             binding.svGame.findViewById(androidx.appcompat.R.id.search_close_btn)
 
         svCloseBtn.setOnClickListener {
-            binding.svGame.setQuery("", false)
-            binding.svGame.clearFocus()
-
-            gameResultAdapter.updateList(emptyList())
-            binding.llSearches.isVisible = true
-            binding.rvGames.isVisible = false
+            cleanSearch()
         }
     }
 
@@ -79,9 +80,15 @@ class SearchFragment : Fragment() {
         searchViewModel.searchGame(query.orEmpty())
     }
 
-    private fun initUI() {
-        initAdapters()
-        initUIState()
+    private fun cleanSearch() {
+        binding.svGame.setQuery("", false)
+        binding.svGame.clearFocus()
+
+        gameResultAdapter.updateList(emptyList())
+        recentSearchViewModel.getRecentSearches()
+
+        binding.llSearches.isVisible = true
+        binding.rvGames.isVisible = false
     }
 
     private fun initAdapters() {
@@ -90,16 +97,18 @@ class SearchFragment : Fragment() {
         binding.rvSearches.layoutManager = LinearLayoutManager(context)
         binding.rvSearches.adapter = recentSearchAdapter
 
+
         gameResultAdapter = GameResultAdapter { navigateToDetail(it) }
         binding.rvGames.setHasFixedSize(true)
         binding.rvGames.layoutManager = LinearLayoutManager(context)
         binding.rvGames.adapter = gameResultAdapter
     }
 
-    private fun searchGameByRecentSearch(query: String) {
-        binding.svGame.setQuery(query, false)
+    private fun searchGameByRecentSearch(recentSearch: RecentSearch) {
+        binding.svGame.setQuery(recentSearch.query, false)
         binding.svGame.clearFocus()
-        searchGame(query)
+        recentSearchViewModel.removeRecentSearch(recentSearch.id)
+        searchGame(recentSearch.query)
     }
 
     private fun navigateToDetail(game: GameSummary) {
@@ -138,8 +147,7 @@ class SearchFragment : Fragment() {
 
     private fun initState() {
         binding.progressBar.isVisible = false
-        binding.llSearches.isVisible = true
-        binding.rvGames.isVisible = false
+        showSearches()
     }
 
     private fun loadingSearchGameState() {
@@ -150,28 +158,35 @@ class SearchFragment : Fragment() {
 
     private fun loadingRecentSearchState() {
         binding.progressBar.isVisible = false
-        binding.llSearches.isVisible = true
-        binding.rvGames.isVisible = false
+        showSearches()
     }
 
     private fun successSearchGameState(state: SearchState.Success) {
         binding.progressBar.isVisible = false
-        binding.llSearches.isVisible = false
-        binding.rvGames.isVisible = true
+        showResults()
 
         gameResultAdapter.updateList(state.games.sortedByDescending { it.releaseDate })
     }
 
     private fun successRecentSearchState(state: RecentSearchState.Success) {
         binding.progressBar.isVisible = false
-        binding.llSearches.isVisible = true
-        binding.rvGames.isVisible = false
+        showSearches()
 
         recentSearchAdapter.updateList(state.searches)
     }
 
     private fun errorState() {
         binding.progressBar.isVisible = false
+    }
+
+    private fun showResults() {
+        binding.llSearches.isVisible = false
+        binding.rvGames.isVisible = true
+    }
+
+    private fun showSearches() {
+        binding.llSearches.isVisible = true
+        binding.rvGames.isVisible = false
     }
 
 }
