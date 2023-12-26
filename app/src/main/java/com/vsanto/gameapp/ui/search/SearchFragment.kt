@@ -93,15 +93,18 @@ class SearchFragment : Fragment() {
 
     private fun initAdapters() {
         recentSearchAdapter = RecentSearchAdapter { searchGameByRecentSearch(it) }
-        binding.rvSearches.setHasFixedSize(true)
-        binding.rvSearches.layoutManager = LinearLayoutManager(context)
-        binding.rvSearches.adapter = recentSearchAdapter
-
+        binding.rvSearches.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = recentSearchAdapter
+        }
 
         gameResultAdapter = GameResultAdapter { navigateToDetail(it) }
-        binding.rvGames.setHasFixedSize(true)
-        binding.rvGames.layoutManager = LinearLayoutManager(context)
-        binding.rvGames.adapter = gameResultAdapter
+        binding.rvGames.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = gameResultAdapter
+        }
     }
 
     private fun searchGameByRecentSearch(recentSearch: RecentSearch) {
