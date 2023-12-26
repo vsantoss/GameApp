@@ -72,6 +72,7 @@ class CompanyDetailFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { navigateUp() }
+
         binding.tvDescription.setOnClickListener {
             binding.tvDescription.isSelected = !binding.tvDescription.isSelected
             if (binding.tvDescription.isSelected) {
@@ -148,8 +149,16 @@ class CompanyDetailFragment : Fragment() {
     }
 
     private fun initDevelopedGames(games: List<GameSummary>?) {
-        val list = games?.sortedByDescending { it.releaseDate }.orEmpty()
-        developedGameAdapter = ProducedGameAdapter(list) { navigateToProducedGame(it) }
+        val sortedGames = games?.sortedByDescending { it.releaseDate }.orEmpty()
+        binding.clDevelopedTitle.setOnClickListener {
+            navigateToProducedGames(
+                sortedGames.map { it.id }.toIntArray(),
+                "Developed Games"
+            )
+        }
+
+        developedGameAdapter =
+            ProducedGameAdapter(sortedGames.take(10)) { navigateToProducedGame(it) }
 
         binding.rvDeveloped.apply {
             setHasFixedSize(true)
@@ -159,14 +168,31 @@ class CompanyDetailFragment : Fragment() {
     }
 
     private fun initPublishedGames(games: List<GameSummary>?) {
-        val list = games?.sortedByDescending { it.releaseDate }.orEmpty()
-        publishedGameAdapter = ProducedGameAdapter(list) { navigateToProducedGame(it) }
+        val sortedGames = games?.sortedByDescending { it.releaseDate }.orEmpty()
+        binding.clPublishedTitle.setOnClickListener {
+            navigateToProducedGames(
+                sortedGames.map { it.id }.toIntArray(),
+                "Published Games"
+            )
+        }
+
+        publishedGameAdapter =
+            ProducedGameAdapter(sortedGames.take(10)) { navigateToProducedGame(it) }
 
         binding.rvPublished.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = publishedGameAdapter
         }
+    }
+
+    private fun navigateToProducedGames(ids: IntArray, title: String) {
+        findNavController().navigate(
+            CompanyDetailFragmentDirections.actionCompanyDetailFragmentToGameListFragment(
+                ids,
+                title
+            )
+        )
     }
 
     private fun navigateToProducedGame(id: Int) {

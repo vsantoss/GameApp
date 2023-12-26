@@ -106,6 +106,7 @@ class GameRepositoryImpl @Inject constructor(
                     + "cover.url;"
         )
         queryBuilder.append("where id = ($idsString);")
+        queryBuilder.append("limit 500;")
         return queryBuilder.toString().toRequestBody("text/plain".toMediaTypeOrNull())
     }
 

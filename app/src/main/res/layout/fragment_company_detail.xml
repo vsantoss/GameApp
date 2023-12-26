@@ -89,10 +89,28 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvDevelopedTitle"
-                        style="@style/Title"
-                        tools:text="@string/developed_games" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clDevelopedTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvDevelopedTitle"
+                            style="@style/Title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@string/developed_games" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_forward_simplify"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/primary_text" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvDeveloped"
@@ -109,10 +127,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvPublishedTitle"
-                        style="@style/Title"
-                        tools:text="@string/published_games" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clPublishedTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvPublishedTitle"
+                            style="@style/Title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@string/published_games" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_forward_simplify"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/primary_text" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvPublished"
