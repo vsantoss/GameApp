@@ -82,7 +82,7 @@
 
     <fragment
         android:id="@+id/gameListFragment"
-        android:name="com.vsanto.gameapp.ui.common.GameListFragment"
+        android:name="com.vsanto.gameapp.ui.common.gamelist.GameListFragment"
         android:label="fragment_game_list"
         tools:layout="@layout/fragment_game_list" >
         <argument

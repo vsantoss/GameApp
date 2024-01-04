@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.common
+package com.vsanto.gameapp.ui.common.gamelist
 
 import com.vsanto.gameapp.domain.model.GameSummary
 

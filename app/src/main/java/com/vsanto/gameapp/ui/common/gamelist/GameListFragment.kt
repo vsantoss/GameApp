@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.common
+package com.vsanto.gameapp.ui.common.gamelist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,10 +16,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vsanto.gameapp.databinding.FragmentGameListBinding
 import com.vsanto.gameapp.domain.model.GameSummary
-import com.vsanto.gameapp.ui.common.adapters.GameListAdapter
+import com.vsanto.gameapp.ui.common.gamelist.adapters.GameListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class GameListFragment : Fragment() {

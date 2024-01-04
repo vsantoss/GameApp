@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.vsanto.gameapp.databinding.FragmentCollectionBinding
+import com.vsanto.gameapp.domain.model.GameList
 import com.vsanto.gameapp.domain.model.UserGame
 import com.vsanto.gameapp.domain.model.UserGameState
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,6 @@ class CollectionFragment : Fragment() {
 
     private var _binding: FragmentCollectionBinding? = null
     private val binding get() = _binding!!
-
     private val collectionViewModel: CollectionViewModel by viewModels()
 
     override fun onCreateView(
@@ -67,28 +67,44 @@ class CollectionFragment : Fragment() {
 
     private fun successState(state: CollectionState.Success) {
         binding.progressBar.isVisible = false
+
         val games = state.library.games
+        val lists = state.library.lists
 
         val playingGames = games.filter { g -> g.state == UserGameState.PLAYING }
         val playedGames = games.filter { g -> g.state == UserGameState.PLAYED }
         val wantGames = games.filter { g -> g.state == UserGameState.WANT }
 
+        initPlayingGames(playingGames)
+        initPlayedGames(playedGames)
+        initWantGames(wantGames)
+
+        initLists(lists)
+
+    }
+
+    private fun initPlayingGames(games: List<UserGame>) {
         binding.clPlaying.setOnClickListener {
-            navigateToGameList(playingGames, "Playing Games")
+            navigateToGameList(games, "Playing Games")
         }
-        binding.tvPlayingValue.text = playingGames.size.toString()
+        binding.tvPlayingValue.text = games.size.toString()
+    }
 
+    private fun initPlayedGames(games: List<UserGame>) {
         binding.clPlayed.setOnClickListener {
-            navigateToGameList(playedGames, "Played Games")
+            navigateToGameList(games, "Played Games")
         }
-        binding.tvPlayedValue.text = playedGames.size.toString()
+        binding.tvPlayedValue.text = games.size.toString()
+    }
 
+    private fun initWantGames(games: List<UserGame>) {
         binding.clWant.setOnClickListener {
-            navigateToGameList(wantGames, "Want Games")
+            navigateToGameList(games, "Want Games")
         }
-        binding.tvWantValue.text = wantGames.size.toString()
+        binding.tvWantValue.text = games.size.toString()
+    }
 
-        val lists = state.library.lists
+    private fun initLists(lists: List<GameList>) {
         binding.clLists.setOnClickListener {
             navigateToLists()
         }
@@ -97,9 +113,10 @@ class CollectionFragment : Fragment() {
 
     private fun navigateToGameList(games: List<UserGame>, title: String) {
         findNavController().navigate(
-            CollectionFragmentDirections.actionCollectionFragmentToGameListFragment(games
-                .map { it.gameId }
-                .toIntArray(), title)
+            CollectionFragmentDirections.actionCollectionFragmentToGameListFragment(
+                games.map { it.gameId }.toIntArray(),
+                title
+            )
         )
     }
 

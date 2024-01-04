@@ -22,14 +22,15 @@ import com.squareup.picasso.Picasso
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentGameDetailBinding
 import com.vsanto.gameapp.domain.model.GameDetail
+import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.domain.model.Image
 import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
 import com.vsanto.gameapp.domain.model.UserGameState
 import com.vsanto.gameapp.domain.model.Website
+import com.vsanto.gameapp.ui.common.adapters.HorizontalGameListAdapter
 import com.vsanto.gameapp.ui.gamedetail.adapters.CompanyAdapter
 import com.vsanto.gameapp.ui.gamedetail.adapters.ScreenshotAdapter
-import com.vsanto.gameapp.ui.gamedetail.adapters.SimilarGameAdapter
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -51,7 +52,7 @@ class GameDetailFragment : Fragment() {
 
     private lateinit var screenshotAdapter: ScreenshotAdapter
     private lateinit var companyAdapter: CompanyAdapter
-    private lateinit var similarGameAdapter: SimilarGameAdapter
+    private lateinit var similarGameAdapter: HorizontalGameListAdapter
     private lateinit var websiteAdapter: WebsiteAdapter
 
     override fun onCreateView(
@@ -324,7 +325,9 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun initSimilarGames(similarGames: List<SimilarGame>?) {
-        similarGameAdapter = SimilarGameAdapter(similarGames.orEmpty()) { navigateToOtherGame(it) }
+        similarGameAdapter =
+            HorizontalGameListAdapter(similarGames?.map { toGameSummary(it) }
+                .orEmpty()) { navigateToOtherGame(it) }
         binding.rvSimilarGames.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -362,6 +365,15 @@ class GameDetailFragment : Fragment() {
             return "-"
         }
         return list.joinToString(separator = ", ")
+    }
+
+    private fun toGameSummary(similarGame: SimilarGame): GameSummary {
+        return GameSummary(
+            id = similarGame.id,
+            name = similarGame.name,
+            releaseDate = null,
+            cover = similarGame.cover
+        )
     }
 
 }

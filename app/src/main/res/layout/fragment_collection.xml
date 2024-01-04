@@ -36,76 +36,115 @@
         <View style="@style/DetailGameSeparator" />
 
         <!-- Playing -->
-        <FrameLayout
-            android:id="@+id/clPlaying"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingVertical="5dp">
 
-            <TextView
-                style="@style/Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center_vertical"
-                android:text="@string/playing" />
+            <FrameLayout
+                android:id="@+id/clPlaying"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvPlayingValue"
-                style="@style/Title"
-                android:layout_width="wrap_content"
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:text="@string/playing" />
+
+                <TextView
+                    android:id="@+id/tvPlayingValue"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    tools:text="3" />
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPlaying"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                tools:text="3" />
-        </FrameLayout>
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
 
         <!-- Played -->
-        <FrameLayout
-            android:id="@+id/clPlayed"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingVertical="5dp">
 
-            <TextView
-                style="@style/Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center_vertical"
-                android:text="@string/played" />
+            <FrameLayout
+                android:id="@+id/clPlayed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvPlayedValue"
-                style="@style/Title"
-                android:layout_width="wrap_content"
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:text="@string/played" />
+
+                <TextView
+                    android:id="@+id/tvPlayedValue"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    tools:text="367" />
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPlayed"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                tools:text="367" />
-        </FrameLayout>
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
 
         <!-- Want -->
-        <FrameLayout
-            android:id="@+id/clWant"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingVertical="5dp">
 
-            <TextView
-                style="@style/Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center_vertical"
-                android:text="@string/want" />
+            <FrameLayout
+                android:id="@+id/clWant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvWantValue"
-                style="@style/Title"
-                android:layout_width="wrap_content"
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:text="@string/want" />
+
+                <TextView
+                    android:id="@+id/tvWantValue"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    tools:text="30" />
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWant"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                tools:text="30" />
-        </FrameLayout>
+                android:layout_marginTop="5dp" />
+
+        </LinearLayout>
 
         <View style="@style/DetailGameSeparator" />
 

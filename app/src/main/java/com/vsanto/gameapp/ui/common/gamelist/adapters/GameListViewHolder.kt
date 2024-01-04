@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.common.adapters
+package com.vsanto.gameapp.ui.common.gamelist.adapters
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

@@ -21,8 +21,8 @@ import com.vsanto.gameapp.databinding.FragmentCompanyDetailBinding
 import com.vsanto.gameapp.domain.model.CompanyDetail
 import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.domain.model.Website
+import com.vsanto.gameapp.ui.common.adapters.HorizontalGameListAdapter
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
-import com.vsanto.gameapp.ui.company.adapters.ProducedGameAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -37,8 +37,8 @@ class CompanyDetailFragment : Fragment() {
 
     private var companyId: Int = -1
 
-    private lateinit var developedGameAdapter: ProducedGameAdapter
-    private lateinit var publishedGameAdapter: ProducedGameAdapter
+    private lateinit var developedGameAdapter: HorizontalGameListAdapter
+    private lateinit var publishedGameAdapter: HorizontalGameListAdapter
     private lateinit var websiteAdapter: WebsiteAdapter
 
     override fun onCreateView(
@@ -158,7 +158,7 @@ class CompanyDetailFragment : Fragment() {
         }
 
         developedGameAdapter =
-            ProducedGameAdapter(sortedGames.take(10)) { navigateToProducedGame(it) }
+            HorizontalGameListAdapter(sortedGames.take(10)) { navigateToProducedGame(it) }
 
         binding.rvDeveloped.apply {
             setHasFixedSize(true)
@@ -177,7 +177,7 @@ class CompanyDetailFragment : Fragment() {
         }
 
         publishedGameAdapter =
-            ProducedGameAdapter(sortedGames.take(10)) { navigateToProducedGame(it) }
+            HorizontalGameListAdapter(sortedGames.take(10)) { navigateToProducedGame(it) }
 
         binding.rvPublished.apply {
             setHasFixedSize(true)

@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.common
+package com.vsanto.gameapp.ui.common.gamelist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
