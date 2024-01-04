@@ -87,6 +87,12 @@ class CollectionFragment : Fragment() {
             navigateToGameList(wantGames, "Want Games")
         }
         binding.tvWantValue.text = wantGames.size.toString()
+
+        val lists = state.library.lists
+        binding.clLists.setOnClickListener {
+            navigateToLists()
+        }
+        binding.tvListsValue.text = lists.size.toString()
     }
 
     private fun navigateToGameList(games: List<UserGame>, title: String) {
@@ -94,6 +100,12 @@ class CollectionFragment : Fragment() {
             CollectionFragmentDirections.actionCollectionFragmentToGameListFragment(games
                 .map { it.gameId }
                 .toIntArray(), title)
+        )
+    }
+
+    private fun navigateToLists() {
+        findNavController().navigate(
+            CollectionFragmentDirections.actionCollectionFragmentToListFragment()
         )
     }
 

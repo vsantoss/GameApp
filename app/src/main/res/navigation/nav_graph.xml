@@ -47,6 +47,11 @@
             app:destination="@id/gameListFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_collectionFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -92,5 +97,10 @@
             app:enterAnim="@anim/slide_in_right"
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.vsanto.gameapp.ui.collection.list.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" />
 
 </navigation>

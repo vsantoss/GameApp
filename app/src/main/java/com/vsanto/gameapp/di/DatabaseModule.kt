@@ -31,4 +31,8 @@ object DatabaseModule {
     @Provides
     fun provideRecentSearchDao(db: GameDatabase) = db.getRecentSearchDao()
 
+    @Singleton
+    @Provides
+    fun provideListDao(db: GameDatabase) = db.getListDao()
+
 }

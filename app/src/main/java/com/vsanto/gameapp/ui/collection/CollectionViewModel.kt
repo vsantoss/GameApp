@@ -26,7 +26,7 @@ class CollectionViewModel @Inject constructor(
             val result = withContext(Dispatchers.IO) { getCollectionUseCase() }
 
             if (result != null) {
-                _state.value = CollectionState.Success(Library(result))
+                _state.value = CollectionState.Success(Library(result, emptyList()))
             } else {
                 _state.value = CollectionState.Error("Ha ocurrido un error")
             }

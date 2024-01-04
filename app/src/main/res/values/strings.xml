@@ -19,10 +19,6 @@
     <!-- Game Detail -->
     <string name="logo_description">Logo</string>
 
-    <string name="want">Want</string>
-    <string name="playing">Playing</string>
-    <string name="played">Played</string>
-
     <string name="summary">Summary</string>
 
     <string name="screenshots">Screenshots</string>
@@ -62,6 +58,15 @@
     <string name="epic">Epic</string>
     <string name="gog">GOG</string>
     <string name="discord">Discord</string>
+
+    <!-- Collection -->
+    <string name="want">Want</string>
+    <string name="playing">Playing</string>
+    <string name="played">Played</string>
+
+    <!-- Lists -->
+    <string name="lists">Lists</string>
+    <string name="add_list">Add List</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

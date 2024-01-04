@@ -73,9 +73,11 @@ class GameListFragment : Fragment() {
 
     private fun initAdapters() {
         gameListAdapter = GameListAdapter { navigateToDetail(it) }
-        binding.rvGameList.setHasFixedSize(true)
-        binding.rvGameList.layoutManager = GridLayoutManager(context, 4)
-        binding.rvGameList.adapter = gameListAdapter
+        binding.rvGameList.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 4)
+            adapter = gameListAdapter
+        }
     }
 
     private fun initListeners() {
