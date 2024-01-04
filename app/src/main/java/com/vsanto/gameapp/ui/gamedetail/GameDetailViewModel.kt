@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.game
+package com.vsanto.gameapp.ui.gamedetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

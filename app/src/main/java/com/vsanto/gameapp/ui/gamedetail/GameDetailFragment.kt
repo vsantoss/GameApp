@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.game
+package com.vsanto.gameapp.ui.gamedetail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -27,9 +27,9 @@ import com.vsanto.gameapp.domain.model.InvolvedCompany
 import com.vsanto.gameapp.domain.model.SimilarGame
 import com.vsanto.gameapp.domain.model.UserGameState
 import com.vsanto.gameapp.domain.model.Website
-import com.vsanto.gameapp.ui.game.adapters.CompanyAdapter
-import com.vsanto.gameapp.ui.game.adapters.ScreenshotAdapter
-import com.vsanto.gameapp.ui.game.adapters.SimilarGameAdapter
+import com.vsanto.gameapp.ui.gamedetail.adapters.CompanyAdapter
+import com.vsanto.gameapp.ui.gamedetail.adapters.ScreenshotAdapter
+import com.vsanto.gameapp.ui.gamedetail.adapters.SimilarGameAdapter
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

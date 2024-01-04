@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/gameDetailFragment"
-        android:name="com.vsanto.gameapp.ui.game.GameDetailFragment"
+        android:name="com.vsanto.gameapp.ui.gamedetail.GameDetailFragment"
         android:label="GameDetailFragment"
         tools:layout="@layout/fragment_game_detail">
         <argument
