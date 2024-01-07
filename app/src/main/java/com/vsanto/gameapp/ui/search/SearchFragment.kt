@@ -19,6 +19,7 @@ import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.domain.model.RecentSearch
 import com.vsanto.gameapp.ui.search.adapters.GameResultAdapter
 import com.vsanto.gameapp.ui.search.adapters.RecentSearchAdapter
+import com.vsanto.gameapp.ui.search.dialogs.RemoveSearchDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -92,7 +93,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun initAdapters() {
-        recentSearchAdapter = RecentSearchAdapter { searchGameByRecentSearch(it) }
+        recentSearchAdapter =
+            RecentSearchAdapter(
+                onItemSelected = { searchGameByRecentSearch(it) },
+                onItemLongSelected = { openRemoveSearchDialog(it) })
         binding.rvSearches.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
@@ -110,8 +114,24 @@ class SearchFragment : Fragment() {
     private fun searchGameByRecentSearch(recentSearch: RecentSearch) {
         binding.svGame.setQuery(recentSearch.query, false)
         binding.svGame.clearFocus()
+
         recentSearchViewModel.removeRecentSearch(recentSearch.id)
         searchGame(recentSearch.query)
+    }
+
+    private fun openRemoveSearchDialog(recentSearch: RecentSearch): Boolean {
+        RemoveSearchDialogFragment(
+            query = recentSearch.query,
+            onCancelSelected = {},
+            onRemoveSelected = { removeRecentSearch(recentSearch) }
+        ).show(parentFragmentManager, "Remove Search Dialog")
+
+        return true
+    }
+
+    private fun removeRecentSearch(recentSearch: RecentSearch) {
+        recentSearchViewModel.removeRecentSearch(recentSearch.id)
+        recentSearchAdapter.removeSearch(recentSearch)
     }
 
     private fun navigateToDetail(game: GameSummary) {
@@ -175,7 +195,7 @@ class SearchFragment : Fragment() {
         binding.progressBar.isVisible = false
         showSearches()
 
-        recentSearchAdapter.updateList(state.searches)
+        recentSearchAdapter.updateList(state.searches.toMutableList())
     }
 
     private fun errorState() {

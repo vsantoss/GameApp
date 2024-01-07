@@ -10,6 +10,11 @@
     <!-- Search -->
     <string name="recent_searches">Recent searches</string>
 
+    <!-- Remove Search Dialog -->
+    <string name="remove_search_title">Remove recent search?</string>
+    <string name="remove_search_positive">REMOVE</string>
+    <string name="remove_search_negative">CANCEL</string>
+
     <!-- Company Detail -->
     <string name="developed_games">Developed (%d)</string>
     <string name="published_games">Published (%d)</string>
@@ -66,7 +71,17 @@
 
     <!-- Lists -->
     <string name="lists">Lists</string>
+    <string name="list_games">%d games</string>
     <string name="add_list">Add List</string>
+    <string name="new_list">New List</string>
+    <string name="add_name">Add name…</string>
+    <string name="add_description">Add description…</string>
+
+    <!-- Discard Dialog -->
+    <string name="discard_title">Discard Changes</string>
+    <string name="discard_message">Are you sure? Changes will be lost.</string>
+    <string name="discard_positive">DISCARD</string>
+    <string name="discard_negative">CANCEL</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

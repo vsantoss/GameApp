@@ -101,6 +101,18 @@
         android:id="@+id/listFragment"
         android:name="com.vsanto.gameapp.ui.collection.list.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_newListFragment"
+            app:destination="@id/newListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/newListFragment"
+        android:name="com.vsanto.gameapp.ui.collection.list.NewListFragment"
+        android:label="fragment_new_list"
+        tools:layout="@layout/fragment_new_list" >
+    </fragment>
 
 </navigation>

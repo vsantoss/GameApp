@@ -9,10 +9,15 @@ class RecentSearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemRecentSearchBinding.bind(view)
 
-    fun bind(recentSearch: RecentSearch, onItemSelected: (RecentSearch) -> Unit) {
+    fun bind(
+        recentSearch: RecentSearch,
+        onItemSelected: (RecentSearch) -> Unit,
+        onItemLongSelected: (RecentSearch) -> Boolean
+    ) {
         binding.tvSearch.text = recentSearch.query
 
         binding.tvSearch.setOnClickListener { onItemSelected(recentSearch) }
+        binding.tvSearch.setOnLongClickListener { onItemLongSelected(recentSearch) }
     }
 
 }

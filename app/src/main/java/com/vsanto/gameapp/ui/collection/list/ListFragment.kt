@@ -57,6 +57,9 @@ class ListFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { navigateUp() }
+        binding.fabAdd.setOnClickListener {
+            findNavController().navigate(ListFragmentDirections.actionListFragmentToNewListFragment())
+        }
     }
 
     private fun initUIState() {

@@ -13,6 +13,11 @@
         <item name="android:statusBarColor">@color/primary</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/primary</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+    </style>
+
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:textColorHint">@color/primary_text</item>

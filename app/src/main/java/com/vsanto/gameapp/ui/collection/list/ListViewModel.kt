@@ -2,6 +2,8 @@ package com.vsanto.gameapp.ui.collection.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vsanto.gameapp.domain.model.GameList
+import com.vsanto.gameapp.domain.usecase.list.AddListUseCase
 import com.vsanto.gameapp.domain.usecase.list.GetListsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val getListsUseCase: GetListsUseCase
+    private val getListsUseCase: GetListsUseCase,
+    private val addListUseCase: AddListUseCase
 ) : ViewModel() {
 
     private var _state = MutableStateFlow<ListState>(ListState.Loading)
@@ -32,6 +35,12 @@ class ListViewModel @Inject constructor(
             }
         }
 
+    }
+
+    fun addList(title: String) {
+        viewModelScope.launch {
+            addListUseCase(GameList(0, title, emptyList()))
+        }
     }
 
 }

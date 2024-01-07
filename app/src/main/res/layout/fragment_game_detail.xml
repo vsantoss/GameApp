@@ -207,7 +207,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:contentDescription="@string/played"
-                            android:src="@drawable/ic_check"
+                            android:src="@drawable/ic_check_circle"
                             app:tint="@color/white" />
 
                         <TextView

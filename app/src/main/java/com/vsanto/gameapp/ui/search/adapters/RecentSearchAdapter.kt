@@ -7,13 +7,20 @@ import com.vsanto.gameapp.R
 import com.vsanto.gameapp.domain.model.RecentSearch
 
 class RecentSearchAdapter(
-    private var searches: List<RecentSearch> = emptyList(),
-    private val onItemSelected: (RecentSearch) -> Unit
+    private var searches: MutableList<RecentSearch> = mutableListOf(),
+    private val onItemSelected: (RecentSearch) -> Unit,
+    private val onItemLongSelected: (RecentSearch) -> Boolean
 ) : RecyclerView.Adapter<RecentSearchViewHolder>() {
 
-    fun updateList(list: List<RecentSearch>) {
+    fun updateList(list: MutableList<RecentSearch>) {
         this.searches = list
         notifyDataSetChanged()
+    }
+
+    fun removeSearch(recentSearch: RecentSearch) {
+        if (this.searches.remove(recentSearch)) {
+            notifyDataSetChanged()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentSearchViewHolder {
@@ -25,7 +32,7 @@ class RecentSearchAdapter(
     override fun getItemCount() = searches.size
 
     override fun onBindViewHolder(holder: RecentSearchViewHolder, position: Int) {
-        holder.bind(searches[position], onItemSelected)
+        holder.bind(searches[position], onItemSelected, onItemLongSelected)
     }
 
 }
