@@ -83,6 +83,11 @@
     <string name="discard_positive">DISCARD</string>
     <string name="discard_negative">CANCEL</string>
 
+    <!-- Remove List Dialog -->
+    <string name="remove_list_title">Remove list?</string>
+    <string name="remove_list_positive">REMOVE</string>
+    <string name="remove_list_negative">CANCEL</string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

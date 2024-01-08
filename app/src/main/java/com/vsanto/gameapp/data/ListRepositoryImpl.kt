@@ -12,9 +12,16 @@ class ListRepositoryImpl @Inject constructor(
 ) : ListRepository {
 
     override suspend fun getLists(): List<GameList>? {
-        runCatching { listDao.getAllList() }
-            .onSuccess {
+        runCatching { listDao.getAllList() }.onSuccess {
                 return it.map { list -> list.toDomain() }
+            }.onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
+
+        return null
+    }
+
+    override suspend fun getList(id: Int): GameList? {
+        runCatching { listDao.getList(id) }.onSuccess {
+                return it.toDomain()
             }.onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
 
         return null

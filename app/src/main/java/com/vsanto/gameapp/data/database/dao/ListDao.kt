@@ -12,6 +12,9 @@ interface ListDao {
     @Query("SELECT * FROM list_table ORDER BY id DESC")
     suspend fun getAllList(): List<ListEntity>
 
+    @Query("SELECT * FROM list_table WHERE id = :id")
+    suspend fun getList(id: Int): ListEntity
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(list: ListEntity)
 

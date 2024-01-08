@@ -16,8 +16,11 @@ class RecentSearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     ) {
         binding.tvSearch.text = recentSearch.query
 
-        binding.tvSearch.setOnClickListener { onItemSelected(recentSearch) }
-        binding.tvSearch.setOnLongClickListener { onItemLongSelected(recentSearch) }
+        binding.root.apply {
+            setOnClickListener { onItemSelected(recentSearch) }
+            setOnLongClickListener { onItemLongSelected(recentSearch) }
+        }
+
     }
 
 }

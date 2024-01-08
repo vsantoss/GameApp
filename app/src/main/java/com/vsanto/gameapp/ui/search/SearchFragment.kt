@@ -96,7 +96,8 @@ class SearchFragment : Fragment() {
         recentSearchAdapter =
             RecentSearchAdapter(
                 onItemSelected = { searchGameByRecentSearch(it) },
-                onItemLongSelected = { openRemoveSearchDialog(it) })
+                onItemLongSelected = { openRemoveSearchDialog(it) }
+            )
         binding.rvSearches.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)

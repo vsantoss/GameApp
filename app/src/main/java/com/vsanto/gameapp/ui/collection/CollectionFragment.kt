@@ -80,7 +80,6 @@ class CollectionFragment : Fragment() {
         initWantGames(wantGames)
 
         initLists(lists)
-
     }
 
     private fun initPlayingGames(games: List<UserGame>) {

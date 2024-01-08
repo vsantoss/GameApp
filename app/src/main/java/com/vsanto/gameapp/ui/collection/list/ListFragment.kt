@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsanto.gameapp.databinding.FragmentListBinding
 import com.vsanto.gameapp.domain.model.GameList
 import com.vsanto.gameapp.ui.collection.list.adapters.ListAdapter
+import com.vsanto.gameapp.ui.collection.list.dialogs.RemoveListDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -52,14 +53,52 @@ class ListFragment : Fragment() {
 
     private fun initUI() {
         initListeners()
+        initAdapters()
         initUIState()
     }
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { navigateUp() }
         binding.fabAdd.setOnClickListener {
-            findNavController().navigate(ListFragmentDirections.actionListFragmentToNewListFragment())
+            navigateToNewList()
         }
+    }
+
+    private fun initAdapters() {
+        listAdapter = ListAdapter(
+            onItemSelected = { navigateToDetail(it) },
+            onItemLongSelected = { openRemoveListDialog(it) }
+        )
+        binding.rvLists.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = listAdapter
+        }
+    }
+
+    private fun navigateToNewList() {
+        findNavController().navigate(ListFragmentDirections.actionListFragmentToNewListFragment())
+    }
+
+    private fun navigateToDetail(gameList: GameList) {
+        findNavController().navigate(
+            ListFragmentDirections.actionListFragmentToListDetailFragment(gameList.id)
+        )
+    }
+
+    private fun openRemoveListDialog(gameList: GameList): Boolean {
+        RemoveListDialogFragment(
+            listTitle = gameList.title,
+            onCancelSelected = {},
+            onRemoveSelected = { removeList(gameList) }
+        ).show(parentFragmentManager, "Remove List Dialog")
+
+        return true
+    }
+
+    private fun removeList(gameList: GameList) {
+        listViewModel.removeList(gameList.id)
+        listAdapter.removeList(gameList)
     }
 
     private fun initUIState() {
@@ -88,16 +127,7 @@ class ListFragment : Fragment() {
         binding.progressBar.isVisible = false
 
         val lists = state.lists
-        initListAdapter(lists)
-    }
-
-    private fun initListAdapter(lists: List<GameList>) {
-        listAdapter = ListAdapter(lists)
-        binding.rvLists.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = listAdapter
-        }
+        listAdapter.updateList(lists.toMutableList())
     }
 
 }
