@@ -2,7 +2,6 @@ package com.vsanto.gameapp.ui.collection
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vsanto.gameapp.domain.model.Library
 import com.vsanto.gameapp.domain.usecase.GetCollectionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,13 +22,9 @@ class CollectionViewModel @Inject constructor(
     fun getCollection() {
         viewModelScope.launch {
             _state.value = CollectionState.Loading
-            val result = withContext(Dispatchers.IO) { getCollectionUseCase() }
 
-            if (result != null) {
-                _state.value = CollectionState.Success(Library(result, emptyList()))
-            } else {
-                _state.value = CollectionState.Error("Ha ocurrido un error")
-            }
+            val result = withContext(Dispatchers.IO) { getCollectionUseCase() }
+            _state.value = CollectionState.Success(result)
         }
     }
 
