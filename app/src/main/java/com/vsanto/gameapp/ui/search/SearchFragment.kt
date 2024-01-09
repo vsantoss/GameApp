@@ -204,13 +204,11 @@ class SearchFragment : Fragment() {
     }
 
     private fun showResults() {
-        binding.llSearches.isVisible = false
         binding.rvGames.isVisible = true
     }
 
     private fun showSearches() {
         binding.llSearches.isVisible = true
-        binding.rvGames.isVisible = false
     }
 
 }
