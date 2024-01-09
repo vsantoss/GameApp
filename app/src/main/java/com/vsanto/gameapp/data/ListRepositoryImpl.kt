@@ -27,8 +27,8 @@ class ListRepositoryImpl @Inject constructor(
         return null
     }
 
-    override suspend fun addList(list: GameList) {
-        listDao.insert(list.toEntity())
+    override suspend fun addList(list: GameList): Int {
+        return listDao.insert(list.toEntity()).toInt()
     }
 
     override suspend fun removeList(listId: Int) {

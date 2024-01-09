@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentListDetailBinding
 import com.vsanto.gameapp.domain.model.GameList
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,7 +48,7 @@ class ListDetailFragment : Fragment() {
     }
 
     private fun navigateUp() {
-        findNavController().navigateUp()
+        findNavController().popBackStack(R.id.listFragment, false)
     }
 
     private fun initUI() {

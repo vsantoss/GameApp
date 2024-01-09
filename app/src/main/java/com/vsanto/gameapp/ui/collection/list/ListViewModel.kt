@@ -24,6 +24,9 @@ class ListViewModel @Inject constructor(
     private var _state = MutableStateFlow<ListState>(ListState.Loading)
     val state: StateFlow<ListState> = _state
 
+    private var _newState = MutableStateFlow<NewListState>(NewListState.Init)
+    val newState: StateFlow<NewListState> = _newState
+
     fun getLists() {
         viewModelScope.launch {
             _state.value = ListState.Loading
@@ -36,12 +39,16 @@ class ListViewModel @Inject constructor(
                 _state.value = ListState.Error("Ha ocurrido un error")
             }
         }
-
     }
 
     fun addList(title: String) {
         viewModelScope.launch {
-            addListUseCase(GameList(0, title, emptyList()))
+            _newState.value = NewListState.Loading
+
+            val idInserted: Int =
+                withContext(Dispatchers.IO) { addListUseCase(GameList(0, title, emptyList())) }
+
+            _newState.value = NewListState.Success(idInserted)
         }
     }
 

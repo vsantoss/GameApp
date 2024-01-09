@@ -118,6 +118,11 @@
         android:name="com.vsanto.gameapp.ui.collection.list.NewListFragment"
         android:label="fragment_new_list"
         tools:layout="@layout/fragment_new_list" >
+        <action
+            android:id="@+id/action_newListFragment_to_listDetailFragment"
+            app:destination="@id/listDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/listDetailFragment"

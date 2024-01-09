@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class AddListUseCase  @Inject constructor(private val repository: ListRepository) {
 
-    suspend operator fun invoke(list: GameList) = repository.addList(list = list)
+    suspend operator fun invoke(list: GameList) = repository.addList(list)
 
 }

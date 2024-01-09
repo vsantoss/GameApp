@@ -8,7 +8,7 @@ interface ListRepository {
 
     suspend fun getList(id: Int): GameList?
 
-    suspend fun addList(list: GameList)
+    suspend fun addList(list: GameList): Int
 
     suspend fun removeList(listId: Int)
 

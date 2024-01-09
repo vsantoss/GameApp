@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.vsanto.gameapp.databinding.FragmentNewListBinding
 import com.vsanto.gameapp.ui.common.dialogs.DiscardDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NewListFragment : Fragment() {
@@ -40,6 +45,7 @@ class NewListFragment : Fragment() {
 
     private fun initUI() {
         initListeners()
+        initUIState()
     }
 
     private fun initListeners() {
@@ -47,6 +53,22 @@ class NewListFragment : Fragment() {
         binding.ivCancel.setOnClickListener { discardList() }
 
     }
+
+    private fun initUIState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                listViewModel.newState.collect {
+                    when (it) {
+                        NewListState.Init -> initState()
+                        NewListState.Loading -> loadingState()
+                        is NewListState.Error -> errorState()
+                        is NewListState.Success -> successState(it)
+                    }
+                }
+            }
+        }
+    }
+
 
     private fun createList() {
         val name = binding.etName.text.toString()
@@ -62,6 +84,29 @@ class NewListFragment : Fragment() {
 
     private fun navigateUp() {
         findNavController().navigateUp()
+    }
+
+    private fun navigateToDetail(id: Int) {
+        findNavController().navigate(
+            NewListFragmentDirections.actionNewListFragmentToListDetailFragment(id)
+        )
+    }
+
+    private fun initState() {
+        binding.progressBar.isVisible = false
+    }
+
+    private fun loadingState() {
+        binding.progressBar.isVisible = true
+    }
+
+    private fun errorState() {
+        binding.progressBar.isVisible = false
+    }
+
+    private fun successState(state: NewListState.Success) {
+        binding.progressBar.isVisible = false
+        navigateToDetail(state.id)
     }
 
 }

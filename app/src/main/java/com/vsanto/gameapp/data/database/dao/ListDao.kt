@@ -16,7 +16,7 @@ interface ListDao {
     suspend fun getList(id: Int): ListEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(list: ListEntity)
+    suspend fun insert(list: ListEntity): Long
 
     @Query("DELETE FROM list_table WHERE id = :id")
     suspend fun delete(id: Int)
