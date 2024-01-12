@@ -10,6 +10,7 @@ data class DevelopedGameResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("category") val category: Int,
+    @SerializedName("version_parent") val parent: Int?,
     @SerializedName("first_release_date") val releaseDate: Long?,
     @SerializedName("cover") val cover: ImageResponse?
 ) {

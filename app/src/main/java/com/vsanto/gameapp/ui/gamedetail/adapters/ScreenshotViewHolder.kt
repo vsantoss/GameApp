@@ -10,9 +10,11 @@ class ScreenshotViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemScreenshotBinding.bind(view)
 
-    fun bind(image: Image) {
+    fun bind(image: Image, onItemSelected: (String) -> Unit) {
         Picasso.get().isLoggingEnabled = true
         Picasso.get().load(image.url).into(binding.ivScreenshot)
+
+        binding.root.setOnClickListener { onItemSelected(image.url) }
     }
 
 }

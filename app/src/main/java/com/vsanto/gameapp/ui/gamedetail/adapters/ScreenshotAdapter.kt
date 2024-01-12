@@ -7,7 +7,8 @@ import com.vsanto.gameapp.R
 import com.vsanto.gameapp.domain.model.Image
 
 class ScreenshotAdapter(
-    private var screenshots: List<Image> = emptyList()
+    private var screenshots: List<Image> = emptyList(),
+    private val onItemSelected: (String) -> Unit
 ) : RecyclerView.Adapter<ScreenshotViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScreenshotViewHolder {
@@ -19,7 +20,7 @@ class ScreenshotAdapter(
     override fun getItemCount() = screenshots.size
 
     override fun onBindViewHolder(holder: ScreenshotViewHolder, position: Int) {
-        holder.bind(screenshots[position])
+        holder.bind(screenshots[position], onItemSelected)
     }
 
 }

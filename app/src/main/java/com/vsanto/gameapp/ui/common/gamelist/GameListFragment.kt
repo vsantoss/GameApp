@@ -112,7 +112,7 @@ class GameListFragment : Fragment() {
 
         binding.tvTitle.text = title
         binding.tvSize.text = games.size.toString() + " games"
-        gameListAdapter.updateList(games)
+        gameListAdapter.updateList(games.sortedByDescending { it.releaseDate })
     }
 
 }

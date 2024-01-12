@@ -24,9 +24,14 @@ data class CompanyDetailResponse(
             logo = logo?.toDomain(ImageSize.MED_LOGO),
             createDate = toDate(createDate),
             description = description.orEmpty(),
-            developedGames = developedGames?.filter { it.category == 0 }?.map { it.toDomain() },
-            publishedGames = publishedGames?.filter { it.category == 0 }?.map { it.toDomain() },
+            developedGames = developedGames
+                ?.filter { it.category == 0 && it.parent == null }
+                ?.map { it.toDomain() },
+            publishedGames = publishedGames
+                ?.filter { it.category == 0 && it.parent == null }
+                ?.map { it.toDomain() },
             websites = websites?.sortedBy { it.category }?.map { it.toDomain() }
         )
     }
+
 }

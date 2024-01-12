@@ -64,6 +64,9 @@
     <string name="gog">GOG</string>
     <string name="discord">Discord</string>
 
+    <!-- User Game -->
+    <string name="add_user_game">Add User Game</string>
+
     <!-- Collection -->
     <string name="want">Want</string>
     <string name="playing">Playing</string>

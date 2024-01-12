@@ -32,6 +32,8 @@ import com.vsanto.gameapp.ui.common.adapters.HorizontalGameListAdapter
 import com.vsanto.gameapp.ui.gamedetail.adapters.CompanyAdapter
 import com.vsanto.gameapp.ui.gamedetail.adapters.ScreenshotAdapter
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
+import com.vsanto.gameapp.ui.gamedetail.dialogs.ExpandedImageDialogFragment
+import com.vsanto.gameapp.ui.gamedetail.dialogs.UserGameDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -156,6 +158,10 @@ class GameDetailFragment : Fragment() {
         }
     }
 
+    private fun openUserGame(game: GameDetail) {
+        UserGameDialogFragment(game.name).show(parentFragmentManager, "User Game Dialog")
+    }
+
     private fun setStatesColor() {
         binding.ivWant.setColorFilter(getStateColor(isWantSelected))
         binding.tvWant.setTextColor(getStateColor(isWantSelected))
@@ -189,7 +195,7 @@ class GameDetailFragment : Fragment() {
         val game = state.game
 
         loadTopImage(game)
-        loadLogo(game)
+        initLogo(game)
 
         binding.tvName.text = game.name
 
@@ -216,6 +222,8 @@ class GameDetailFragment : Fragment() {
         initInvolvedCompanies(game.involvedCompanies)
         initSimilarGames(game.similarGames)
         initWebsites(game.websites)
+
+        binding.fabAdd.setOnClickListener { openUserGame(game) }
     }
 
     private fun loadTopImage(game: GameDetail) {
@@ -236,11 +244,13 @@ class GameDetailFragment : Fragment() {
         return null
     }
 
-    private fun loadLogo(game: GameDetail) {
+    private fun initLogo(game: GameDetail) {
         if (game.cover != null) {
             Picasso.get().isLoggingEnabled = true
             Picasso.get().load(game.cover.url).into(binding.ivLogo)
         }
+
+        binding.ivLogo.setOnClickListener { openExpandedImage(game.cover?.url.orEmpty()) }
     }
 
     private fun initRating(rating: Double) {
@@ -300,7 +310,7 @@ class GameDetailFragment : Fragment() {
     }
 
     private fun initScreenshots(screenshots: List<Image>?) {
-        screenshotAdapter = ScreenshotAdapter(screenshots.orEmpty())
+        screenshotAdapter = ScreenshotAdapter(screenshots.orEmpty()) { openExpandedImage(it) }
         binding.rvScreenshots.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -342,6 +352,11 @@ class GameDetailFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 3)
             adapter = websiteAdapter
         }
+    }
+
+    private fun openExpandedImage(src: String) {
+        ExpandedImageDialogFragment(src)
+            .show(parentFragmentManager, "Expanded Image Dialog")
     }
 
     private fun navigateToCompany(id: Int) {

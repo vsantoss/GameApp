@@ -17,6 +17,8 @@ class GameResultViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         if (game.releaseDate != null) {
             val formatter = SimpleDateFormat("dd MMMM yyyy")
             binding.tvReleaseDate.text = formatter.format(game.releaseDate)
+        } else {
+            binding.tvReleaseDate.text = ""
         }
 
         loadLogo(game)
