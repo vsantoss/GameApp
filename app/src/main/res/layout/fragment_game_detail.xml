@@ -24,6 +24,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!-- Top Image -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -56,6 +57,7 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
+                    <!-- Logo, title and rating -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -142,6 +144,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- User game state -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -227,6 +230,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- Summary -->
                     <LinearLayout
                         android:id="@+id/llSummary"
                         android:layout_width="match_parent"
@@ -249,6 +253,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- Screenshots -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -268,6 +273,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- Details -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -326,6 +332,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- Companies -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -345,6 +352,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- Similar Games -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -364,6 +372,7 @@
 
                     <View style="@style/DetailGameSeparator" />
 
+                    <!-- Websites -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -398,18 +407,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/accent"
-        android:contentDescription="@string/add_user_game"
-        android:src="@android:drawable/ic_input_add"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:tint="@color/white" />
 
 </FrameLayout>
