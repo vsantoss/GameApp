@@ -7,7 +7,8 @@
     android:background="@color/primary"
     tools:context=".ui.collection.list.detail.ListDetailFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -25,7 +26,10 @@
             app:backgroundTint="@color/primary"
             app:borderWidth="0dp"
             app:fabSize="mini"
-            app:tint="@color/white" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/primary_text" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -33,9 +37,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            tools:text="Titulo de lista" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fabBack"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="List Title" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:paddingHorizontal="16dp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/primary_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        style="@style/Value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:ellipsize="end"
+        android:maxLines="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llTitle"
+        tools:text="@string/lorem_ipsum" />
 
     <ProgressBar
         android:id="@+id/progressBar"

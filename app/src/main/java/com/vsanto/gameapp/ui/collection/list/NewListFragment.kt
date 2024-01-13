@@ -61,7 +61,7 @@ class NewListFragment : Fragment() {
                     when (it) {
                         NewListState.Init -> initState()
                         NewListState.Loading -> loadingState()
-                        is NewListState.Error -> errorState()
+                        is NewListState.Error -> errorState(it)
                         is NewListState.Success -> successState(it)
                     }
                 }
@@ -72,7 +72,8 @@ class NewListFragment : Fragment() {
 
     private fun createList() {
         val name = binding.etName.text.toString()
-        listViewModel.addList(name)
+        val description = binding.etDescription.text.toString()
+        listViewModel.addList(name, description)
     }
 
     private fun discardList() {
@@ -94,18 +95,23 @@ class NewListFragment : Fragment() {
 
     private fun initState() {
         binding.progressBar.isVisible = false
+        binding.cvError.isVisible = false
     }
 
     private fun loadingState() {
         binding.progressBar.isVisible = true
+        binding.cvError.isVisible = false
     }
 
-    private fun errorState() {
+    private fun errorState(state: NewListState.Error) {
         binding.progressBar.isVisible = false
+        binding.cvError.isVisible = true
+        binding.tvError.text = state.error
     }
 
     private fun successState(state: NewListState.Success) {
         binding.progressBar.isVisible = false
+        binding.cvError.isVisible = false
         navigateToDetail(state.id)
     }
 

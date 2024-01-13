@@ -222,8 +222,6 @@ class GameDetailFragment : Fragment() {
         initInvolvedCompanies(game.involvedCompanies)
         initSimilarGames(game.similarGames)
         initWebsites(game.websites)
-
-        binding.fabAdd.setOnClickListener { openUserGame(game) }
     }
 
     private fun loadTopImage(game: GameDetail) {

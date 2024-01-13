@@ -8,7 +8,7 @@ import com.vsanto.gameapp.domain.model.UserGameState
 
 @Entity(tableName = "user_game_table")
 data class UserGameEntity(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "game_id") var gameId: Int,
     @ColumnInfo(name = "state") var state: Int
 ) {

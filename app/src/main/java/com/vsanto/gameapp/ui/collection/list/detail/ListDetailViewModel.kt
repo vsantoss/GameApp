@@ -3,6 +3,7 @@ package com.vsanto.gameapp.ui.collection.list.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vsanto.gameapp.domain.usecase.list.GetListByIdUseCase
+import com.vsanto.gameapp.domain.usecase.list.RemoveListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListDetailViewModel @Inject constructor(
-    private val getListByIdUseCase: GetListByIdUseCase
+    private val getListByIdUseCase: GetListByIdUseCase,
+    private val removeListUseCase: RemoveListUseCase
 ) : ViewModel() {
 
     private var _state = MutableStateFlow<ListDetailState>(ListDetailState.Loading)
@@ -30,6 +32,12 @@ class ListDetailViewModel @Inject constructor(
             } else {
                 _state.value = ListDetailState.Error("Ha ocurrido un error")
             }
+        }
+    }
+
+    fun removeList(id: Int) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { removeListUseCase(id) }
         }
     }
 

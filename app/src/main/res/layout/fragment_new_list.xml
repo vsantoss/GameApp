@@ -11,9 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -22,11 +23,11 @@
                 android:id="@+id/ivCancel"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
                 android:contentDescription="@string/back_description"
                 android:padding="5dp"
                 android:src="@drawable/ic_cancel_circle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
 
             <TextView
@@ -35,20 +36,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="8"
-                android:text="@string/new_list" />
+                android:text="@string/new_list"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivCreate"
+                app:layout_constraintStart_toEndOf="@id/ivCancel"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/ivCreate"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
                 android:contentDescription="@string/back_description"
                 android:padding="5dp"
                 android:src="@drawable/ic_check_circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
             android:id="@+id/etName"
@@ -61,8 +66,7 @@
         <EditText
             android:id="@+id/etDescription"
             android:layout_width="match_parent"
-
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:hint="@string/add_description"
             android:textColor="@color/secondary_text"
             android:textColorHint="@color/secondary_text" />
@@ -75,5 +79,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminateTint="@color/accent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/error"
+        android:visibility="gone"
+        app:cardCornerRadius="8dp">
+
+        <TextView
+            android:id="@+id/tvError"
+            style="@style/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            tools:text="Please enter a name for the list" />
+
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

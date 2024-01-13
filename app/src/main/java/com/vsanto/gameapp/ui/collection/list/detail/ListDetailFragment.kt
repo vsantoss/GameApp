@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentListDetailBinding
 import com.vsanto.gameapp.domain.model.GameList
+import com.vsanto.gameapp.ui.collection.list.dialogs.RemoveListDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -58,6 +59,18 @@ class ListDetailFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabBack.setOnClickListener { navigateUp() }
+
+        binding.tvDescription.setOnClickListener {
+            binding.tvDescription.isSelected = !binding.tvDescription.isSelected
+            if (binding.tvDescription.isSelected) {
+                binding.tvDescription.maxLines =
+                    context?.resources?.getInteger(R.integer.summary_max_lines_selected) ?: 100
+            } else {
+                binding.tvDescription.maxLines =
+                    context?.resources?.getInteger(R.integer.summary_max_lines) ?: 4
+            }
+        }
+
     }
 
     private fun initUIState() {
@@ -86,6 +99,29 @@ class ListDetailFragment : Fragment() {
         binding.progressBar.isVisible = false
 
         binding.tvTitle.text = list.title
+
+        if (list.description.isNotEmpty()) {
+            binding.tvDescription.text = list.description
+        } else {
+            binding.tvDescription.isVisible = false
+        }
+
+        binding.ivDelete.setOnClickListener { openRemoveListDialog(list) }
+    }
+
+    private fun openRemoveListDialog(gameList: GameList): Boolean {
+        RemoveListDialogFragment(
+            listTitle = gameList.title,
+            onCancelSelected = {},
+            onRemoveSelected = { removeList(gameList) }
+        ).show(parentFragmentManager, "Remove List Dialog")
+
+        return true
+    }
+
+    private fun removeList(gameList: GameList) {
+        listDetailViewModel.removeList(gameList.id)
+        navigateUp()
     }
 
 }

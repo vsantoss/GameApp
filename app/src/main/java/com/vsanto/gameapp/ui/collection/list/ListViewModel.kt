@@ -41,12 +41,27 @@ class ListViewModel @Inject constructor(
         }
     }
 
-    fun addList(title: String) {
+    fun addList(title: String, description: String) {
+
+        if (title.isEmpty()) {
+            _newState.value = NewListState.Error("Please enter a name for the list")
+            return
+        }
+
         viewModelScope.launch {
             _newState.value = NewListState.Loading
 
             val idInserted: Int =
-                withContext(Dispatchers.IO) { addListUseCase(GameList(0, title, emptyList())) }
+                withContext(Dispatchers.IO) {
+                    addListUseCase(
+                        GameList(
+                            0,
+                            title,
+                            description,
+                            emptyList()
+                        )
+                    )
+                }
 
             _newState.value = NewListState.Success(idInserted)
         }

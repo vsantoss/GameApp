@@ -9,6 +9,8 @@
     <color name="secondary">#FFFFFFFF</color>
     <color name="accent">#ee9361</color>
 
+    <color name="error">#E23131</color>
+
     <color name="primary_text">#FFFFFFFF</color>
     <color name="secondary_text">#7A8895</color>
 

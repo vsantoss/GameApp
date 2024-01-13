@@ -9,13 +9,15 @@ import com.vsanto.gameapp.domain.model.GameList
 data class ListEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") var id: Int,
-    @ColumnInfo(name = "title") var title: String
+    @ColumnInfo(name = "title") var title: String,
+    @ColumnInfo(name = "description") val description: String,
 ) {
 
     fun toDomain(): GameList {
         return GameList(
             id = id,
             title = title,
+            description = description,
             games = emptyList()
         )
     }
@@ -23,5 +25,5 @@ data class ListEntity(
 }
 
 fun GameList.toEntity(): ListEntity {
-    return ListEntity(id, title)
+    return ListEntity(id, title, description)
 }
