@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.collection.list
+package com.vsanto.gameapp.ui.collection.list.newlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.vsanto.gameapp.databinding.FragmentNewListBinding
+import com.vsanto.gameapp.ui.collection.list.ListViewModel
 import com.vsanto.gameapp.ui.common.dialogs.DiscardDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

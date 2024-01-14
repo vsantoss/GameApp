@@ -33,7 +33,6 @@ import com.vsanto.gameapp.ui.gamedetail.adapters.CompanyAdapter
 import com.vsanto.gameapp.ui.gamedetail.adapters.ScreenshotAdapter
 import com.vsanto.gameapp.ui.common.adapters.WebsiteAdapter
 import com.vsanto.gameapp.ui.gamedetail.dialogs.ExpandedImageDialogFragment
-import com.vsanto.gameapp.ui.gamedetail.dialogs.UserGameDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -75,10 +74,6 @@ class GameDetailFragment : Fragment() {
 
         gameDetailViewModel.getGame(gameId)
         initUI()
-    }
-
-    private fun navigateUp() {
-        findNavController().navigateUp()
     }
 
     private fun initUI() {
@@ -132,6 +127,10 @@ class GameDetailFragment : Fragment() {
             }
         }
 
+        binding.llList.setOnClickListener {
+            navigateToAddToList()
+        }
+
         binding.llSummary.setOnClickListener {
             binding.llSummary.isSelected = !binding.llSummary.isSelected
             if (binding.llSummary.isSelected) {
@@ -142,6 +141,16 @@ class GameDetailFragment : Fragment() {
                     context?.resources?.getInteger(R.integer.summary_max_lines) ?: 4
             }
         }
+    }
+
+    private fun navigateUp() {
+        findNavController().navigateUp()
+    }
+
+    private fun navigateToAddToList() {
+        findNavController().navigate(
+            GameDetailFragmentDirections.actionGameDetailFragmentToAddToListFragment(gameId)
+        )
     }
 
     private fun initUIState() {
@@ -156,10 +165,6 @@ class GameDetailFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun openUserGame(game: GameDetail) {
-        UserGameDialogFragment(game.name).show(parentFragmentManager, "User Game Dialog")
     }
 
     private fun setStatesColor() {

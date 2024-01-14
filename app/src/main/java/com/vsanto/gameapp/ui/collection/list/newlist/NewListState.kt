@@ -1,4 +1,4 @@
-package com.vsanto.gameapp.ui.collection.list
+package com.vsanto.gameapp.ui.collection.list.newlist
 
 sealed class NewListState {
 

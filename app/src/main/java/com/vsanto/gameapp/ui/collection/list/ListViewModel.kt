@@ -4,8 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vsanto.gameapp.domain.model.GameList
 import com.vsanto.gameapp.domain.usecase.list.AddListUseCase
+import com.vsanto.gameapp.domain.usecase.list.AddToListsUseCase
 import com.vsanto.gameapp.domain.usecase.list.GetListsUseCase
 import com.vsanto.gameapp.domain.usecase.list.RemoveListUseCase
+import com.vsanto.gameapp.ui.collection.list.addtolist.AddToListState
+import com.vsanto.gameapp.ui.collection.list.newlist.NewListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +21,8 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(
     private val getListsUseCase: GetListsUseCase,
     private val addListUseCase: AddListUseCase,
-    private val removeListUseCase: RemoveListUseCase
+    private val removeListUseCase: RemoveListUseCase,
+    private val addToListsUseCase: AddToListsUseCase
 ) : ViewModel() {
 
     private var _state = MutableStateFlow<ListState>(ListState.Loading)
@@ -26,6 +30,9 @@ class ListViewModel @Inject constructor(
 
     private var _newState = MutableStateFlow<NewListState>(NewListState.Init)
     val newState: StateFlow<NewListState> = _newState
+
+    private var _addState = MutableStateFlow<AddToListState>(AddToListState.Init)
+    val addState: StateFlow<AddToListState> = _addState
 
     fun getLists() {
         viewModelScope.launch {
@@ -70,6 +77,24 @@ class ListViewModel @Inject constructor(
     fun removeList(id: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) { removeListUseCase(id) }
+        }
+    }
+
+    fun addToLists(gameId: Int, lists: List<GameList>) {
+
+        if (lists.isEmpty()) {
+            _addState.value = AddToListState.Error("Select any list")
+            return
+        }
+
+        viewModelScope.launch {
+            _addState.value = AddToListState.Loading
+
+            withContext(Dispatchers.IO) {
+                addToListsUseCase(gameId, lists)
+            }
+
+            _addState.value = AddToListState.Success
         }
     }
 
