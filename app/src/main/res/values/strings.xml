@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Games</string>
     <string name="title_activity_main">Games</string>
 
@@ -13,13 +13,15 @@
     <!-- Remove Search Dialog -->
     <string name="remove_search_title">Remove recent search?</string>
     <string name="remove_search_positive">REMOVE</string>
-    <string name="remove_search_negative">CANCEL</string>
+    <string name="remove_search_negative" tools:ignore="ButtonCase">CANCEL</string>
 
     <!-- Company Detail -->
     <string name="developed_games">Developed (%d)</string>
     <string name="published_games">Published (%d)</string>
     <string name="company_logo_description">Company logo</string>
     <string name="back_description">Back icon</string>
+    <string name="forward_developed_games_description">Go to developed games</string>
+    <string name="forward_published_games_description">Go to published games</string>
 
     <!-- Game Detail -->
     <string name="logo_description">Logo</string>
@@ -64,13 +66,18 @@
     <string name="gog">GOG</string>
     <string name="discord">Discord</string>
 
-    <!-- User Game -->
-    <string name="add_user_game">Add User Game</string>
+    <string name="expanded_image_description">Expanded image</string>
+
+    <!-- User Game Dialog-->
+    <string name="rate">Rate</string>
+    <string name="add_to_lists">Add to lists</string>
 
     <!-- Collection -->
+    <string name="collection_logo">Collection logo</string>
     <string name="want">Want</string>
     <string name="playing">Playing</string>
     <string name="played">Played</string>
+    <string name="games_size">%d games</string>
 
     <!-- Lists -->
     <string name="lists">Lists</string>
@@ -79,17 +86,18 @@
     <string name="new_list">New List</string>
     <string name="add_name">Add name…</string>
     <string name="add_description">Add description…</string>
+    <string name="delete_list">Delete list</string>
 
     <!-- Discard Dialog -->
     <string name="discard_title">Discard Changes</string>
     <string name="discard_message">Are you sure? Changes will be lost.</string>
     <string name="discard_positive">DISCARD</string>
-    <string name="discard_negative">CANCEL</string>
+    <string name="discard_negative" tools:ignore="ButtonCase">CANCEL</string>
 
     <!-- Remove List Dialog -->
     <string name="remove_list_title">Remove list?</string>
     <string name="remove_list_positive">REMOVE</string>
-    <string name="remove_list_negative">CANCEL</string>
+    <string name="remove_list_negative" tools:ignore="ButtonCase">CANCEL</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

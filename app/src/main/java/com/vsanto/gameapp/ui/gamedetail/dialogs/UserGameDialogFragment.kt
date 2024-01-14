@@ -1,5 +1,6 @@
 package com.vsanto.gameapp.ui.gamedetail.dialogs
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.TextView
@@ -11,6 +12,7 @@ class UserGameDialogFragment(
     private val name: String
 ) : DialogFragment() {
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val dialog = BottomSheetDialog(it)

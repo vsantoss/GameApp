@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentGameListBinding
 import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.ui.common.gamelist.adapters.GameListAdapter
@@ -111,7 +112,7 @@ class GameListFragment : Fragment() {
         val games = state.games
 
         binding.tvTitle.text = title
-        binding.tvSize.text = games.size.toString() + " games"
+        binding.tvSize.text = getString(R.string.games_size, games.size)
         gameListAdapter.updateList(games.sortedByDescending { it.releaseDate })
     }
 
