@@ -19,6 +19,7 @@ import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.domain.model.RecentSearch
 import com.vsanto.gameapp.ui.search.adapters.GameResultAdapter
 import com.vsanto.gameapp.ui.search.adapters.RecentSearchAdapter
+import com.vsanto.gameapp.ui.search.dialogs.RemoveAllSearchesDialogFragment
 import com.vsanto.gameapp.ui.search.dialogs.RemoveSearchDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -70,9 +71,12 @@ class SearchFragment : Fragment() {
 
         val svCloseBtn: ImageView =
             binding.svGame.findViewById(androidx.appcompat.R.id.search_close_btn)
-
         svCloseBtn.setOnClickListener {
             cleanSearch()
+        }
+
+        binding.ivDelete.setOnClickListener {
+            openRemoveAllSearchesDialog()
         }
     }
 
@@ -135,6 +139,19 @@ class SearchFragment : Fragment() {
         recentSearchAdapter.removeSearch(recentSearch)
     }
 
+    private fun openRemoveAllSearchesDialog() {
+        RemoveAllSearchesDialogFragment(
+            onCancelSelected = {},
+            onRemoveSelected = { removeAllRecentSearches() }
+        ).show(parentFragmentManager, "Remove All Searches Dialog")
+    }
+
+    private fun removeAllRecentSearches() {
+        recentSearchViewModel.removeAllRecentSearches()
+        recentSearchAdapter.removeAllSearches()
+        binding.ivDelete.isVisible = false
+    }
+
     private fun navigateToDetail(game: GameSummary) {
         findNavController().navigate(
             SearchFragmentDirections.actionSearchFragmentToGameDetailFragment(game.id)
@@ -195,6 +212,8 @@ class SearchFragment : Fragment() {
     private fun successRecentSearchState(state: RecentSearchState.Success) {
         binding.progressBar.isVisible = false
         showSearches()
+
+        binding.ivDelete.isVisible = state.searches.isNotEmpty()
 
         recentSearchAdapter.updateList(state.searches.toMutableList())
     }

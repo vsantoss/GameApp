@@ -23,6 +23,11 @@ class RecentSearchAdapter(
         }
     }
 
+    fun removeAllSearches() {
+        this.searches = mutableListOf()
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentSearchViewHolder {
         return RecentSearchViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_recent_search, parent, false)

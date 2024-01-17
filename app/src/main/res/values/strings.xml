@@ -9,9 +9,11 @@
 
     <!-- Search -->
     <string name="recent_searches">Recent searches</string>
+    <string name="delete_searches">Delete all recent searches</string>
 
     <!-- Remove Search Dialog -->
     <string name="remove_search_title">Remove recent search?</string>
+    <string name="remove_all_searches_title">Remove all recent search?</string>
     <string name="remove_search_positive">REMOVE</string>
     <string name="remove_search_negative" tools:ignore="ButtonCase">CANCEL</string>
 

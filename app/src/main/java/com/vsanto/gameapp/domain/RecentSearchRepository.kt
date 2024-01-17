@@ -10,4 +10,6 @@ interface RecentSearchRepository {
 
     suspend fun removeRecentSearch(id: Int)
 
+    suspend fun removeAllRecentSearches()
+
 }

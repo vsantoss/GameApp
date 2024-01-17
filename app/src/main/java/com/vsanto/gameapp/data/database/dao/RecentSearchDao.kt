@@ -18,4 +18,7 @@ interface RecentSearchDao {
     @Query("DELETE FROM recent_search_table WHERE id = :id")
     suspend fun deleteRecentSearch(id: Int)
 
+    @Query("DELETE FROM recent_search_table")
+    suspend fun deleteAllRecentSearches()
+
 }

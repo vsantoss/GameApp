@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.vsanto.gameapp.domain.model.RecentSearch
 import com.vsanto.gameapp.domain.usecase.recentsearch.AddRecentSearchUseCase
 import com.vsanto.gameapp.domain.usecase.recentsearch.GetRecentSearchesUseCase
+import com.vsanto.gameapp.domain.usecase.recentsearch.RemoveAllRecentSearchesUseCase
 import com.vsanto.gameapp.domain.usecase.recentsearch.RemoveRecentSearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,8 @@ import javax.inject.Inject
 class RecentSearchViewModel @Inject constructor(
     private val getRecentSearchesUseCase: GetRecentSearchesUseCase,
     private val addRecentSearchUseCase: AddRecentSearchUseCase,
-    private val removeRemoveRecentSearchUseCase: RemoveRecentSearchUseCase
+    private val removeRemoveRecentSearchUseCase: RemoveRecentSearchUseCase,
+    private val removeAllRecentSearchesUseCase: RemoveAllRecentSearchesUseCase
 ) : ViewModel() {
 
     private var _state = MutableStateFlow<RecentSearchState>(RecentSearchState.Init)
@@ -46,6 +48,12 @@ class RecentSearchViewModel @Inject constructor(
     fun removeRecentSearch(id: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) { removeRemoveRecentSearchUseCase(id) }
+        }
+    }
+
+    fun removeAllRecentSearches() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { removeAllRecentSearchesUseCase() }
         }
     }
 

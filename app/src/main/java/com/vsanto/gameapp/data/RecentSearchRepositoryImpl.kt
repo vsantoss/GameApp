@@ -27,4 +27,8 @@ class RecentSearchRepositoryImpl @Inject constructor(
         recentSearchDao.deleteRecentSearch(id)
     }
 
+    override suspend fun removeAllRecentSearches() {
+        recentSearchDao.deleteAllRecentSearches()
+    }
+
 }
