@@ -137,6 +137,11 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_listDetailFragment_to_gameDetailFragment"
+            app:destination="@id/gameDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/addToListFragment"

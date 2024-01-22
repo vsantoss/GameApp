@@ -13,10 +13,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentListDetailBinding
 import com.vsanto.gameapp.domain.model.GameList
+import com.vsanto.gameapp.domain.model.GameSummary
 import com.vsanto.gameapp.ui.collection.list.dialogs.RemoveListDialogFragment
+import com.vsanto.gameapp.ui.common.gamelist.adapters.GameListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,6 +31,8 @@ class ListDetailFragment : Fragment() {
 
     private val args: ListDetailFragmentArgs by navArgs()
     private val listDetailViewModel: ListDetailViewModel by viewModels()
+
+    private lateinit var gameListAdapter: GameListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,9 +57,25 @@ class ListDetailFragment : Fragment() {
         findNavController().popBackStack(R.id.listFragment, false)
     }
 
+    private fun navigateToDetail(game: GameSummary) {
+        findNavController().navigate(
+            ListDetailFragmentDirections.actionListDetailFragmentToGameDetailFragment(game.id)
+        )
+    }
+
     private fun initUI() {
+        initAdapters()
         initListeners()
         initUIState()
+    }
+
+    private fun initAdapters() {
+        gameListAdapter = GameListAdapter { navigateToDetail(it) }
+        binding.rvGames.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 4)
+            adapter = gameListAdapter
+        }
     }
 
     private fun initListeners() {
@@ -105,6 +126,8 @@ class ListDetailFragment : Fragment() {
         } else {
             binding.tvDescription.isVisible = false
         }
+
+        gameListAdapter.updateList(list.games)
 
         binding.ivDelete.setOnClickListener { openRemoveListDialog(list) }
     }

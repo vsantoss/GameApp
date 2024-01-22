@@ -17,7 +17,6 @@ class ListRepositoryImpl @Inject constructor(
     override suspend fun getLists(): List<GameList>? {
         runCatching { listDao.getListsWithGames() }
             .onSuccess {
-                Log.i("game", it.toString())
                 return it.map { list -> list.toDomain() }
             }.onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
 
@@ -25,7 +24,7 @@ class ListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getList(id: Int): GameList? {
-        runCatching { listDao.getList(id) }
+        runCatching { listDao.getListWithGames(id) }
             .onSuccess {
                 return it.toDomain()
             }.onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
@@ -42,8 +41,6 @@ class ListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addGameToLists(gameId: Int, listIds: List<Int>) {
-        Log.i("game", "Juego: $gameId")
-        Log.i("game", "Listas: $listIds")
         listGameDao.insertAll(listIds.map { ListGameCrossRef(listId = it, gameId = gameId) })
     }
 
