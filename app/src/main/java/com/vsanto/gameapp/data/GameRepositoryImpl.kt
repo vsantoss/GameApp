@@ -59,8 +59,8 @@ class GameRepositoryImpl @Inject constructor(
         userGameDao.insert(userGame.toEntity())
     }
 
-    override suspend fun removeUserGame(gameId: Int) {
-        userGameDao.deleteUserGameByGameId(gameId)
+    override suspend fun existsUserGame(gameId: Int): Boolean {
+        return userGameDao.getUserGameByGameId(gameId) != null
     }
 
     override suspend fun getUserGameByGameId(gameId: Int): UserGame? {

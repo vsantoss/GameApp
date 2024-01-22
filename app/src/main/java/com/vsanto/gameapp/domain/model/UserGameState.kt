@@ -1,9 +1,10 @@
 package com.vsanto.gameapp.domain.model
 
 enum class UserGameState(val code: Int) {
-    WANT(0),
-    PLAYING(1),
-    PLAYED(2);
+    UNSELECTED(0),
+    WANT(1),
+    PLAYING(2),
+    PLAYED(3);
 
     companion object {
         fun toCode(state: UserGameState): Int = state.code

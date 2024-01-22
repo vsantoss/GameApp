@@ -93,25 +93,26 @@ class GameDetailFragment : Fragment() {
             isPlayedSelected = false
             setStatesColor()
 
+            var state = UserGameState.UNSELECTED
             if (isWantSelected) {
                 binding.ivWant.startAnimation(bounceAnimation)
-                gameDetailViewModel.addGame(gameId, UserGameState.WANT)
-            } else {
-                gameDetailViewModel.removeUserGame(gameId)
+                state = UserGameState.WANT
             }
+            gameDetailViewModel.addGame(gameId, state)
         }
+
         binding.llPlaying.setOnClickListener {
             isWantSelected = false
             isPlayingSelected = !isPlayingSelected
             isPlayedSelected = false
             setStatesColor()
 
+            var state = UserGameState.UNSELECTED
             if (isPlayingSelected) {
                 binding.ivPlaying.startAnimation(bounceAnimation)
-                gameDetailViewModel.addGame(gameId, UserGameState.PLAYING)
-            } else {
-                gameDetailViewModel.removeUserGame(gameId)
+                state = UserGameState.PLAYING
             }
+            gameDetailViewModel.addGame(gameId, state)
         }
         binding.llPlayed.setOnClickListener {
             isWantSelected = false
@@ -119,12 +120,12 @@ class GameDetailFragment : Fragment() {
             isPlayedSelected = !isPlayedSelected
             setStatesColor()
 
+            var state = UserGameState.UNSELECTED
             if (isPlayedSelected) {
                 binding.ivPlayed.startAnimation(bounceAnimation)
-                gameDetailViewModel.addGame(gameId, UserGameState.PLAYED)
-            } else {
-                gameDetailViewModel.removeUserGame(gameId)
+                state = UserGameState.PLAYED
             }
+            gameDetailViewModel.addGame(gameId, state)
         }
 
         binding.llList.setOnClickListener {
@@ -295,6 +296,8 @@ class GameDetailFragment : Fragment() {
     private fun initGameState(state: UserGameState?) {
         if (state != null) {
             when (state) {
+                UserGameState.UNSELECTED -> {}
+
                 UserGameState.WANT -> {
                     isWantSelected = true
                 }

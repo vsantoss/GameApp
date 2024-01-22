@@ -18,7 +18,4 @@ interface UserGameDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: UserGameEntity)
 
-    @Query("DELETE FROM user_game_table WHERE game_id = :gameId")
-    suspend fun deleteUserGameByGameId(gameId: Int)
-
 }

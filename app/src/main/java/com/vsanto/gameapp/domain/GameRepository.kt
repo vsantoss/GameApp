@@ -17,10 +17,9 @@ interface GameRepository {
     // User Games
     suspend fun addUserGame(userGame: UserGame)
 
-    suspend fun removeUserGame(gameId: Int)
+    suspend fun existsUserGame(gameId: Int): Boolean
 
     suspend fun getUserGameByGameId(gameId: Int): UserGame?
 
     suspend fun getUserGames(): List<UserGame>?
-
 }
