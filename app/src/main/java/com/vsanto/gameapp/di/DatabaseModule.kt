@@ -35,4 +35,8 @@ object DatabaseModule {
     @Provides
     fun provideListDao(db: GameDatabase) = db.getListDao()
 
+    @Singleton
+    @Provides
+    fun provideListGameDao(db: GameDatabase) = db.getListGameDao()
+
 }

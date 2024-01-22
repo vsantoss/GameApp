@@ -12,4 +12,5 @@ interface ListRepository {
 
     suspend fun removeList(listId: Int)
 
+    suspend fun addGameToLists(gameId: Int, listIds: List<Int>)
 }

@@ -8,16 +8,17 @@ import com.vsanto.gameapp.domain.model.GameList
 @Entity(tableName = "list_table")
 data class ListEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id") var id: Int,
+    @ColumnInfo(name = "list_id") var listId: Int,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "description") val description: String,
 ) {
 
     fun toDomain(): GameList {
         return GameList(
-            id = id,
+            id = listId,
             title = title,
             description = description,
+            gamesIds = emptyList(),
             games = emptyList()
         )
     }

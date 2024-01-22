@@ -65,6 +65,7 @@ class ListViewModel @Inject constructor(
                             0,
                             title,
                             description,
+                            emptyList(),
                             emptyList()
                         )
                     )

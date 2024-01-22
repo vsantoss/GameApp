@@ -2,17 +2,22 @@ package com.vsanto.gameapp.data
 
 import android.util.Log
 import com.vsanto.gameapp.data.database.dao.ListDao
+import com.vsanto.gameapp.data.database.dao.ListGameDao
+import com.vsanto.gameapp.data.database.entity.ListGameCrossRef
 import com.vsanto.gameapp.data.database.entity.toEntity
 import com.vsanto.gameapp.domain.ListRepository
 import com.vsanto.gameapp.domain.model.GameList
 import javax.inject.Inject
 
 class ListRepositoryImpl @Inject constructor(
-    private val listDao: ListDao
+    private val listDao: ListDao,
+    private val listGameDao: ListGameDao
 ) : ListRepository {
 
     override suspend fun getLists(): List<GameList>? {
-        runCatching { listDao.getAllList() }.onSuccess {
+        runCatching { listDao.getListsWithGames() }
+            .onSuccess {
+                Log.i("game", it.toString())
                 return it.map { list -> list.toDomain() }
             }.onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
 
@@ -20,7 +25,8 @@ class ListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getList(id: Int): GameList? {
-        runCatching { listDao.getList(id) }.onSuccess {
+        runCatching { listDao.getList(id) }
+            .onSuccess {
                 return it.toDomain()
             }.onFailure { Log.e("game", "Ha ocurrido el error ${it.message}") }
 
@@ -33,6 +39,12 @@ class ListRepositoryImpl @Inject constructor(
 
     override suspend fun removeList(listId: Int) {
         listDao.delete(listId)
+    }
+
+    override suspend fun addGameToLists(gameId: Int, listIds: List<Int>) {
+        Log.i("game", "Juego: $gameId")
+        Log.i("game", "Listas: $listIds")
+        listGameDao.insertAll(listIds.map { ListGameCrossRef(listId = it, gameId = gameId) })
     }
 
 }

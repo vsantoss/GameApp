@@ -34,7 +34,7 @@ android {
             buildConfigField(
                 "String",
                 "IGDB_AUTHORIZATION_BEARER",
-                "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\""
+                "\"Bearer z4g3m810kqolfmnac3hhr5as2poa7p\""
             )
         }
         getByName("debug") {
@@ -44,7 +44,7 @@ android {
             buildConfigField(
                 "String",
                 "IGDB_AUTHORIZATION_BEARER",
-                "\"Bearer 7nt5yna2l8md4a5iym4guj10exeywc\""
+                "\"Bearer z4g3m810kqolfmnac3hhr5as2poa7p\""
             )
         }
     }

@@ -6,5 +6,6 @@ data class GameList(
     val id: Int,
     val title: String,
     val description: String,
-    val games: List<GameSummary>
+    val gamesIds : List<Int>,
+    var games: List<GameSummary>
 ) : Serializable

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class AddToListsUseCase @Inject constructor(private val repository: ListRepository) {
 
     suspend operator fun invoke(gameId: Int, lists: List<GameList>) {
-
+        repository.addGameToLists(gameId, lists.map { it.id })
     }
 
 }
