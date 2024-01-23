@@ -72,7 +72,10 @@ class GameListFragment : Fragment() {
     }
 
     private fun initAdapters() {
-        gameListAdapter = GameListAdapter { navigateToDetail(it) }
+        gameListAdapter = GameListAdapter(
+            onItemSelected = { navigateToDetail(it) },
+            onItemLongSelected = { true }
+        )
         binding.rvGameList.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 4)

@@ -18,6 +18,7 @@ import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.FragmentListDetailBinding
 import com.vsanto.gameapp.domain.model.GameList
 import com.vsanto.gameapp.domain.model.GameSummary
+import com.vsanto.gameapp.ui.collection.list.detail.dialogs.RemoveGameFromListDialogFragment
 import com.vsanto.gameapp.ui.collection.list.dialogs.RemoveListDialogFragment
 import com.vsanto.gameapp.ui.common.gamelist.adapters.GameListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,7 +71,10 @@ class ListDetailFragment : Fragment() {
     }
 
     private fun initAdapters() {
-        gameListAdapter = GameListAdapter { navigateToDetail(it) }
+        gameListAdapter = GameListAdapter(
+            onItemSelected = { navigateToDetail(it) },
+            onItemLongSelected = { openRemoveGameFromListDialog(it) }
+        )
         binding.rvGames.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 4)
@@ -130,6 +134,25 @@ class ListDetailFragment : Fragment() {
         gameListAdapter.updateList(list.games)
 
         binding.ivDelete.setOnClickListener { openRemoveListDialog(list) }
+    }
+
+    private fun openRemoveGameFromListDialog(game: GameSummary): Boolean {
+        RemoveGameFromListDialogFragment(
+            gameName = game.name,
+            onCancelSelected = {},
+            onRemoveSelected = { removeGameFromList(game) }
+        ).show(parentFragmentManager, "Remove List Dialog")
+
+        return true
+    }
+
+    private fun removeGameFromList(game: GameSummary) {
+        listDetailViewModel.removeGameFromList(
+            listId = args.id,
+            gameId = game.id
+        )
+
+        listDetailViewModel.getList(args.id)
     }
 
     private fun openRemoveListDialog(gameList: GameList): Boolean {

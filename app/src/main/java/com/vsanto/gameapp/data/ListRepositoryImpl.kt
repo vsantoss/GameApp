@@ -44,4 +44,8 @@ class ListRepositoryImpl @Inject constructor(
         listGameDao.insertAll(listIds.map { ListGameCrossRef(listId = it, gameId = gameId) })
     }
 
+    override suspend fun removeGameFromList(listId: Int, gameId: Int) {
+        listGameDao.delete(listId, gameId)
+    }
+
 }

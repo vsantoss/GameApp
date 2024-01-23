@@ -10,13 +10,20 @@ class GameListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemListGameBinding.bind(view)
 
-    fun bind(game: GameSummary, onItemSelected: (GameSummary) -> Unit) {
+    fun bind(
+        game: GameSummary,
+        onItemSelected: (GameSummary) -> Unit,
+        onItemLongSelected: (GameSummary) -> Boolean
+    ) {
         if (game.cover != null) {
             Picasso.get().isLoggingEnabled = true
             Picasso.get().load(game.cover.url).into(binding.ivLogo)
         }
 
-        binding.root.setOnClickListener { onItemSelected(game) }
+        binding.root.apply {
+            setOnClickListener { onItemSelected(game) }
+            setOnLongClickListener { onItemLongSelected(game) }
+        }
     }
 
 }
