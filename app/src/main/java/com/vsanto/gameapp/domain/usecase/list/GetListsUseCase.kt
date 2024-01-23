@@ -13,11 +13,11 @@ class GetListsUseCase @Inject constructor(
     suspend operator fun invoke(): List<GameList> {
         val lists = listRepository.getLists().orEmpty()
 
-        val ids = lists.map { it.gamesIds }.flatten()
-        val games = gameRepository.getGamesByIds(ids.toIntArray()).orEmpty()
+        val allGameIds = lists.map { it.gamesIds }.flatten()
+        val games = gameRepository.getGamesByIds(allGameIds.toIntArray()).orEmpty()
 
         lists.forEach { list ->
-            val listGames = games.filter { ids.contains(it.id) }
+            val listGames = games.filter { list.gamesIds.contains(it.id) }
             list.games = listGames
         }
 
