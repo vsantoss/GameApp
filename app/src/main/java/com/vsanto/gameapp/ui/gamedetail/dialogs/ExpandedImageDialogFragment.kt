@@ -3,6 +3,7 @@ package com.vsanto.gameapp.ui.gamedetail.dialogs
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import com.squareup.picasso.Picasso
@@ -22,6 +23,10 @@ class ExpandedImageDialogFragment(
             Picasso.get().load(src).into(iv)
 
             dialog.setContentView(view)
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
             return dialog
         } ?: throw IllegalStateException("Activity cannot be null")
     }
