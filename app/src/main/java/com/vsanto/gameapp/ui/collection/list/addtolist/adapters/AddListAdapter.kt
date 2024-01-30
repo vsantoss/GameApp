@@ -7,6 +7,7 @@ import com.vsanto.gameapp.R
 import com.vsanto.gameapp.domain.model.GameList
 
 class AddListAdapter(
+    private val gameId: Int,
     private var lists: List<GameList> = listOf(),
     private val onItemSelected: (GameList) -> Unit,
 ) : RecyclerView.Adapter<AddListViewHolder>() {
@@ -25,7 +26,9 @@ class AddListAdapter(
     override fun getItemCount() = lists.size
 
     override fun onBindViewHolder(holder: AddListViewHolder, position: Int) {
-        holder.bind(lists[position], onItemSelected)
+        val list = lists[position]
+        val isBlockedList = list.gamesIds.contains(gameId)
+        holder.bind(list, isBlockedList, onItemSelected)
     }
 
 }

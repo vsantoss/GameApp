@@ -41,6 +41,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/primary_text" />
 
+    <ImageView
+        android:id="@+id/ivBlocked"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/list_blocked_icon"
+        android:src="@drawable/ic_lock"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/separator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/primary_text" />
+
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"

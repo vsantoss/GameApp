@@ -92,6 +92,7 @@
     <!-- Add to list -->
     <string name="add_to_lists">Add to lists</string>
     <string name="list_selected_icon">List selected</string>
+    <string name="list_blocked_icon">List blocked</string>
 
     <!-- Discard Dialog -->
     <string name="discard_title">Discard Changes</string>

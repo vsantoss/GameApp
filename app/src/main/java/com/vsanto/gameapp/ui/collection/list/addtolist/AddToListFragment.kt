@@ -69,7 +69,7 @@ class AddToListFragment : Fragment() {
     }
 
     private fun initAdapters() {
-        addListAdapter = AddListAdapter { selectList(it) }
+        addListAdapter = AddListAdapter(gameId) { selectList(it) }
 
         binding.rvlists.apply {
             setHasFixedSize(true)

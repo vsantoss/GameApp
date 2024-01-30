@@ -13,6 +13,7 @@ class AddListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(
         list: GameList,
+        isBlockedList: Boolean,
         onItemSelected: (GameList) -> Unit,
     ) {
         binding.tvTitle.text = list.title
@@ -20,9 +21,15 @@ class AddListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val gamesSize = list.games.size
         binding.tvSize.text = binding.root.context.getString(R.string.list_games, gamesSize)
 
+        if (isBlockedList) {
+            binding.ivBlocked.isVisible = true
+        }
+
         binding.root.setOnClickListener {
-            binding.ivSelected.isVisible = !binding.ivSelected.isVisible
-            onItemSelected(list)
+            if (!isBlockedList) {
+                binding.ivSelected.isVisible = !binding.ivSelected.isVisible
+                onItemSelected(list)
+            }
         }
     }
 
