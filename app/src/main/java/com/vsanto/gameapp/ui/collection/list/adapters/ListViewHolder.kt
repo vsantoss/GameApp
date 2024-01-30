@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vsanto.gameapp.R
 import com.vsanto.gameapp.databinding.ItemListBinding
 import com.vsanto.gameapp.domain.model.GameList
-import com.vsanto.gameapp.domain.model.GameSummary
 
 class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -23,7 +22,7 @@ class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val gamesSize = list.games.size
         binding.tvSize.text = binding.root.context.getString(R.string.list_games, gamesSize)
 
-        initGames(list.games)
+        initGames(list, onItemSelected, onItemLongSelected)
 
         binding.root.apply {
             setOnClickListener { onItemSelected(list) }
@@ -32,8 +31,12 @@ class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     }
 
-    private fun initGames(games: List<GameSummary>) {
-        gamesAdapter = SummaryListGamesAdapter(games.take(10))
+    private fun initGames(
+        list: GameList,
+        onItemSelected: (GameList) -> Unit,
+        onItemLongSelected: (GameList) -> Boolean
+    ) {
+        gamesAdapter = SummaryListGamesAdapter(list, onItemSelected, onItemLongSelected)
         binding.rvGames.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
