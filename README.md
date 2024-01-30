@@ -9,4 +9,5 @@ An Android application for browsing and tracking video games.
 - [Dagger Hilt](https://dagger.dev/hilt/)
 - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 - [Retrofit](https://square.github.io/retrofit/)
+- [OkHttp](https://square.github.io/okhttp/)
 - [Picasso](https://square.github.io/picasso/)
