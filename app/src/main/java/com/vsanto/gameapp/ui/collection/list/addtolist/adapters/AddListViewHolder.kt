@@ -1,6 +1,8 @@
 package com.vsanto.gameapp.ui.collection.list.addtolist.adapters
 
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.vsanto.gameapp.R
@@ -29,6 +31,10 @@ class AddListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             if (!isBlockedList) {
                 binding.ivSelected.isVisible = !binding.ivSelected.isVisible
                 onItemSelected(list)
+            } else {
+                val shakeAnimation: Animation =
+                    AnimationUtils.loadAnimation(binding.root.context, R.anim.shake)
+                binding.ivBlocked.startAnimation(shakeAnimation)
             }
         }
     }
