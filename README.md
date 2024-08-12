@@ -16,3 +16,15 @@ An Android application for browsing and tracking video games.
   -  [MockK](https://mockk.io/)
   -  [Espresso](https://developer.android.com/training/testing/espresso/basics)
   -  [Dagger Hilt Test](https://developer.android.com/training/dependency-injection/hilt-testing)
+
+## Screenshots
+<p>
+<img src="/media/screenshot_1.jpg" width="32%"/>
+<img src="/media/screenshot_2.jpg" width="32%"/>
+<img src="/media/screenshot_3.jpg" width="32%"/>
+</p>
+<p>
+<img src="/media/screenshot_4.jpg" width="32%"/>
+<img src="/media/screenshot_5.jpg" width="32%"/>
+<img src="/media/screenshot_6.jpg" width="32%"/>
+</p>
